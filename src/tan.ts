@@ -10,7 +10,6 @@ import { isFinite } from "./guards/finite.ts";
 import { cos } from "./cos.ts";
 import { sin } from "./sin.ts";
 
-
 /**
  * Performant local implementation of the `Math.tan` function. This function
  * calculates the tangent of a number, returning a value in range `[-∞, +∞]`.

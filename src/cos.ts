@@ -8,7 +8,12 @@
  * @module cos
  */
 import { abs } from "./abs.ts";
-import { EPSILON, NAN, NEGATIVE_INFINITY, POSITIVE_INFINITY } from "./constants.ts";
+import {
+  EPSILON,
+  NAN,
+  NEGATIVE_INFINITY,
+  POSITIVE_INFINITY,
+} from "./constants.ts";
 
 /**
  * Performant local implementation of the `Math.cos` function. This function

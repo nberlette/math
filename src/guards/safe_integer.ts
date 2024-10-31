@@ -44,4 +44,4 @@ export function isSafeInteger(number: unknown): number is SafeInteger {
     number >= MIN_SAFE_INTEGER && number <= MAX_SAFE_INTEGER;
 }
 
-export { type SafeInteger, MAX_SAFE_INTEGER, MIN_SAFE_INTEGER };
+export { MAX_SAFE_INTEGER, MIN_SAFE_INTEGER, type SafeInteger };

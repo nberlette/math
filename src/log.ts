@@ -8,7 +8,13 @@
  * @module log
  */
 import { abs } from "./abs.ts";
-import { EPSILON, LN2, NAN, NEGATIVE_INFINITY, POSITIVE_INFINITY } from "./constants.ts";
+import {
+  EPSILON,
+  LN2,
+  NAN,
+  NEGATIVE_INFINITY,
+  POSITIVE_INFINITY,
+} from "./constants.ts";
 
 /**
  * Performant local implementation of the `Math.log` function.

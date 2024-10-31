@@ -10,7 +10,6 @@ import { NAN } from "./constants.ts";
 import { atan2 } from "./atan2.ts";
 import { sqrt } from "./sqrt.ts";
 
-
 /**
  * Performant local implementation of the `Math.asin` function. This function
  * calculates the arcsine (inverse sine) of a number, returning a value in the

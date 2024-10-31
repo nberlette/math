@@ -1,4 +1,4 @@
-import { FloatPrecision, P32 } from "./precision.ts";
+import type { FloatPrecision, P32 } from "./precision.ts";
 
 const Float: unique symbol = Symbol("Float");
 
