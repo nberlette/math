@@ -1,0 +1,9 @@
+node_modules
+Thumbs.db
+.DS_Store
+.SpotlightV100
+.Trashes
+*-lock.*
+*.lock*
+*.swp
+.*~
