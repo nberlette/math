@@ -1,3 +1,14 @@
+/**
+ * This module provides nominal (branded) types for working with floating-point
+ * numbers of various precisions, which can be used to enforce type safety and
+ * prevent accidental mixing of floating-point values of different precisions.
+ *
+ * The types provided by this module are branded with unique symbols that are
+ * specific to floating-point numbers, and are designed to be used as generic
+ * type arguments to other functions and classes that work with floats.
+ *
+ * @module types/float
+ */
 import type { FloatPrecision, P32 } from "./precision.ts";
 
 const Float: unique symbol = Symbol("Float");
@@ -15,7 +26,7 @@ interface IsFloat<N extends FloatPrecision> {
  * unforgeable unique symbol that is specific to floating points.
  *
  * @template {number} [N=number] The type of numeric value to check.
- * @template {FloatPrecision} [P=P32] The precision of the floating-point number.
+ * @template {FloatPrecision} [P=P32] Precision of the floating-point number.
  * @category Types
  * @tags Float, Branded
  */
