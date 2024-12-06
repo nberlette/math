@@ -10,7 +10,7 @@
  *
  * @module f16round
  */
-import { encodeFloat16, decodeFloat16 } from "./float16/mod.ts";
+import { decodeFloat16, encodeFloat16 } from "./float16/mod.ts";
 
 /**
  * Rounds a number to the nearest 16-bit floating point value (half precision).
