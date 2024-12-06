@@ -1,3 +1,20 @@
+/**
+ * This module provides functions for encoding standard JavaScript numbers into
+ * 16-bit half-precision floating point numbers (`Float16`) that follow the
+ * IEEE 754-2008 standard for half-precision binary16 floating point numbers.
+ *
+ * The `Float16` format is a 16-bit representation of a floating point number
+ * that is used to store floating point values in a DataView or TypedArray.
+ * This format is used in graphics programming and other performance-sensitive
+ * applications.
+ *
+ * The `encodeFloat16` function encodes a standard JavaScript number into a
+ * 16-bit half-precision floating point value, which can be stored in a
+ * DataView via `setUint16`, or used in other applications that require the
+ * `Float16` format.
+ *
+ * @module float16/encode
+ */
 import { isPositiveInfinity } from "../guards/positive_infinity.ts";
 import { isNegativeInfinity } from "../guards/negative_infinity.ts";
 import { isNaN } from "../guards/nan.ts";
@@ -44,7 +61,7 @@ import { round } from "../round.ts";
  * @returns An encoded unsigned 16-bit integer that represents the input value.
  * @example
  * ```ts
- * import { encodeFloat16 } from "@nick/math/ieee754";
+ * import { encodeFloat16 } from "@nick/math/float16";
  *
  * console.log(encodeFloat16(3.14)); // 0x4248 (16968)
  *
@@ -53,6 +70,8 @@ import { round } from "../round.ts";
  * console.log(view.getUint16(0)); // 16968
  * console.log(view.getFloat16(0)); // 3.140625
  * ```
+ * @category IEEE-754
+ * @tags float16, float, encode
  */
 export function encodeFloat16(value: number): number {
   if (isNaN(value)) return 0x7E00;

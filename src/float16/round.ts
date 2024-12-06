@@ -1,3 +1,17 @@
+/**
+ * This module provides functions for rounding numbers to 16-bit floating point
+ * values that follow the IEEE 754-2008 standard for half-precision binary16
+ * floating point numbers.
+ *
+ * The `roundFloat16` function rounds a number to the nearest 16-bit floating
+ * point value (half precision), following the same rounding and conversion
+ * rules as the native `Math.f16round` function from the TC39 Proposal for
+ * [Float16Array], which began shipping in ES2024.
+ *
+ * [Float16Array]: https://github.com/tc39/proposal-float16array
+ *
+ * @module float16/round
+ */
 import { encodeFloat16 as encode } from "./encode.ts";
 import { decodeFloat16 as decode } from "./decode.ts";
 

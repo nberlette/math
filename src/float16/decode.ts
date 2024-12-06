@@ -1,3 +1,20 @@
+/**
+ * This module provides functions for decoding 16-bit half-precision floating
+ * point numbers (`Float16`) from IEEE 754-2008 encoded `Uint16` values, like
+ * those returned by {@linkcode encodeFloat16} or DataView's `geUint16` method.
+ *
+ * The `Float16` format is a 16-bit representation of a floating point number
+ * that follows the IEEE 754-2008 standard for half-precision binary16 floating
+ * point numbers. This format is used to store floating point values in a
+ * DataView or TypedArray, and is used in graphics programming and other
+ * performance-sensitive applications.
+ *
+ * The `decodeFloat16` function decodes a 16-bit half-precision floating point
+ * value into a standard JavaScript number, which can be used in arithmetic
+ * operations or passed to other functions.
+ *
+ * @module float16/decode
+ */
 import { POSITIVE_INFINITY } from "../constants/positive_infinity.ts";
 import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";
 import { NAN } from "../constants/nan.ts";
@@ -31,13 +48,15 @@ import { pow } from "../pow.ts";
  * @returns The decoded standard JavaScript number.
  * @example
  * ```ts
- * import { decodeFloat16 } from "@nick/math/ieee754";
+ * import { decodeFloat16 } from "@nick/math/float16";
  *
  * console.log(decodeFloat16(0x4248)); // 3.140625
  *
  * const view = new DataView(new Float16Array([3.14]).buffer);
  * console.log(decodeFloat16(view.getUint16(0))); // 3.140625
  * ```
+ * @category IEEE-754
+ * @tags float, float16, decode
  */
 export function decodeFloat16(bits: number): number {
   if (bits === 0x7E00) return NAN;
