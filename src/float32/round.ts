@@ -1,9 +1,10 @@
 /**
  * Rounds a number to the nearest 32-bit floating point value (single precision).
  *
- * @module fround
+ * @module float32/round
  */
-import { decodeFloat32, encodeFloat32 } from "./float32/mod.ts";
+import { encodeFloat32 } from "./encode.ts";
+import { decodeFloat32 } from "./decode.ts";
 
 /**
  * Rounds a number to the nearest 32-bit floating point value (single precision).
@@ -25,6 +26,6 @@ import { decodeFloat32, encodeFloat32 } from "./float32/mod.ts";
  * console.assert(Math.fround(PI) === 3.1415927410125732); // OK
  * ```
  */
-export function fround(x: number): number {
+export function roundFloat32(x: number): number {
   return decodeFloat32(encodeFloat32(+x));
 }
