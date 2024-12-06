@@ -1,3 +1,25 @@
+/**
+ * This module provides functions for decoding 32-bit single-precision floating
+ * point numbers (`Float32`) from IEEE 754-2008 encoded `Uint32` values, like
+ * those returned by {@linkcode encodeFloat32} or DataView's `geUint32` method.
+ *
+ * The `Float32` format is a 32-bit representation of a floating point number
+ * that follows the IEEE 754-2008 standard for single-precision binary32
+ * floating point numbers. This format is used to store floating point values
+ * in a DataView via `setUint32`, and is equivalent to the result of calling
+ * `DataView.prototype.getUint32` when reading a single-precision float.
+ *
+ * To encode a standard JavaScript number into a `Float32` value, use the
+ * {@linkcode encodeFloat32} function of the `./encode` module, passing it the
+ * number you want to encode. The result can then be stored in a DataView via
+ * `setUint32`, or used as an intermediate value for further processing.
+ *
+ *  To decode the `Float32` value back into a standard JavaScript number (but
+ * with 32-bits of precision), use the {@linkcode decodeFloat32} function of
+ * this module, passing it the encoded value.
+ *
+ * @module float32/decode
+ */
 import { POSITIVE_INFINITY } from "../constants/positive_infinity.ts";
 import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";
 import { NAN } from "../constants/nan.ts";
@@ -36,6 +58,8 @@ import { pow } from "../pow.ts";
  * const view = new DataView(new Float32Array([3.14]).buffer);
  * console.log(decodeFloat32(view.getUint32(0)));
  * ```
+ * @category IEEE-754
+ * @tags float, float32, decode
  */
 export function decodeFloat32(bits: number): number {
   if (bits === 0x7FC00000) return NAN;

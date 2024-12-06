@@ -1,3 +1,20 @@
+/**
+ * This module provides functions for encoding standard JavaScript numbers
+ * (64-bit double-precision floating point values) into 32-bit unsigned
+ * integers (Uint32) that represent single-precision floating point numbers.
+ *
+ * The `Float32` format is a 32-bit representation of a floating point number
+ * that follows the IEEE 754-2008 standard for single-precision binary32
+ * floating point numbers. This format is used to store floating point values
+ * in a DataView via `setUint32`, and is equivalent to the result of calling
+ * `DataView.prototype.getUint32` when reading a single-precision float.
+ *
+ * To decode a `Float32` value back into a standard JavaScript number, use the
+ * {@linkcode decodeFloat32} function of the `./decode` module, passing it the
+ * encoded value returned by {@linkcode encodeFloat32}.
+ *
+ * @module float32/encode
+ */
 import { isPositiveInfinity } from "../guards/positive_infinity.ts";
 import { isNegativeInfinity } from "../guards/negative_infinity.ts";
 import { isNaN } from "../guards/nan.ts";
@@ -53,6 +70,8 @@ import { round } from "../round.ts";
  * console.log(view.getUint32(0)); // 1078523339
  * console.log(view.getFloat32(0)); // 3.140625
  * ```
+ * @category IEEE-754
+ * @tags float32, encode
  */
 export function encodeFloat32(value: number): number {
   if (isNaN(value)) return 0x7FC00000;

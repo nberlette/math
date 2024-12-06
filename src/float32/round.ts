@@ -1,5 +1,6 @@
 /**
- * Rounds a number to the nearest 32-bit floating point value (single precision).
+ * Rounds a number to the nearest 32-bit floating point value (single
+ * precision), following the IEEE 754-2008 specification.
  *
  * @module float32/round
  */
