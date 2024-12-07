@@ -1,6 +1,5 @@
 /**
- * Performant local implementation of the `Math.atanh` function. This function
- * calculates the inverse hyperbolic tangent of a number, returning a value in
+ * Calculates the inverse hyperbolic tangent of a number, returning a value in
  * the range `[-∞, +∞]`.
  *
  * @module atanh
@@ -10,8 +9,7 @@ import { NAN, POSITIVE_INFINITY } from "./constants.ts";
 import { log } from "./log.ts";
 
 /**
- * Performant local implementation of the `Math.atanh` function. This function
- * calculates the inverse hyperbolic tangent of a number, returning a value in
+ * Calculates the inverse hyperbolic tangent of a number, returning a value in
  * the range `[-∞, +∞]`.
  *
  * @param x The number whose inverse hyperbolic tangent is to be calculated
