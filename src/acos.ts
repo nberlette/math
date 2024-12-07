@@ -1,6 +1,5 @@
 /**
- * Performant local implementation of the `Math.acos` function. This function
- * calculates the arccosine (inverse cosine) of a number, returning a value in
+ * Calculates the arccosine (inverse cosine) of a number, returning a value in
  * the range `[0, π]`.
  *
  * @module acos
@@ -11,8 +10,7 @@ import { atan2 } from "./atan2.ts";
 import { sqrt } from "./sqrt.ts";
 
 /**
- * Performant local implementation of the `Math.acos` function. This function
- * calculates the arccosine (inverse cosine) of a number, returning a value in
+ * Calculates the arccosine (inverse cosine) of a number, returning a value in
  * the range `[0, π]`.
  *
  * @param x The number whose arccosine is to be calculated (must be between -1
