@@ -1,6 +1,5 @@
 /**
- * Performant local implementation of the `Math.asinh` function. This function
- * calculates the inverse hyperbolic sine of a number.
+ * Calculates the inverse hyperbolic sine of a number.
  *
  * @category Trigonometry
  * @module asinh
@@ -10,8 +9,7 @@ import { log } from "./log.ts";
 import { sqrt } from "./sqrt.ts";
 
 /**
- * Performant local implementation of the `Math.asinh` function. This function
- * calculates the inverse hyperbolic sine of a number.
+ * Calculates the inverse hyperbolic sine of a number.
  *
  * @param x The number whose inverse hyperbolic sine is to be calculated.
  * @returns The inverse hyperbolic sine of the provided number.
