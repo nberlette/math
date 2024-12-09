@@ -1,30 +1,21 @@
 /**
- * Performant local implementation of the `Math.log` function.
+ * Calculates the natural logarithm of a number (logₑ).
  *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the natural logarithm of the provided number.
- *
- * @category Arithmetic
  * @module log
  */
+import { EPSILON } from "./constants/epsilon.ts";
+import { LN2 } from "./constants/ln2.ts";
+import { NAN } from "./constants/nan.ts";
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
+import { NEGATIVE_INFINITY } from "./constants/negative_infinity.ts";
 import { abs } from "./abs.ts";
-import {
-  EPSILON,
-  LN2,
-  NAN,
-  NEGATIVE_INFINITY,
-  POSITIVE_INFINITY,
-} from "./constants.ts";
 
 /**
- * Performant local implementation of the `Math.log` function.
- *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the natural logarithm of the provided number.
+ * Calculates the natural logarithm of a number (logₑ).
  *
  * @param x The number to calculate the natural logarithm of (logₑ)
  * @returns The natural logarithm of the provided number.
- * @category Arithmetic
+ * @category Logarithmic
  */
 export function log(x: number): number {
   if ((x = +x) !== x || x < 0) return NAN; // NaN for x < 0
