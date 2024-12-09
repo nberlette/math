@@ -60,7 +60,7 @@ export class MT19937 {
     if (seed.length > 1) {
       return MT19937.#instance.initFromArray(...seed);
     } else {
-      return MT19937.#instance.init(seed[0])
+      return MT19937.#instance.init(seed[0]);
     }
   }
 
