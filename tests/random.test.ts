@@ -1,4 +1,5 @@
 import { describe, it } from "jsr:@std/testing@1/bdd";
+import { assert, assertEquals } from "jsr:@std/assert@1";
 import { expect } from "jsr:@std/expect@1";
 import { MT19937, random } from "../src/random.ts";
 
