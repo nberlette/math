@@ -1,7 +1,6 @@
 /**
  * Calculates the inverse hyperbolic sine of a number.
  *
- * @category Trigonometry
  * @module asinh
  */
 import { isFinite } from "./guards/finite.ts";

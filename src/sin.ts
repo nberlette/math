@@ -5,7 +5,7 @@
  */
 
 import { abs } from "./abs.ts";
-import { EPSILON, NAN } from "./constants.ts";
+import { EPSILON, NAN } from "./constants/mod.ts";
 import { isFinite } from "./guards/finite.ts";
 
 /**

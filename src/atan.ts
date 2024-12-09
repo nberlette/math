@@ -2,10 +2,8 @@
  * Calculates the arctangent (inverse tangent) of a number, returning a value
  * in the range `[-π/2, π/2]`.
  *
- * @category Trigonometry
  * @module atan
  */
-
 import { abs } from "./abs.ts";
 import { NAN } from "./constants/nan.ts";
 import { PI } from "./constants/pi.ts";

@@ -42,8 +42,8 @@ export function atan2(y: number, x: number): number {
     if (isNegativeInfinity(y)) return -PI_OVER_4;
     return PI_OVER_2;
   } else if (isNegativeInfinity(x)) {
-    if (isPositiveInfinity(y)) return (3 * PI) / 4;
-    if (isNegativeInfinity(y)) return (-3 * PI) / 4;
+    if (isPositiveInfinity(y)) return 3 * PI_OVER_4;
+    if (isNegativeInfinity(y)) return -3 * PI_OVER_4;
     return -PI_OVER_2;
   } else if (isFinite(x) && !isFinite(y)) {
     return y > 0 ? PI_OVER_2 : -PI_OVER_2;

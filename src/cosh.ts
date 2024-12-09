@@ -1,7 +1,6 @@
 /**
  * Calculates the hyperbolic cosine of a number.
  *
- * @category Trigonometry
  * @module cosh
  */
 import { exp } from "./exp.ts";

@@ -1,7 +1,6 @@
 /**
  * Calculates the cosine of a number, returning a value in the range `[-1, 1]`.
  *
- * @category Trigonometry
  * @module cos
  */
 import { abs } from "./abs.ts";
