@@ -21,8 +21,8 @@ import { min } from "./min.ts";
  * @param lower The lower bound of the clamp range
  * @param upper The upper bound of the clamp range
  * @returns The clamped value guaranteed to be within the provided range.
- * @category Arithmetic
- * @tags Range, Non-Standard
+ * @category Rounding
+ * @tags non-standard, clamp
  */
 export function clamp(number: number, lower: number, upper: number): number {
   return max(lower, min(number, upper));
