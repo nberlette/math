@@ -1,20 +1,14 @@
 /**
- * Performant local implementation of the `Math.cbrt` function. This function calculates
- * the cube root of a number, handling negative values as well.
+ * Calculates the cube root of a number, handling negative values as well.
  *
- * @param x The number whose cube root is to be calculated.
- * @returns The cube root of the provided number.
- * @category Arithmetic
  * @module cbrt
  */
-
 import { abs } from "./abs.ts";
 import { exp } from "./exp.ts";
 import { log } from "./log.ts";
 
 /**
- * Performant local implementation of the `Math.cbrt` function. This function calculates
- * the cube root of a number, handling negative values as well.
+ * Calculates the cube root of a number, handling negative values as well.
  *
  * @param x The number whose cube root is to be calculated.
  * @returns The cube root of the provided number.

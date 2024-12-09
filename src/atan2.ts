@@ -2,7 +2,6 @@
  * Calculates the arctangent of the quotient of its arguments, `y / x`,
  * returning a value in the range `(-π, π]`.
  *
- * @category Trigonometry
  * @module atan2
  */
 import { NAN } from "./constants/nan.ts";
