@@ -4,7 +4,8 @@
  *
  * @module atanh
  */
-import { NAN, POSITIVE_INFINITY } from "./constants/mod.ts";
+import { isNaN, NAN } from "./guards/nan.ts";
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
 import { log } from "./log.ts";
 
 /**
