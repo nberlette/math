@@ -1,24 +1,25 @@
 /**
- * Performant local implementation of the `Math.min` function. This function is
- * used rather than the global `Math.min` function to avoid potential issues
- * that may arise from global variable shadowing, reassignment, or malicious
- * tampering.
+ * Returns the smallest of its arguments, or `NaN` if any argument is `NaN`.
+ * If no arguments are provided, the result is `Infinity`.
  *
- * @category Arithmetic
  * @module min
  */
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
 
 /**
- * Performant local implementation of the `Math.min` function. This function is
- * used rather than the global `Math.min` function to avoid potential issues
- * that may arise from global variable shadowing, reassignment, or malicious
- * tampering.
+ * Returns the smallest of its arguments, or `NaN` if any argument is `NaN`.
+ * If no arguments are provided, the result is `Infinity`.
  *
- * @param a The first number to compare (left side of the operator)
- * @param b The number to compare against (right side of the operator)
- * @returns The smaller of the two operands.
- * @category Arithmetic
+ * @param numbers The numbers to compare.
+ * @returns The smallest number in the list.
+ * @category Comparison
  */
-export function min(a: number, b: number): number {
-  return a < b ? a : b;
+export function min(...numbers: number[]): number {
+  let result = POSITIVE_INFINITY as number;
+  for (let i = 0; i < numbers.length; i++) {
+    const number = numbers[i];
+    if (number !== number) return number;
+    if (number < result) result = number;
+  }
+  return result;
 }
