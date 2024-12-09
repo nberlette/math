@@ -1,26 +1,21 @@
 /**
- * Performant local implementation of the `Math.exp` function.
- *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the exponential function of the provided number.
- *
- * @category Arithmetic
+ * @category Exponential
  * @module exp
  */
-
-import { LN2, NAN, NEGATIVE_INFINITY, POSITIVE_INFINITY } from "./constants.ts";
-import { floor } from "./floor.ts";
-import { pow } from "./pow.ts";
+import { EPSILON } from "./constants/epsilon.ts";
+import { isNegativeInfinity } from "./guards/negative_infinity.ts";
+import { isPositiveInfinity } from "./guards/positive_infinity.ts";
+import { isNaN } from "./guards/nan.ts";
+import { abs } from "./abs.ts";
 
 /**
- * Performant local implementation of the `Math.exp` function.
+ * Calculates the exponential function of a number, returning `e^x`.
  *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the exponential function of the provided number.
+ * This is functionally equivalent to the `Math.exp` function.
  *
  * @param x The number to calculate the exponential function of (e^x)
  * @returns The exponential function of the provided number.
- * @category Arithmetic
+ * @category Exponential
  * @example
  * ```ts no-eval
  * import { exp } from "@nick/math";
@@ -32,11 +27,19 @@ import { pow } from "./pow.ts";
  * ```
  */
 export function exp(x: number): number {
-  if (x !== x) return NAN;
-  if (x === NEGATIVE_INFINITY) return 0;
-  if (x === POSITIVE_INFINITY) return POSITIVE_INFINITY;
+  if (isNegativeInfinity(x)) return 0;
+  if (isPositiveInfinity(x) || isNaN(x)) return x;
   if (x === 0) return 1;
-  if (x < 0) return 1 / exp(-x);
-  const n = floor(x), z = x - n;
-  return pow(2, n) * exp(z * LN2);
+
+  const a = abs(x);
+  let result = 1, term = 1, iteration = 1;
+
+  // Using Taylor series expansion to approximate e^x
+  while (term > EPSILON) {
+    term *= a / iteration;
+    result += term;
+    iteration += 1;
+  }
+
+  return x < 0 ? 1 / result : result;
 }
