@@ -1,28 +1,31 @@
 /**
- * Performant local implementation of the `Math.expm1` function. This function
- * calculates the exponential of `x` minus 1 (`exp(x) - 1`) with a high degree
+ * Calculates the exponential of `x` minus 1 (`exp(x) - 1`) with a high degree
  * of accuracy, even for very small values of `x`.
  *
- * @category Arithmetic
  * @module expm1
  */
+import { EPSILON } from "./constants/epsilon.ts";
 import { abs } from "./abs.ts";
-import { EPSILON, NEGATIVE_INFINITY, POSITIVE_INFINITY } from "./constants.ts";
 import { exp } from "./exp.ts";
+import { NEGATIVE_INFINITY } from "./constants/negative_infinity.ts";
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
 
 /**
- * Performant local implementation of the `Math.expm1` function. This function
- * calculates `exp(x) - 1` (the exponential of x minus 1), accurately even for
- * very small values of x.
+ * Calculates `exp(x) - 1` (the exponential of x minus 1).
+ *
+ * Accurate even for very small values of x.
  *
  * @param x The number whose exponential minus 1 is to be calculated.
  * @returns The value of `exp(x) - 1`.
- * @category Arithmetic
+ * @category Exponential
  */
 export function expm1(x: number): number {
-  if (x === 0) return x; // respect -0
+  // fast paths for common cases
+  if ((x = +x) === 0) return x; // respect -0
+  if (x === POSITIVE_INFINITY) return x;
   if (x === NEGATIVE_INFINITY) return -1;
-  if (x === POSITIVE_INFINITY) return POSITIVE_INFINITY;
+  // for very small values of x, exp(x) - 1 is approximately equal to x
   if (abs(x) < EPSILON) return x;
+  // for all other values of x, exp(x) - 1 is accurate
   return exp(x) - 1;
 }
