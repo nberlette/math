@@ -11,7 +11,7 @@ import { floor } from "./floor.ts";
  *
  * @param x The number to round up to the nearest whole number
  * @returns The smallest integer greater than or equal to the provided number.
- * @category Arithmetic
+ * @category Rounding
  * @tags rounding, ceiling
  */
 export function ceil(x: number): number {

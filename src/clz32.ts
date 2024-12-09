@@ -16,7 +16,7 @@ import { log } from "./log.ts";
  * @param x The number to count the leading zero bits of.
  * @returns The number of leading zero bits in the 32-bit binary representation
  * of the number.
- * @category Arithmetic
+ * @category Bitwise
  * @tags clz32
  */
 export function clz32(x: number): number {

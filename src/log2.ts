@@ -1,26 +1,20 @@
 /**
- * Performant local implementation of the `Math.log2` function.
+ * Calculates the base-2 logarithm of a number (log₂).
  *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the base-2 logarithm of the provided number.
- *
- * @param x The number to calculate the base-2 logarithm of (log₂)
- * @returns The base-2 logarithm of the provided number.
- * @category Arithmetic
  * @module log2
  */
-import { LOG2E } from "./constants.ts";
+import { LOG2E } from "./constants/log2e.ts";
 import { log } from "./log.ts";
 
 /**
- * Performant local implementation of the `Math.log2` function.
- *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the base-2 logarithm of the provided number.
+ * Calculates the base-2 logarithm of a number (log₂).
  *
  * @param x The number to calculate the base-2 logarithm of (log₂)
  * @returns The base-2 logarithm of the provided number.
- * @category Arithmetic
+ * @category Logarithmic
+ * @see {@linkcode log} for the natural logarithm.
+ * @see {@linkcode log10} for the base-10 logarithm.
+ * @see {@linkcode LOG2E} for the base-2 logarithm of {@linkcode E}.
  */
 export function log2(x: number): number {
   return log(x) * LOG2E;

@@ -1,6 +1,5 @@
 /**
- * Performant local implementation of the `Math.tan` function. This function
- * calculates the tangent of `x`, returning a value in the range `[-∞, +∞]`.
+ * Calculates the tangent of `x`, returning a value in the range `[-∞, +∞]`.
  *
  * @category Trigonometry
  * @module tan
@@ -11,8 +10,7 @@ import { cos } from "./cos.ts";
 import { sin } from "./sin.ts";
 
 /**
- * Performant local implementation of the `Math.tan` function. This function
- * calculates the tangent of a number, returning a value in range `[-∞, +∞]`.
+ * Calculates the tangent of a number, returning a value in range `[-∞, +∞]`.
  *
  * @param x The angle in radians whose tangent is to be calculated.
  * @returns The tangent of the provided angle.

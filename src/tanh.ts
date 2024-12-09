@@ -1,6 +1,5 @@
 /**
- * Performant local implementation of the `Math.tanh` function. This function
- * calculates the hyperbolic tangent of a number, returning a value in the
+ * Calculates the hyperbolic tangent of a number, returning a value in the
  * range `[-1, 1]`.
  *
  * @category Trigonometry
@@ -13,8 +12,7 @@ import { isPositiveInfinity } from "./guards/positive_infinity.ts";
 import { isNegativeInfinity } from "./guards/negative_infinity.ts";
 
 /**
- * Performant local implementation of the `Math.tanh` function. This function
- * calculates the hyperbolic tangent of a number, returning a value in the
+ * Calculates the hyperbolic tangent of a number, returning a value in the
  * range `[-1, 1]`.
  *
  * @param x The number whose hyperbolic tangent is to be calculated.

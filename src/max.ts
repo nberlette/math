@@ -1,18 +1,46 @@
 /**
- * Performant local implementation of the `Math.max` function.
+ * Returns the largest of its arguments, or `NaN` if any argument is `NaN`.
+ * If no arguments are provided, the result is `-Infinity`.
  *
- * @category Arithmetic
+ * @example
+ * ```ts
+ * import { max } from "@nick/math";
+ *
+ * const atLeastZero = (x: number) => max(x, 0);
+ *
+ * atLeastZero(+1); // 1
+ * atLeastZero(-1); // 0
+ * ```
  * @module max
  */
+import { NEGATIVE_INFINITY } from "./constants/negative_infinity.ts";
 
 /**
- * Performant local implementation of the `Math.max` function.
+ * Returns the largest of its arguments, or `NaN` if any argument is `NaN`.
+ * If no arguments are provided, the result is `-Infinity`.
  *
- * @param a The first number to compare (left side of the operator)
- * @param b The number to compare against (right side of the operator)
- * @returns The larger of the two operands.
- * @category Arithmetic
+ * This function is designed as a fast alternative to the built-in `Math.max`
+ * function. It is optimized for performance, and isn't susceptible to any
+ * global state changes or monkey-patching that might affect the built-in
+ * `Math.max` function.
+ *
+ * @param numbers The numbers to compare.
+ * @returns The largest number in the list.
+ * @category Comparison
+ * @example
+ * ```ts
+ * import { max } from "@nick/math";
+ *
+ * const largest = max(1, 2); // 2
+ * const alsoLargest = max(-1, 0); // 0
+ * ```
  */
-export function max(a: number, b: number): number {
-  return a > b ? a : b;
+export function max(...numbers: number[]): number {
+  let result = NEGATIVE_INFINITY as number;
+  for (let i = 0; i < numbers.length; i++) {
+    const number = numbers[i];
+    if (number !== number) return number;
+    if (number > result) result = number;
+  }
+  return result;
 }

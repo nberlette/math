@@ -1,33 +1,41 @@
 /**
- * Performant local implementation of the `Math.hypot` function. This function
- * calculates the square root of the sum of squares of its arguments (`sqrt(a^2
- * + b^2 + ...)`), avoiding overflow or underflow errors.
+ * Calculates the hypotenuse value using the Pythagorean theorem, which is the
+ * sqrt of the sum of the squares of its arguments (`sqrt(a^2 + b^2 + ...`).
+ * Avoids overflow or underflow errors.
+ *
+ * **Note**: This equation is also known as the Euclidean distance or L² norm.
  *
  * @module hypot
  */
-
 import { abs } from "./abs.ts";
 import { sqrt } from "./sqrt.ts";
+import { max } from "./max.ts";
 
 /**
- * Performant local implementation of the `Math.hypot` function. This function
- * calculates the square root of the sum of squares of its arguments (`sqrt(a^2
- * + b^2 + ...)`), avoiding overflow or underflow errors.
+ * Calculates the hypotenuse value using the Pythagorean theorem, which is the
+ * sqrt of the sum of the squares of its arguments (`sqrt(a^2 + b^2 + ...)`).
+ * Avoids overflow or underflow errors.
  *
- * @param values The numbers whose Euclidean distance from the origin is to be
- * calculated.
- * @returns The square root of the sum of squares of the provided values.
- * @category Arithmetic
+ * @param values The numbers to calculate the hypotenuse of.
+ * @returns The hypotenuse of the provided numbers (also known as the Euclidean
+ * distance or L² norm of the values).
+ * @category Trigonometry
+ * @tags hypotenuse, pythagorean, euclidean
+ * @example
+ * ```typescript
+ * hypot(3, 4); // 5
+ * hypot(5, 12); // 13
+ * ```
  */
 export function hypot(...values: number[]): number {
-  let max = 0;
-  for (const value of values) max = max > abs(value) ? max : abs(value);
-  if (max === 0) return 0;
+  if (values.length === 0) return 0;
+  const maximum = max(...values.map(abs));
 
   let sum = 0;
   for (const value of values) {
-    const normalized = value / max;
+    const normalized = value / maximum;
     sum += normalized * normalized;
   }
-  return max * sqrt(sum);
+
+  return maximum * sqrt(sum);
 }
