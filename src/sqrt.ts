@@ -1,26 +1,28 @@
 /**
- * Performant local implementation of the `Math.sqrt` function.
+ * Calculates the square root of a number.
  *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the square root of the provided number.
- *
- * @category Arithmetic
  * @module sqrt
  */
-
+import { EPSILON } from "./constants/epsilon.ts";
+import { NAN } from "./constants/nan.ts";
 import { abs } from "./abs.ts";
-import { EPSILON, NAN } from "./constants.ts";
 
 /**
- * Performant local implementation of the `Math.sqrt` function.
- *
- * It does not rely on any native `Math.*` functions, using pure arithmetic to
- * calculate the square root of the provided number.
+ * Calculates the square root of a number.
  *
  * @param x The number to calculate the square root of
  * @returns The square root of the provided number.
- * @category Arithmetic
- * @module sqrt
+ * @example
+ * ```ts
+ * import * as math from "@nick/math";
+ *
+ * math.sqrt(4); // 2
+ * math.sqrt(16); // 4
+ * math.sqrt(0); // 0
+ * math.sqrt(1); // 1
+ * math.sqrt(-1); // NaN
+ * math.sqrt(-4); // NaN
+ * ```
  */
 export function sqrt(x: number): number {
   if (x < 0) return NAN; // negative numbers have no real square root
