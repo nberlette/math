@@ -1,4 +1,3 @@
-export * from "./src/constants.ts";
 export * from "./src/abs.ts";
 export * from "./src/acos.ts";
 export * from "./src/acosh.ts";
@@ -11,6 +10,7 @@ export * from "./src/cbrt.ts";
 export * from "./src/ceil.ts";
 export * from "./src/clamp.ts";
 export * from "./src/clz32.ts";
+export * from "./src/constants/mod.ts";
 export * from "./src/cos.ts";
 export * from "./src/cosh.ts";
 export * from "./src/exp.ts";
