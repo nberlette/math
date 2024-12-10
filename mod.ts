@@ -37,4 +37,4 @@ export * from "./src/sqrt.ts";
 export * from "./src/tan.ts";
 export * from "./src/tanh.ts";
 export * from "./src/trunc.ts";
-export * from "./src/types.ts";
+export * from "./src/types/mod.ts";
