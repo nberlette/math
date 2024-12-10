@@ -15,7 +15,7 @@ interface IsFinite {
  * that is not infinite or `NaN`.
  *
  * @category Types
- * @tags Number, Finite
+ * @tags number, nominal, finite
  */
 export type Finite<N extends number = number> = (
   & Exclude<N, NAN | POSITIVE_INFINITY | NEGATIVE_INFINITY>
