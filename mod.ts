@@ -20,7 +20,6 @@ export * from "./src/f16round.ts";
 export * from "./src/fround.ts";
 export * from "./src/guards/mod.ts";
 export * from "./src/hypot.ts";
-export * from "./src/ieee754.ts";
 export * from "./src/imul.ts";
 export * from "./src/log.ts";
 export * from "./src/log1p.ts";
