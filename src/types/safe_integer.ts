@@ -13,6 +13,6 @@ interface Safe_Integer {
  * providing an additional level of type safety for integer values.
  *
  * @category Types
- * @tags Safe Integer
+ * @tags Safe Integer, nominal
  */
 export type SafeInteger<N extends number = number> = N & Safe_Integer;
