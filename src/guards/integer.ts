@@ -32,8 +32,8 @@ export function isInteger(number: unknown): number is Integer<number>;
 
 /** @internal */
 // deno-lint-ignore no-explicit-any
-export function isInteger(it: any): it is Integer<number> {
-  return (it = +it) === (it | 0);
+export function isInteger(number: any): number is Integer<number> {
+  return (number = +number) === (number | 0);
 }
 
 export type { Integer };
