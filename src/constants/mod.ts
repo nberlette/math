@@ -1,3 +1,8 @@
+/**
+ * This module re-exports all of the `@nick/math/constants/*` submodules.
+ *
+ * @module constants
+ */
 export * from "./e.ts";
 export * from "./epsilon.ts";
 export * from "./infinity.ts";
@@ -11,5 +16,6 @@ export * from "./min_safe_integer.ts";
 export * from "./min_value.ts";
 export * from "./nan.ts";
 export * from "./pi.ts";
+export * from "./positive_zero.ts";
 export * from "./sqrt1_2.ts";
 export * from "./sqrt2.ts";
