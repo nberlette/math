@@ -113,19 +113,18 @@
     "ok": "deno fmt --check && deno lint src && deno run test",
     "fix": "deno fmt && deno lint --fix src"
   },
-  "lock": false,
-  "vendor": false,
-  "nodeModulesDir": "auto",
   "publish": {
     "include": [
-      "./src/**/*.ts",
-      "./mod.ts",
-      "./deno.json",
-      "./README.md",
-      "./LICENSE"
+      "src/**/*.ts",
+      "mod.ts",
+      "deno.json",
+      "README.md",
+      "LICENSE"
     ],
     "exclude": [
-      "**/*.{test,bench}.*"
+      "**/.*",
+      "**/*.test.*",
+      "**/*.bench.*"
     ]
   }
 }
