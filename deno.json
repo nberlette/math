@@ -103,15 +103,15 @@
     "./types/safe-integer": "./src/types/safe_integer.ts"
   },
   "imports": {
-    "@std/assert": "jsr:@std/assert@^1.0.11",
-    "@std/testing": "jsr:@std/testing@^1.0.9",
-    "@std/expect": "jsr:@std/expect@^1.0.13"
+    "@std/assert": "jsr:@std/assert@1.0.11",
+    "@std/testing": "jsr:@std/testing@1.0.9",
+    "@std/expect": "jsr:@std/expect@1.0.13"
   },
   "tasks": {
     "bench": "./scripts/benchmark.ts",
-    "test": "deno test -A --no-check=remote --coverage=tests/.coverage --clean --parallel",
-    "ok": "deno fmt --check && deno lint src && deno doc --lint src && deno run test && deno run test --doc",
-    "fix": "deno fmt && deno lint --fix ./src"
+    "test": "deno test -A --no-check=remote --coverage=.coverage --clean --parallel --doc --permit-no-files",
+    "ok": "deno fmt --check && deno lint src && deno run test",
+    "fix": "deno fmt && deno lint --fix src"
   },
   "lock": false,
   "vendor": false,
