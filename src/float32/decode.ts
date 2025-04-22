@@ -20,10 +20,17 @@
  *
  * @module float32/decode
  */
-import { POSITIVE_INFINITY } from "../constants/positive_infinity.ts";
-import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";
-import { NAN } from "../constants/nan.ts";
-import { pow } from "../pow.ts";
+import {
+  FLOAT32_EXPONENT_BIAS,
+  FLOAT32_EXPONENT_BITS,
+  FLOAT32_MANTISSA_BITS,
+  FLOAT32_NAN,
+  FLOAT32_NEGATIVE_INFINITY,
+  FLOAT32_NEGATIVE_ZERO,
+  FLOAT32_POSITIVE_INFINITY,
+  FLOAT32_POSITIVE_ZERO,
+} from "./constants.ts";
+import { decode } from "../internal/ieee754.ts";
 
 /**
  * Decodes a 32-bit unsigned integer (`Uint32`) into a 32-bit single-precision
@@ -62,18 +69,14 @@ import { pow } from "../pow.ts";
  * @tags float, float32, decode
  */
 export function decodeFloat32(bits: number): number {
-  if (bits === 0x7FC00000) return NAN;
-  if (bits === 0x7F800000) return POSITIVE_INFINITY;
-  if (bits === 0xFF800000) return NEGATIVE_INFINITY;
-  if (bits === 0x80000000) return -0;
-  if (bits === 0) return 0;
-
-  const sign = ((bits >> 31) & 0x1) ? -1 : 1;
-  const expo = (bits >> 23) & 0xFF;
-  const mant = bits & 0x7FFFFF;
-
-  if (expo === 0) return sign * pow(2, -126) * (mant / pow(2, 23));
-  if (expo === 0xFF) return mant ? NAN : sign * POSITIVE_INFINITY;
-
-  return sign * pow(2, expo - 127) * (1 + mant / pow(2, 23));
+  return decode(bits, {
+    exponent: FLOAT32_EXPONENT_BITS,
+    mantissa: FLOAT32_MANTISSA_BITS,
+    bias: FLOAT32_EXPONENT_BIAS,
+    nan: FLOAT32_NAN,
+    positive_infinity: FLOAT32_POSITIVE_INFINITY,
+    negative_infinity: FLOAT32_NEGATIVE_INFINITY,
+    positive_zero: FLOAT32_POSITIVE_ZERO,
+    negative_zero: FLOAT32_NEGATIVE_ZERO,
+  });
 }

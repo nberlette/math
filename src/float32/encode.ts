@@ -15,15 +15,17 @@
  *
  * @module float32/encode
  */
-import { isPositiveInfinity } from "../guards/positive_infinity.ts";
-import { isNegativeInfinity } from "../guards/negative_infinity.ts";
-import { isNaN } from "../guards/nan.ts";
-import { isNegativeZero } from "../guards/negative_zero.ts";
-import { abs } from "../abs.ts";
-import { floor } from "../floor.ts";
-import { log2 } from "../log2.ts";
-import { pow } from "../pow.ts";
-import { round } from "../round.ts";
+import {
+  FLOAT32_EXPONENT_BIAS,
+  FLOAT32_EXPONENT_BITS,
+  FLOAT32_MANTISSA_BITS,
+  FLOAT32_NAN,
+  FLOAT32_NEGATIVE_INFINITY,
+  FLOAT32_NEGATIVE_ZERO,
+  FLOAT32_POSITIVE_INFINITY,
+  FLOAT32_POSITIVE_ZERO,
+} from "./constants.ts";
+import { encode } from "../internal/ieee754.ts";
 
 /**
  * Encodes a standard JavaScript number (a 64-bit double-precision floating
@@ -74,26 +76,14 @@ import { round } from "../round.ts";
  * @tags float32, encode
  */
 export function encodeFloat32(value: number): number {
-  if (isNaN(value)) return 0x7FC00000;
-  if (isPositiveInfinity(value)) return 0x7F800000;
-  if (isNegativeInfinity(value)) return 0xFF800000;
-  if (isNegativeZero(value)) return 0x80000000;
-  if (value === 0) return 0;
-
-  const sign = value < 0 ? 1 : 0;
-  value = abs(value);
-
-  // Subnormal
-  if (value < pow(2, -126)) return (sign << 31) | round(value / pow(2, -149));
-
-  let expo = floor(log2(value));
-  let mant = value / pow(2, expo);
-  if (mant < 1) {
-    mant *= 2;
-    expo -= 1;
-  }
-  expo += 127;
-
-  mant = round((mant - 1) * pow(2, 23));
-  return (sign << 31) | (expo << 23) | mant;
+  return encode(value, {
+    exponent: FLOAT32_EXPONENT_BITS,
+    mantissa: FLOAT32_MANTISSA_BITS,
+    bias: FLOAT32_EXPONENT_BIAS,
+    nan: FLOAT32_NAN,
+    positive_infinity: FLOAT32_POSITIVE_INFINITY,
+    negative_infinity: FLOAT32_NEGATIVE_INFINITY,
+    positive_zero: FLOAT32_POSITIVE_ZERO,
+    negative_zero: FLOAT32_NEGATIVE_ZERO,
+  });
 }
