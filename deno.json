@@ -5,7 +5,7 @@
   "author": {
     "name": "Nicholas Berlette",
     "email": "nick@berlette.com",
-    "url": "https://github.com/nberlette"
+    "url": "https://github.com/nberlette/math"
   },
   "exports": {
     ".": "./mod.ts",
@@ -66,6 +66,7 @@
     "./constants/negative-infinity": "./src/constants/negative_infinity.ts",
     "./constants/pi": "./src/constants/pi.ts",
     "./constants/positive-infinity": "./src/constants/positive_infinity.ts",
+    "./constants/positive-zero": "./src/constants/positive_zero.ts",
     "./constants/sqrt1-2": "./src/constants/sqrt1_2.ts",
     "./constants/sqrt2": "./src/constants/sqrt2.ts",
     "./float16": "./src/float16/mod.ts",
@@ -82,6 +83,7 @@
     "./guards/positive-infinity": "./src/guards/positive_infinity.ts",
     "./guards/negative-infinity": "./src/guards/negative_infinity.ts",
     "./guards/negative-zero": "./src/guards/negative_zero.ts",
+    "./guards/positive-zero": "./src/guards/positive_zero.ts",
     "./guards/integer": "./src/guards/integer.ts",
     "./guards/safe-integer": "./src/guards/safe_integer.ts",
     "./guards/nan": "./src/guards/nan.ts",
