@@ -15,10 +15,17 @@
  *
  * @module float16/decode
  */
-import { POSITIVE_INFINITY } from "../constants/positive_infinity.ts";
-import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";
-import { NAN } from "../constants/nan.ts";
-import { pow } from "../pow.ts";
+import {
+  FLOAT16_EXPONENT_BIAS,
+  FLOAT16_EXPONENT_BITS,
+  FLOAT16_MANTISSA_BITS,
+  FLOAT16_NAN,
+  FLOAT16_NEGATIVE_INFINITY,
+  FLOAT16_NEGATIVE_ZERO,
+  FLOAT16_POSITIVE_INFINITY,
+  FLOAT16_POSITIVE_ZERO,
+} from "./constants.ts";
+import { decode } from "../internal/ieee754.ts";
 
 /**
  * Decodes a 16-bit unsigned integer (`Uint16`) into a 16-bit half-precision
@@ -59,18 +66,14 @@ import { pow } from "../pow.ts";
  * @tags float, float16, decode
  */
 export function decodeFloat16(bits: number): number {
-  if (bits === 0x7E00) return NAN;
-  if (bits === 0x7C00) return POSITIVE_INFINITY;
-  if (bits === 0xFC00) return NEGATIVE_INFINITY;
-  if (bits === 0x8000) return -0;
-  if (bits === 0) return 0;
-
-  const sign = ((bits >> 15) & 0x1) ? -1 : 1;
-  const expo = (bits >> 10) & 0x1F;
-  const mant = bits & 0x3FF;
-
-  if (expo === 0) return sign * pow(2, -14) * (mant / pow(2, 10));
-  if (expo === 0x1F) return sign * (mant ? NAN : POSITIVE_INFINITY);
-
-  return sign * pow(2, expo - 15) * (1 + mant / pow(2, 10));
+  return decode(bits, {
+    exponent: FLOAT16_EXPONENT_BITS,
+    mantissa: FLOAT16_MANTISSA_BITS,
+    bias: FLOAT16_EXPONENT_BIAS,
+    nan: FLOAT16_NAN,
+    positive_infinity: FLOAT16_POSITIVE_INFINITY,
+    negative_infinity: FLOAT16_NEGATIVE_INFINITY,
+    positive_zero: FLOAT16_POSITIVE_ZERO,
+    negative_zero: FLOAT16_NEGATIVE_ZERO,
+  });
 }
