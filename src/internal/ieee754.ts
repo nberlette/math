@@ -1,4 +1,4 @@
-// src/float/common.ts
+// src/internal/ieee754.ts
 /**
  * Shared generic implementation for IEEE‑754 binary floating‑point
  * encoding, decoding, and rounding.
