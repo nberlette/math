@@ -66,7 +66,7 @@ export const FLOAT32_NEGATIVE_INFINITY = 0xFF800000;
 
 /**
  * Well-known bit pattern representing `-0` (negative zero) in the IEEE-754
- * half-precision (or "binary32") format.
+ * single-precision (or "binary32") format.
  *
  * @category Constants
  * @tags float32, ieee-754, zero
