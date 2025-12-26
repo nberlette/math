@@ -57,7 +57,7 @@ export const FLOAT32_POSITIVE_INFINITY = 0x7F800000;
 
 /**
  * Well-known bit pattern representing `-Infinity` (negative infinity) in the
- * IEEE-754 half-precision (or "binary32") format.
+ * IEEE-754 single-precision (or "binary32") format.
  *
  * @category Constants
  * @tags float32, ieee-754, Infinity
