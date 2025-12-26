@@ -38,7 +38,7 @@ export const FLOAT32_MANTISSA_BITS = 23;
 export const FLOAT32_EXPONENT_BIAS = 127;
 
 /**
- * Well-known bit pattern representing `NaN` in the IEEE-754 half-precision (or
+ * Well-known bit pattern representing `NaN` in the IEEE-754 single-precision (or
  * "binary32") format.
  *
  * @category Constants
