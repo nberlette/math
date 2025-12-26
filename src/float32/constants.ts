@@ -48,7 +48,7 @@ export const FLOAT32_NAN = 0x7FC00000;
 
 /**
  * Well-known bit pattern representing `+Infinity` (positive infinity) in the
- * IEEE-754 half-precision (or "binary32") format.
+ * IEEE-754 single-precision (or "binary32") format.
  *
  * @category Constants
  * @tags float32, ieee-754, Infinity
