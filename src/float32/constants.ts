@@ -30,7 +30,7 @@ export const FLOAT32_EXPONENT_BITS = 8;
 export const FLOAT32_MANTISSA_BITS = 23;
 
 /**
- * The exponent bias used in the IEEE-754 half-precision (or "binary32") format.
+ * The exponent bias used in the IEEE-754 single-precision (or "binary32") format.
  *
  * @category Constants
  * @tags float32, ieee-754, exponent, bias
