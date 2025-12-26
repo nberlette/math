@@ -210,7 +210,7 @@ export const float128 = {
   nan: 0x7FFF8000000000000000000000000000n,
   positive_infinity: 0x7FFF0000000000000000000000000000n,
   negative_infinity: 0xFFFF0000000000000000000000000000n,
-  negative_zero: 0x8000000000000000n,
+  negative_zero: 0x80000000000000000000000000000000n,
   positive_zero: 0n,
 } as const satisfies FloatFormat;
 
