@@ -145,7 +145,8 @@ export function decode(bits: bigint | number, fmt: FloatFormat): number {
  * @returns      The rounded JS number.
  * @internal
  */
-export function fround(value: number, fmt: FloatFormat): number {
+export function fround(value: number, fmt?: FloatFormat): number {
+  fmt ??= float32;
   return decode(encode(value, fmt), fmt);
 }
 
