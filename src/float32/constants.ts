@@ -75,7 +75,7 @@ export const FLOAT32_NEGATIVE_ZERO = 0x80000000;
 
 /**
  * Well-known bit pattern representing `+0` (positive zero) in the IEEE-754
- * half-precision (or "binary32") format.
+ * single-precision (or "binary32") format.
  *
  * **Note**: This constant, unlike the others, is equivalent to its bit pattern
  * representation (all bits are zero). As such, this is not strictly necessary
