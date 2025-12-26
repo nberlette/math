@@ -21,7 +21,7 @@
 export const FLOAT32_EXPONENT_BITS = 8;
 
 /**
- * The number of bits used for the mantissa in the IEEE-754 half-precision
+ * The number of bits used for the mantissa in the IEEE-754 single-precision
  * (or "binary32") format.
  *
  * @category Constants
