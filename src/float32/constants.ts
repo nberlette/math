@@ -12,7 +12,7 @@
  */
 
 /**
- * The number of bits used for the exponent in the IEEE-754 half-precision
+ * The number of bits used for the exponent in the IEEE-754 single-precision
  * (or "binary32") format.
  *
  * @category Constants
