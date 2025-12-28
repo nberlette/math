@@ -22,8 +22,8 @@ import { abs } from "./abs.ts";
  * import { assertEquals } from "@std/assert";
  *
  * assertEquals(exp(0), 1);
- * assertEquals(exp(1), 2.718281828459045);
- * assertEquals(exp(2), 7.3890560989306495);
+ * assertEquals(exp(1), 2.7182818284590455);
+ * assertEquals(exp(2), 7.389056098930649);
  * ```
  */
 export function exp(x: number): number {
