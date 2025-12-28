@@ -74,7 +74,7 @@ export function encode(
   return (fmt.bigint ? BigInt : Number)(inner_encode(value, fmt));
 }
 
-function inner_encode(value: number, fmt: FloatFormat): number | bigint {
+function inner_encode(value: number, fmt: Format): number | bigint {
   if (isNaN(value)) return fmt.nan;
   if (isPositiveInfinity(value)) return fmt.positive_infinity;
   if (isNegativeInfinity(value)) return fmt.negative_infinity;
