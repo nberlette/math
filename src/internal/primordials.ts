@@ -10,6 +10,11 @@ export const StringPrototype = String.prototype;
 export const Number: NumberConstructor = globalThis.Number;
 export const NumberPrototype = Number.prototype;
 
+export const BigInt: BigIntConstructor = globalThis.BigInt;
+export const BigIntAsIntN = BigInt.asIntN.bind(BigInt);
+export const BigIntAsUintN = BigInt.asUintN.bind(BigInt);
+export const BigIntPrototype = BigInt.prototype;
+
 export const Object: ObjectConstructor = globalThis.Object;
 export const ObjectPrototype = Object.prototype;
 

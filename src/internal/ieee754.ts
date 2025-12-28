@@ -25,13 +25,18 @@ import { round } from "../round.ts";
 import { BigInt, Number } from "./primordials.ts";
 
 /** Descriptor for an IEEE‑754 binary floating‑point format. */
-export interface BigIntFloatFormat extends FloatFormat {
+export interface BigIntFloatFormat extends Format {
   /** Controls the output type of the bit pattern. @default {false} */
   bigint: true;
 }
 
 /** Descriptor for an IEEE‑754 binary floating‑point format. */
-export interface FloatFormat {
+export interface FloatFormat extends Format {
+  /** Optional flag indicating the output type should be a number. */
+  bigint?: false | undefined;
+}
+
+interface Format {
   /** Number of exponent bits (e.g. 8 for binary32). */
   exponent: number;
   /** Number of mantissa bits (e.g. 23 for binary32). */
@@ -48,6 +53,8 @@ export interface FloatFormat {
   negative_zero: number | bigint;
   /** Encoded bit‑pattern for +0. */
   positive_zero: number | bigint;
+  /** Optional flag indicating whether the output should be a bigint. */
+  bigint?: boolean | undefined;
 }
 
 /**
@@ -64,8 +71,7 @@ export function encode(
   value: number,
   fmt: FloatFormat | BigIntFloatFormat,
 ): number | bigint {
-  const encoded = inner_encode(value, fmt);
-  return "bigint" in fmt && fmt.bigint ? BigInt(encoded) : Number(encoded);
+  return (fmt.bigint ? BigInt : Number)(inner_encode(value, fmt));
 }
 
 function inner_encode(value: number, fmt: FloatFormat): number | bigint {
@@ -106,8 +112,8 @@ function inner_encode(value: number, fmt: FloatFormat): number | bigint {
  * @returns      The decoded JS number.
  * @internal
  */
-export function decode(bits: bigint | number, fmt: FloatFormat): number {
-  const b = typeof bits === "bigint" ? bits : BigInt(bits);
+export function decode(bits: string | bigint | number, fmt: FloatFormat): number {
+  const b = BigInt(bits);
 
   if (b === BigInt(fmt.nan)) return NAN;
   if (b === BigInt(fmt.positive_infinity)) return POSITIVE_INFINITY;
