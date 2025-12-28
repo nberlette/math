@@ -8,23 +8,34 @@
 
 ---
 
-This is project implements all of the `Math.*` functions in JavaScript without
-using the built-in `Math` object. For what reason would I do such a thing? Well,
-that remains to be seen.
+## Overview
 
-I cannot guarantee the accuracy of all of these functions. I **_can_** guarantee
-the accuracy of the [constants](#constants) and the [guards](#guards), however.
+Standalone implementations of the **entire** native [`Math`] namespace, written
+in pure TypeScript with absolutely zero dependencies. Organized in a modular
+structure to encourage tree-shaking (dead code elimination) in bundlers, this
+package can be imported eithr on an individual module basis, or as a namespace
+suitable for use as a drop-in replacement for the standard `Math` object[^1].
 
-If you find an issue with the logic behind any of the functions, please
-[open an issue](https://github.com/nberlette/math/issues/new) so that I can
-address it promptly. Thanks!
-
----
+[^1]: All modules in this package are implemented using 100% manual logic and
+    arithmetic, and do not rely on any native code or objects. As such, the
+    performance will typically be slightly slower than the native `Math.*`
+    implementations. There may also be some minor deviations in output. If you
+    believe a specific function is inaccurate or otherwise inconsistent with the
+    expected behavior, please open an issue so I can address it and attempt to
+    improve it. Thank you!
 
 ## Install
 
 ```sh
-deno add @nick/math
+deno add jsr:@nick/math
+```
+
+```sh
+pnpm add jsr:@nick/math
+```
+
+```sh
+yarn add jsr:@nick/math
 ```
 
 ```sh
@@ -32,15 +43,7 @@ bunx jsr add @nick/math
 ```
 
 ```sh
-pnpm dlx jsr add @nick/math
-```
-
-```sh
 npx jsr add @nick/math
-```
-
-```sh
-yarn dlx jsr add @nick/math
 ```
 
 ---
@@ -933,15 +936,20 @@ console.assert(isNegativeInfinity(-Infinity));
 
 <div align="center">
 
-#### [MIT] © [Nicholas Berlette]. All rights reserved.
+**[MIT] © [Nicholas Berlette]. All rights reserved.**
 
-###### [GitHub] · [Issues] · [JSR] · [NPM]
+<small>
 
-</div>
+[github] · [issues] · [jsr] · [npm] · [contributing]
+
+</small></div>
 
 [MIT]: https://nick.mit-license.org "MIT © Nicholas Berlette. All rights reserved."
-[Nicholas Berlette]: https://nick.berlette.com "Nicholas Berlette"
-[GitHub]: https://github.com/nberlette/math "View @nick/math on GitHub"
-[Issues]: https://github.com/nberlette/math/issues "Found a bug? Let's squash it!"
-[JSR]: https://jsr.io/@nick/math/doc "View @nick/math on JSR"
+[Nicholas Berlette]: https://github.com/nberlette "Follow nberlette on GitHub for more cool stuff!"
+[GitHub]: https://github.com/nberlette/math "Give nberlette/math a star on GitHub! ⭐️"
+[Issues]: https://github.com/nberlette/math/issues "Found a bug? Let's squash it! 🐛"
+[JSR]: https://jsr.io/@nick/math "View the @nick/math package on JSR"
+[docs]: https://jsr.io/@nick/math/doc "View auto-generated API documentation for @nick/math on JSR"
 [NPM]: https://npmjs.com/package/@nberlette/math "View @nberlette/math on NPM"
+[contributing]: https://github.com/nberlette/math/blob/main/.github/CONTRIBUTING.md "Contribution guidelines"
+[`Math`]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math
