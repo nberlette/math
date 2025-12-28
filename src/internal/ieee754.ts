@@ -112,7 +112,10 @@ function inner_encode(value: number, fmt: FloatFormat): number | bigint {
  * @returns      The decoded JS number.
  * @internal
  */
-export function decode(bits: string | bigint | number, fmt: FloatFormat): number {
+export function decode(
+  bits: string | bigint | number,
+  fmt: FloatFormat,
+): number {
   const b = BigInt(bits);
 
   if (b === BigInt(fmt.nan)) return NAN;
