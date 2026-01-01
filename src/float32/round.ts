@@ -8,7 +8,8 @@ import { encodeFloat32 } from "./encode.ts";
 import { decodeFloat32 } from "./decode.ts";
 
 /**
- * Rounds a number to the nearest 32-bit floating point value (single precision).
+ * Rounds a number to the nearest 32-bit floating point value (single
+ * precision).
  *
  * Based on `Math.fround` function, this function follows the same rounding and
  * conversion rules as per the IEEE 754-2008 specification for single-precision

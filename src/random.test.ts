@@ -1,7 +1,7 @@
 import { describe, it } from "@std/testing/bdd";
 import { assert, assertEquals } from "@std/assert";
 import { expect } from "@std/expect";
-import { MT19937, random } from "../src/random.ts";
+import { MT19937, random } from "./random.ts";
 
 describe("random", () => {
   it("is a function", () => {

@@ -4,6 +4,8 @@
  *
  * @module float16
  */
-export * from "./encode.ts";
+export * from "./constants.ts";
 export * from "./decode.ts";
+export * from "./encode.ts";
+export * from "./guards.ts";
 export * from "./round.ts";

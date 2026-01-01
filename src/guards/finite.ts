@@ -5,7 +5,7 @@
  * function. It is not dependent on the global `Number` object and will not be
  * affected by global variable shadowing, reassignment, or malicious tampering.
  *
- * @module finite
+ * @module guards/finite
  */
 import { isNaN } from "./nan.ts";
 import { isNegativeInfinity } from "./negative_infinity.ts";
@@ -41,3 +41,5 @@ export function isFinite(number: unknown): number is Finite {
   return typeof number === "number" && !isNaN(number) &&
     !isPositiveInfinity(number) && !isNegativeInfinity(number);
 }
+
+export type { Finite };

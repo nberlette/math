@@ -1,4 +1,4 @@
-import * as constants from "../src/constants/mod.ts";
+import * as constants from "./constants/mod.ts";
 import { describe, it } from "@std/testing/bdd";
 import { expect } from "@std/expect";
 

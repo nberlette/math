@@ -28,8 +28,11 @@ interface PositiveZero {
  * ```ts
  * import { POSITIVE_ZERO } from "@nick/math/constants/positive-zero";
  * import { isPositiveZero } from "@nick/math/is/positive-zero";
+ * import assert from "node:assert";
  *
- * ]
+ * assert.strictEqual(isPositiveZero(-0), false); // OK
+ * assert.strictEqual(isPositiveZero(POSITIVE_ZERO), true); // OK
+ * assert.strictEqual(POSITIVE_ZERO, 0); // OK
  * ```
  */
 export const POSITIVE_ZERO: POSITIVE_ZERO = 0 as POSITIVE_ZERO;

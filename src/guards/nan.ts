@@ -11,6 +11,7 @@
  * @example
  * ```ts
  * import { isNaN, NAN } from "@nick/math";
+ * import assert from "node:assert";
  *
  * function assertNotNaN<T extends number>(
  *   value: T
@@ -21,7 +22,7 @@
  * const x = 42, y = NAN;
  *
  * assertNotNaN(x); // OK
- * assertNotNaN(y); // Error: Expected value to be non-NaN
+ * assert.throws(() => assertNotNaN(y)); // Error: Expected value to be non-NaN
  * ```
  * @category Arithmetic
  * @module isNaN
@@ -42,6 +43,7 @@ import { NAN } from "../constants/nan.ts";
  * @example
  * ```ts
  * import { isNaN, NAN } from "@nick/math";
+ * import assert from "node:assert";
  *
  * function assertNotNaN<T extends number>(
  *   value: T
@@ -52,7 +54,7 @@ import { NAN } from "../constants/nan.ts";
  * const x = 42, y = NAN;
  *
  * assertNotNaN(x); // OK
- * assertNotNaN(y); // Error: Expected value to be non-NaN
+ * assert.throws(() => assertNotNaN(y)); // Error: Expected value to be non-NaN
  * ```
  * @category Arithmetic
  */

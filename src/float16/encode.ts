@@ -15,15 +15,18 @@
  *
  * @module float16/encode
  */
-import { isPositiveInfinity } from "../guards/positive_infinity.ts";
-import { isNegativeInfinity } from "../guards/negative_infinity.ts";
-import { isNaN } from "../guards/nan.ts";
-import { isNegativeZero } from "../guards/negative_zero.ts";
-import { abs } from "../abs.ts";
-import { floor } from "../floor.ts";
-import { log2 } from "../log2.ts";
-import { pow } from "../pow.ts";
-import { round } from "../round.ts";
+
+import {
+  FLOAT16_EXPONENT_BIAS,
+  FLOAT16_EXPONENT_BITS,
+  FLOAT16_MANTISSA_BITS,
+  FLOAT16_NAN,
+  FLOAT16_NEGATIVE_INFINITY,
+  FLOAT16_NEGATIVE_ZERO,
+  FLOAT16_POSITIVE_INFINITY,
+  FLOAT16_POSITIVE_ZERO,
+} from "./constants.ts";
+import { encode } from "../internal/ieee754.ts";
 
 /**
  * Encodes a standard JavaScript number (a 64-bit double-precision floating
@@ -74,23 +77,14 @@ import { round } from "../round.ts";
  * @tags float16, float, encode
  */
 export function encodeFloat16(value: number): number {
-  if (isNaN(value)) return 0x7E00;
-  if (isPositiveInfinity(value)) return 0x7C00;
-  if (isNegativeInfinity(value)) return 0xFC00;
-  if (isNegativeZero(value)) return 0x8000;
-  if (value === 0) return 0;
-
-  const sign = value < 0 ? 1 : 0;
-  value = abs(value);
-
-  // handle subnormal (really small) numbers
-  if (value < pow(2, -14)) return (sign << 15) | round(value / pow(2, -24));
-
-  let expo = floor(log2(value));
-  let mant = value / pow(2, expo);
-  if (mant < 1) mant *= 2, expo -= 1;
-  expo += 15;
-
-  mant = round((mant - 1) * pow(2, 10));
-  return (sign << 15) | (expo << 10) | mant;
+  return encode(value, {
+    exponent: FLOAT16_EXPONENT_BITS,
+    mantissa: FLOAT16_MANTISSA_BITS,
+    bias: FLOAT16_EXPONENT_BIAS,
+    nan: FLOAT16_NAN,
+    positive_infinity: FLOAT16_POSITIVE_INFINITY,
+    negative_infinity: FLOAT16_NEGATIVE_INFINITY,
+    positive_zero: FLOAT16_POSITIVE_ZERO,
+    negative_zero: FLOAT16_NEGATIVE_ZERO,
+  });
 }
