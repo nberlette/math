@@ -63,7 +63,7 @@
     "./tan": "./src/tan.ts",
     "./tanh": "./src/tanh.ts",
     "./trunc": "./src/trunc.ts",
-    "./constants": "./src/constants/mod.ts",
+    "./constants": "./src/constants/index.ts",
     "./constants/e": "./src/constants/e.ts",
     "./constants/epsilon": "./src/constants/epsilon.ts",
     "./constants/infinity": "./src/constants/infinity.ts",

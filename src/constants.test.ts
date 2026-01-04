@@ -1,4 +1,4 @@
-import * as constants from "./constants/mod.ts";
+import * as constants from "./constants/index.ts";
 import { describe, it } from "jsr:@std/testing@1/bdd";
 import { expect } from "jsr:@std/expect@1";
 

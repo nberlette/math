@@ -24,7 +24,7 @@ export * from "./cbrt.ts";
 export * from "./ceil.ts";
 export * from "./clamp.ts";
 export * from "./clz32.ts";
-export * from "./constants/mod.ts";
+export * from "./constants/index.ts";
 export * from "./cos.ts";
 export * from "./cosh.ts";
 export * from "./exp.ts";
