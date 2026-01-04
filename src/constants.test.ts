@@ -1,6 +1,6 @@
 import * as constants from "./constants/mod.ts";
-import { describe, it } from "@std/testing/bdd";
-import { expect } from "@std/expect";
+import { describe, it } from "jsr:@std/testing@1/bdd";
+import { expect } from "jsr:@std/expect@1";
 
 const cases = {
   Math: [

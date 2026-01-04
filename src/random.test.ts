@@ -1,6 +1,6 @@
-import { describe, it } from "@std/testing/bdd";
-import { assert, assertEquals } from "@std/assert";
-import { expect } from "@std/expect";
+import { describe, it } from "jsr:@std/testing@1/bdd";
+import { assert, assertEquals } from "jsr:@std/assert@1";
+import { expect } from "jsr:@std/expect@1";
 import { MT19937, random } from "./random.ts";
 
 describe("random", () => {
