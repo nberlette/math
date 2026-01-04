@@ -8,7 +8,7 @@
     "url": "https://github.com/nberlette/math"
   },
   "exports": {
-    ".": "./mod.ts",
+    ".": "./src/index.ts",
     "./abs": "./src/abs.ts",
     "./acos": "./src/acos.ts",
     "./acosh": "./src/acosh.ts",
