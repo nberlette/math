@@ -11,6 +11,8 @@
  * @module float32/constants
  */
 
+import { FloatFormat } from "../internal/ieee754.ts";
+
 /**
  * The number of bits used for the exponent in the IEEE-754 single-precision
  * (or "binary32") format.
@@ -18,7 +20,7 @@
  * @category Constants
  * @tags float32, ieee-754, exponent
  */
-export const FLOAT32_EXPONENT_BITS = 8;
+export const FLOAT32_EXPONENT_BITS = 0x8;
 
 /**
  * The number of bits used for the mantissa in the IEEE-754 single-precision
@@ -85,3 +87,19 @@ export const FLOAT32_NEGATIVE_ZERO = 0x80000000;
  * @tags float32, ieee-754, zero
  */
 export const FLOAT32_POSITIVE_ZERO = 0x00000000;
+
+/**
+ * Represents the IEEE-754 binary32 (single-precision) floating-point format.
+ *
+ * @internal
+ */
+export default {
+  exponent: FLOAT32_EXPONENT_BITS,
+  mantissa: FLOAT32_MANTISSA_BITS,
+  bias: FLOAT32_EXPONENT_BIAS,
+  nan: FLOAT32_NAN,
+  positive_infinity: FLOAT32_POSITIVE_INFINITY,
+  negative_infinity: FLOAT32_NEGATIVE_INFINITY,
+  negative_zero: FLOAT32_NEGATIVE_ZERO,
+  positive_zero: FLOAT32_POSITIVE_ZERO,
+} as const satisfies FloatFormat;

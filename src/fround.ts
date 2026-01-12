@@ -4,7 +4,7 @@
  *
  * @module fround
  */
-import { decodeFloat32, encodeFloat32 } from "./float32/mod.ts";
+import { roundFloat32 } from "./float32/round.ts";
 
 /**
  * Rounds a number to the nearest 32-bit floating point value (single
@@ -28,5 +28,5 @@ import { decodeFloat32, encodeFloat32 } from "./float32/mod.ts";
  * ```
  */
 export function fround(x: number): number {
-  return decodeFloat32(encodeFloat32(+x));
+  return roundFloat32(x);
 }
