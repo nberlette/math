@@ -20,7 +20,7 @@ import { FloatFormat } from "../internal/ieee754.ts";
  * @category Constants
  * @tags float32, ieee-754, exponent
  */
-export const FLOAT32_EXPONENT_BITS = 0x8;
+export const FLOAT32_EXPONENT_BITS = 8;
 
 /**
  * The number of bits used for the mantissa in the IEEE-754 single-precision
