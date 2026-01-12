@@ -53,3 +53,5 @@ export * from "./tan.ts";
 export * from "./tanh.ts";
 export * from "./trunc.ts";
 export * from "./types/index.ts";
+
+export * as default from "./index.ts";
