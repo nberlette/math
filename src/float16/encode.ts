@@ -16,16 +16,7 @@
  * @module float16/encode
  */
 
-import {
-  FLOAT16_EXPONENT_BIAS,
-  FLOAT16_EXPONENT_BITS,
-  FLOAT16_MANTISSA_BITS,
-  FLOAT16_NAN,
-  FLOAT16_NEGATIVE_INFINITY,
-  FLOAT16_NEGATIVE_ZERO,
-  FLOAT16_POSITIVE_INFINITY,
-  FLOAT16_POSITIVE_ZERO,
-} from "./constants.ts";
+import float16 from "./constants.ts";
 import { encode } from "../internal/ieee754.ts";
 
 /**
@@ -77,14 +68,5 @@ import { encode } from "../internal/ieee754.ts";
  * @tags float16, float, encode
  */
 export function encodeFloat16(value: number): number {
-  return encode(value, {
-    exponent: FLOAT16_EXPONENT_BITS,
-    mantissa: FLOAT16_MANTISSA_BITS,
-    bias: FLOAT16_EXPONENT_BIAS,
-    nan: FLOAT16_NAN,
-    positive_infinity: FLOAT16_POSITIVE_INFINITY,
-    negative_infinity: FLOAT16_NEGATIVE_INFINITY,
-    positive_zero: FLOAT16_POSITIVE_ZERO,
-    negative_zero: FLOAT16_NEGATIVE_ZERO,
-  });
+  return encode(value, float16);
 }

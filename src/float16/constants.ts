@@ -11,6 +11,8 @@
  * @module float16/constants
  */
 
+import { FloatFormat } from "../internal/ieee754.ts";
+
 /**
  * Well-known bit pattern representing `NaN` in the IEEE-754 half-precision (or
  * "binary16") format.
@@ -67,7 +69,7 @@ export const FLOAT16_POSITIVE_ZERO = 0x0000;
  * @category Constants
  * @tags float16, ieee-754, exponent
  */
-export const FLOAT16_EXPONENT_BITS = 5;
+export const FLOAT16_EXPONENT_BITS = 0x5;
 
 /**
  * The number of bits used for the mantissa in the IEEE-754 half-precision
@@ -76,7 +78,7 @@ export const FLOAT16_EXPONENT_BITS = 5;
  * @category Constants
  * @tags float16, ieee-754, mantissa
  */
-export const FLOAT16_MANTISSA_BITS = 10;
+export const FLOAT16_MANTISSA_BITS = 0xA;
 
 /**
  * The exponent bias used in the IEEE-754 half-precision (or "binary16")
@@ -85,4 +87,20 @@ export const FLOAT16_MANTISSA_BITS = 10;
  * @category Constants
  * @tags float16, ieee-754, bias
  */
-export const FLOAT16_EXPONENT_BIAS = 15;
+export const FLOAT16_EXPONENT_BIAS = 0xF;
+
+/**
+ * Represents the IEEE-754 binary16 (half-precision) floating-point format.
+ *
+ * @internal
+ */
+export default {
+  exponent: FLOAT16_EXPONENT_BITS,
+  mantissa: FLOAT16_MANTISSA_BITS,
+  bias: FLOAT16_EXPONENT_BIAS,
+  nan: FLOAT16_NAN,
+  positive_infinity: FLOAT16_POSITIVE_INFINITY,
+  negative_infinity: FLOAT16_NEGATIVE_INFINITY,
+  negative_zero: FLOAT16_NEGATIVE_ZERO,
+  positive_zero: FLOAT16_POSITIVE_ZERO,
+} as const satisfies FloatFormat;
