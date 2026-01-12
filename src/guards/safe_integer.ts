@@ -11,8 +11,6 @@
  * @module safe-integer
  */
 import { isFinite } from "./finite.ts";
-import { isInteger } from "./integer.ts";
-
 import { MAX_SAFE_INTEGER } from "../constants/max_safe_integer.ts";
 import { MIN_SAFE_INTEGER } from "../constants/min_safe_integer.ts";
 import type { SafeInteger } from "../types/safe_integer.ts";
