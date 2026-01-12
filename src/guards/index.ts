@@ -10,7 +10,7 @@
  * | ---------------------- | ------------------------------------------------------------- | --------------------------------------- |
  * | [`isNaN`]              | Checks if a value is `NaN` when coerced to a number.          | [`isNaN`][native-isnan]                 |
  * | [`isFinite`]           | Checks if a number is finite (i.e., not `±Infinity` or `NaN`) | [`isFinite`][native-isfinite]           |
- * | [`isInteger`]          | Checks if a value is an integer when coerced to a number.     | [`isInteger`][native-isinteger]         |
+ * | [`isInteger`]          | Checks if a value is an integer when coerced to a number.     | `--`                                    |
  * | [`isSafeInteger`]      | Checks if a number is a safe integer without coercion.        | [`Number.isSafeInteger`][issafeinteger] |
  * | [`isNumberInteger`]    | Checks if a number is an integer without coercion.            | [`Number.isInteger`][number-isint]      |
  * | [`isNumberNaN`]        | Checks if a number is `NaN` without coercion.                 | [`Number.isNaN`][native-number-isnan]   |
@@ -32,7 +32,6 @@
  * [`isPositiveZero`]: https://jsr.io/@nick/math/doc/guards/positive-zero/~/isPositiveZero
  * [`isNegativeZero`]: https://jsr.io/@nick/math/doc/guards/negative-zero/~/isNegativeZero
  * [native-isfinite]: https://mdn.io/isFinite
- * [native-isinteger]: https://mdn.io/isInteger
  * [issafeinteger]: https://mdn.io/Number.isSafeInteger
  * [number-isint]: https://mdn.io/Number.isInteger
  * [native-isnan]: https://mdn.io/isNaN

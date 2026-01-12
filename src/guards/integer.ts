@@ -10,10 +10,10 @@
 import type { Integer } from "../types/integer.ts";
 
 /**
- * Checks if the provided number is a whole number (integer), in a way that is
- * identical to the native global `isInteger` method (i.e., values are coerced
- * into numbers before checking). For a check more like `Number.isInteger`,
- * which does _not_ coerce its inputs, see {@linkcode isNumberInteger}.
+ * Checks if the provided number is a whole number (integer), similar to
+ * `Number.isInteger`, but values are coerced into numbers before checking.
+ * For a check that matches `Number.isInteger` (no input coercion), see
+ * {@linkcode isNumberInteger}.
  *
  * @param it The number to check for being an integer.
  * @returns `true` if the provided number is an integer, otherwise `false`.
@@ -25,10 +25,10 @@ export function isInteger<const N extends number>(
 ): number is Integer<N>;
 
 /**
- * Checks if the provided number is a whole number (integer), in a way that is
- * identical to the native global `isInteger` method (i.e., values are coerced
- * into numbers before checking). For a check more like `Number.isInteger`,
- * which does _not_ coerce its inputs, see {@linkcode isNumberInteger}.
+ * Checks if the provided number is a whole number (integer), similar to
+ * `Number.isInteger`, but values are coerced into numbers before checking.
+ * For a check that matches `Number.isInteger` (no input coercion), see
+ * {@linkcode isNumberInteger}.
  *
  * @param number The value to check.
  * @returns `true` if the provided number is an integer, otherwise `false`.
