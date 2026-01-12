@@ -19,11 +19,11 @@ import { abs } from "./abs.ts";
  * @example
  * ```ts no-eval
  * import { exp } from "@nick/math";
- * import { assertEquals } from "@std/assert";
+ * import assert from "node:assert";
  *
- * assertEquals(exp(0), 1);
- * assertEquals(exp(1), 2.7182818284590455);
- * assertEquals(exp(2), 7.389056098930649);
+ * assert.equal(exp(0), 1);
+ * assert.equal(exp(1), 2.7182818284590455);
+ * assert.equal(exp(2), 7.389056098930649);
  * ```
  */
 export function exp(x: number): number {
