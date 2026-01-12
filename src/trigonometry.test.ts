@@ -12,7 +12,7 @@ import {
   sin,
   tan,
   tanh,
-} from "../mod.ts";
+} from "./index.ts";
 
 describe("Math Trigonometric Functions", () => {
   describe("acos", () => {
