@@ -8,7 +8,34 @@
  *
  * @example
  * ```ts
+ * import math from "@nick/math";
+ * import assert from "node:assert";
  *
+ * // all the same constants from globalThis.Math
+ * assert.strictEqual(math.PI, Math.PI);
+ * assert.strictEqual(math.E, Math.E);
+ * assert.strictEqual(math.SQRT1_2, Math.SQRT1_2);
+ * assert.strictEqual(math.LOG10E, Math.LOG10E);
+ *
+ * // ...and even those from globalThis.Number
+ * assert.strictEqual(math.EPSILON, Number.EPSILON);
+ * assert.strictEqual(math.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);
+ * assert.notStrictEqual(math.NaN, Number.NaN); // NaN !== NaN (like, ever)
+ * // ...
+ * assert.strictEqual(math.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
+ *
+ * // all the functions from globalThis.Math
+ * assert.strictEqual(math.abs(-math.PI), math.PI);
+ * assert.strictEqual(math.f16round(math.PI), Math.f16round(Math.PI));
+ * // ...
+ * assert.strictEqual(math.cos(0.99999999999999), Math.cos(0.99999999999999));
+ *
+ * // additional, non-standard guards
+ * assert.ok(math.isNegativeInfinity(-1 / 0));
+ * assert.ok(math.isNegativeZero(-0));
+ * assert.ok(math.isPositiveZero(0));
+ * // ...
+ * assert.ok(math.isFinite(420));
  * ```
  * @module math
  */
