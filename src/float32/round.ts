@@ -25,7 +25,7 @@ import { decodeFloat32 } from "./decode.ts";
  * import { PI } from "@nick/math/constants";
  * import assert from "node:assert";
  *
- * assert.strictEqual(roundFloat32(PI) === Math.fround(PI)); // OK
+ * assert.strictEqual(roundFloat32(PI), Math.fround(PI)); // OK
  * ```
  */
 export function roundFloat32(x: number): number {
