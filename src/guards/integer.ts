@@ -54,7 +54,7 @@ export function isInteger(number: any): number is Integer<number> {
  * @tags Number, Integer
  */
 export function isNumberInteger<const N extends number>(
-  number: N
+  number: N,
 ): number is Integer<N> {
   return number % 1 === 0;
 }
