@@ -2,21 +2,42 @@
  * Type guards for checking various numeric conditions, ensuring a value is of
  * the expected type/value both at runtime and at compile-time.
  *
- * This module provides a type-safe implementation for every native numeric
- * guard from the ECMAScript specification, which includes the top-level
- * global functions like `isNaN`, and static `Number` methods like `isFinite`.
+ * This module provides type-safe implementations for every native numeric
+ * guard in the ECMAScript specification, including all top-level global guards
+ * like [`isNaN`], and static `Number` methods like [`isFinite`].
  *
  * | Type Guard             | Description                                                   | Native Equivalent                       |
  * | ---------------------- | ------------------------------------------------------------- | --------------------------------------- |
- * | [`isFinite`]           | Checks if a number is finite (i.e., not `Infinity` or `NaN`). | [`isFinite`][native-isfinite]           |
- * | [`isInfinity`]         | Checks if a number is `Infinity` or `-Infinity`.              | `--`                                    |
- * | [`isInteger`]          | Checks if a number is an integer (whole number).              | [`Number.isInteger`][native-isinteger]  |
  * | [`isNaN`]              | Checks if a value is `NaN` when coerced to a number.          | [`isNaN`][native-isnan]                 |
- * | [`isNumberNaN`]        | Checks if a value is `NaN` without coercion.                  | [`Number.isNaN`][native-number-isnan]   |
+ * | [`isFinite`]           | Checks if a number is finite (i.e., not `±Infinity` or `NaN`) | [`isFinite`][native-isfinite]           |
+ * | [`isInteger`]          | Checks if a value is an integer when coerced to a number.     | [`isInteger`][native-isinteger]         |
+ * | [`isSafeInteger`]      | Checks if a number is a safe integer without coercion.        | [`Number.isSafeInteger`][issafeinteger] |
+ * | [`isNumberInteger`]    | Checks if a number is an integer without coercion.            | [`Number.isInteger`][number-isint]      |
+ * | [`isNumberNaN`]        | Checks if a number is `NaN` without coercion.                 | [`Number.isNaN`][native-number-isnan]   |
+ * | [`isNegativeZero`]     | Checks if a number is `-0`.                                   | [`Object.is`][native-object-is]         |
+ * | [`isPositiveZero`]     | Checks if a number is `+0` (and explicitly not `-0`).         | [`Object.is`][native-object-is]         |
+ * | [`isInfinity`]         | Checks if a number is `+Infinity` or `-Infinity`.             | `--`                                    |
  * | [`isNegativeInfinity`] | Checks if a number is `-Infinity`.                            | `--`                                    |
- * | [`isNegativeZero`]     | Checks if a number is `-0`.                                   | [`Object.is`][native-object-is]*        |
  * | [`isPositiveInfinity`] | Checks if a number is `+Infinity`.                            | `--`                                    |
- * | [`isPositiveZero`]     | Checks if a number is `+0` (and not `-0`).                    | `--`                                    |
+ *
+ * [`isFinite`]: https://jsr.io/@nick/math/doc/guards/finite/~/isFinite
+ * [`isInfinity`]: https://jsr.io/@nick/math/doc/guards/infinity/~/isInfinity
+ * [`isInteger`]: https://jsr.io/@nick/math/doc/guards/integer/~/isInteger
+ * [`isSafeInteger`]: https://jsr.io/@nick/math/doc/guards/safe-integer/~/isSafeInteger
+ * [`isNumberInteger`]: https://jsr.io/@nick/math/doc/guards/integer/~/isNumberInteger
+ * [`isNaN`]: https://jsr.io/@nick/math/doc/guards/nan/~/isNaN
+ * [`isNumberNaN`]: https://jsr.io/@nick/math/doc/guards/nan/~/isNumberNaN
+ * [`isPositiveInfinity`]: https://jsr.io/@nick/math/doc/guards/positive-infinity/~/isPositiveInfinity
+ * [`isNegativeInfinity`]: https://jsr.io/@nick/math/doc/guards/negative-infinity/~/isNegativeInfinity
+ * [`isPositiveZero`]: https://jsr.io/@nick/math/doc/guards/positive-zero/~/isPositiveZero
+ * [`isNegativeZero`]: https://jsr.io/@nick/math/doc/guards/negative-zero/~/isNegativeZero
+ * [native-isfinite]: https://mdn.io/isFinite
+ * [native-isinteger]: https://mdn.io/isInteger
+ * [issafeinteger]: https://mdn.io/Number.isSafeInteger
+ * [number-isint]: https://mdn.io/Number.isInteger
+ * [native-isnan]: https://mdn.io/isNaN
+ * [native-number-isnan]: https://mdn.io/Number.isNaN
+ * [native-object-is]: https://mdn.io/Object.is
  *
  * @module guards
  */
@@ -26,3 +47,4 @@ export * from "./integer.ts";
 export * from "./nan.ts";
 export * from "./negative_zero.ts";
 export * from "./positive_zero.ts";
+export * from "./safe_integer.ts";
