@@ -8,7 +8,7 @@
     "url": "https://github.com/nberlette/math"
   },
   "exports": {
-    ".": "./mod.ts",
+    ".": "./src/index.ts",
     "./abs": "./src/abs.ts",
     "./acos": "./src/acos.ts",
     "./acosh": "./src/acosh.ts",
@@ -63,7 +63,7 @@
     "./tan": "./src/tan.ts",
     "./tanh": "./src/tanh.ts",
     "./trunc": "./src/trunc.ts",
-    "./constants": "./src/constants/mod.ts",
+    "./constants": "./src/constants/index.ts",
     "./constants/e": "./src/constants/e.ts",
     "./constants/epsilon": "./src/constants/epsilon.ts",
     "./constants/infinity": "./src/constants/infinity.ts",
@@ -83,19 +83,19 @@
     "./constants/sqrt1_2": "./src/constants/sqrt1_2.ts",
     "./constants/sqrt1-2": "./src/constants/sqrt1_2.ts",
     "./constants/sqrt2": "./src/constants/sqrt2.ts",
-    "./float16": "./src/float16/mod.ts",
+    "./float16": "./src/float16/index.ts",
     "./float16/constants": "./src/float16/constants.ts",
     "./float16/decode": "./src/float16/decode.ts",
     "./float16/encode": "./src/float16/encode.ts",
     "./float16/guards": "./src/float16/guards.ts",
     "./float16/round": "./src/float16/round.ts",
-    "./float32": "./src/float32/mod.ts",
+    "./float32": "./src/float32/index.ts",
     "./float32/constants": "./src/float32/constants.ts",
     "./float32/decode": "./src/float32/decode.ts",
     "./float32/encode": "./src/float32/encode.ts",
     "./float32/guards": "./src/float32/guards.ts",
     "./float32/round": "./src/float32/round.ts",
-    "./guards": "./src/guards/mod.ts",
+    "./guards": "./src/guards/index.ts",
     "./guards/finite": "./src/guards/finite.ts",
     "./guards/infinity": "./src/guards/infinity.ts",
     "./guards/integer": "./src/guards/integer.ts",
@@ -114,17 +114,18 @@
     "./is/positive-infinity": "./src/guards/positive_infinity.ts",
     "./is/positive-zero": "./src/guards/positive_zero.ts",
     "./is/safe-integer": "./src/guards/safe_integer.ts",
-    "./types": "./src/types/mod.ts",
+    "./types": "./src/types/index.ts",
     "./types/finite": "./src/types/finite.ts",
     "./types/float": "./src/types/float.ts",
     "./types/integer": "./src/types/integer.ts",
     "./types/precision": "./src/types/precision.ts",
     "./types/safe-integer": "./src/types/safe_integer.ts"
   },
-  "imports": {
-    "@std/assert": "jsr:@std/assert@1.0.11",
-    "@std/testing": "jsr:@std/testing@1.0.9",
-    "@std/expect": "jsr:@std/expect@1.0.13"
+  "lint": {
+    "rules": {
+      "exclude": ["no-import-prefix", "no-explicit-any"],
+      "tags": ["recommended"]
+    }
   },
   "tasks": {
     "bench": "./scripts/benchmark.ts",
@@ -135,7 +136,7 @@
   "publish": {
     "include": [
       "src/**/*.ts",
-      "mod.ts",
+      "src/*.ts",
       "deno.json",
       "README.md",
       "LICENSE"

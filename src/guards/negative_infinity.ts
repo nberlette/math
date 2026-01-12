@@ -12,7 +12,8 @@ import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";
  *
  * @param it The number to check for negative infinity.
  * @returns `true` if the provided number is `-Infinity`, otherwise `false`.
- * @category Arithmetic
+ * @category Guards
+ * @tags Negative Infinity
  */
 export function isNegativeInfinity(it: number): it is NEGATIVE_INFINITY {
   return +it === NEGATIVE_INFINITY;

@@ -21,11 +21,11 @@ import { decodeFloat32 } from "./decode.ts";
  * @tags float, float32
  * @example
  * ```ts
- * import { fround } from "@nick/math/fround";
+ * import { roundFloat32 } from "@nick/math/float32/round";
  * import { PI } from "@nick/math/constants";
+ * import assert from "node:assert";
  *
- * console.assert(fround(PI) === 3.1415927410125732); // OK
- * console.assert(Math.fround(PI) === 3.1415927410125732); // OK
+ * assert.strictEqual(roundFloat32(PI), Math.fround(PI)); // OK
  * ```
  */
 export function roundFloat32(x: number): number {

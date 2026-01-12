@@ -5,7 +5,8 @@
  * @category Trigonometry
  * @module acosh
  */
-import { NAN, POSITIVE_INFINITY } from "./constants/mod.ts";
+import { NAN } from "./constants/nan.ts";
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
 import { log } from "./log.ts";
 import { sqrt } from "./sqrt.ts";
 

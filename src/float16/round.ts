@@ -12,8 +12,8 @@
  *
  * @module float16/round
  */
-import { encodeFloat16 as encode } from "./encode.ts";
-import { decodeFloat16 as decode } from "./decode.ts";
+import { encodeFloat16 } from "./encode.ts";
+import { decodeFloat16 } from "./decode.ts";
 
 /**
  * Rounds a number to the nearest 16-bit floating point value (half precision).
@@ -31,12 +31,13 @@ import { decodeFloat16 as decode } from "./decode.ts";
  * @tags float, float16
  * @example
  * ```ts
- * import { roundFloat16 } from "@nick/math/float16";
+ * import { roundFloat16 } from "@nick/math/float16/round";
  * import { PI } from "@nick/math/constants";
+ * import assert from "node:assert";
  *
- * console.assert(roundFloat16(PI) === 3.140625); // OK
+ * assert.strictEqual(roundFloat16(PI), 3.140625); // OK
  * ```
  */
 export function roundFloat16(x: number): number {
-  return decode(encode(+x));
+  return decodeFloat16(encodeFloat16(+x));
 }

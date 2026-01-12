@@ -5,7 +5,7 @@
  * @category Trigonometry
  * @module asin
  */
-import { NAN } from "./constants/mod.ts";
+import { NAN } from "./constants/nan.ts";
 import { atan2 } from "./atan2.ts";
 import { sqrt } from "./sqrt.ts";
 

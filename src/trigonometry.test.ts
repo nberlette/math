@@ -1,5 +1,5 @@
-import { describe, it } from "@std/testing/bdd";
-import { expect } from "@std/expect";
+import { describe, it } from "jsr:@std/testing@1/bdd";
+import { expect } from "jsr:@std/expect@1";
 import {
   acos,
   acosh,
@@ -12,7 +12,7 @@ import {
   sin,
   tan,
   tanh,
-} from "../mod.ts";
+} from "./index.ts";
 
 describe("Math Trigonometric Functions", () => {
   describe("acos", () => {

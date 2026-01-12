@@ -11,5 +11,5 @@
  *
  * @module ieee754
  */
-export * from "./float16/mod.ts";
-export * from "./float32/mod.ts";
+export * from "./float16/index.ts";
+export * from "./float32/index.ts";

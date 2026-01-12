@@ -10,7 +10,7 @@
  *
  * @module f16round
  */
-import { decodeFloat16, encodeFloat16 } from "./float16/mod.ts";
+import { roundFloat16 } from "./float16/round.ts";
 
 /**
  * Rounds a number to the nearest 16-bit floating point value (half precision).
@@ -35,5 +35,5 @@ import { decodeFloat16, encodeFloat16 } from "./float16/mod.ts";
  * ```
  */
 export function f16round(x: number): number {
-  return decodeFloat16(encodeFloat16(+x));
+  return roundFloat16(x);
 }

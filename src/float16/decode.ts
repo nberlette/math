@@ -15,16 +15,7 @@
  *
  * @module float16/decode
  */
-import {
-  FLOAT16_EXPONENT_BIAS,
-  FLOAT16_EXPONENT_BITS,
-  FLOAT16_MANTISSA_BITS,
-  FLOAT16_NAN,
-  FLOAT16_NEGATIVE_INFINITY,
-  FLOAT16_NEGATIVE_ZERO,
-  FLOAT16_POSITIVE_INFINITY,
-  FLOAT16_POSITIVE_ZERO,
-} from "./constants.ts";
+import float16 from "./constants.ts";
 import { decode } from "../internal/ieee754.ts";
 
 /**
@@ -66,14 +57,5 @@ import { decode } from "../internal/ieee754.ts";
  * @tags float, float16, decode
  */
 export function decodeFloat16(bits: number): number {
-  return decode(bits, {
-    exponent: FLOAT16_EXPONENT_BITS,
-    mantissa: FLOAT16_MANTISSA_BITS,
-    bias: FLOAT16_EXPONENT_BIAS,
-    nan: FLOAT16_NAN,
-    positive_infinity: FLOAT16_POSITIVE_INFINITY,
-    negative_infinity: FLOAT16_NEGATIVE_INFINITY,
-    positive_zero: FLOAT16_POSITIVE_ZERO,
-    negative_zero: FLOAT16_NEGATIVE_ZERO,
-  });
+  return decode(bits, float16);
 }
