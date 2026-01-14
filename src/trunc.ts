@@ -36,6 +36,9 @@ import { floor } from "./floor.ts";
  * ```
  */
 export function trunc(x: number): number {
-  if ((x = +x) !== x) return x; // NaN
-  return x < 0 ? x < -1 ? ceil(x) : -0 : x < 1 ? 0 : floor(x);
+  x = +x;
+  if (x !== x) return x;
+  if (x === 0) return x;
+  if (x > -1 && x < 0) return -0;
+  return x < 0 ? ceil(x) : floor(x);
 }
