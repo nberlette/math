@@ -19,6 +19,7 @@ export const Object: ObjectConstructor = globalThis.Object;
 export const ObjectPrototype = Object.prototype;
 
 export const Array: ArrayConstructor = globalThis.Array;
+export const ArrayFrom: typeof Array.from = Array.from.bind(Array);
 export const ArrayPrototype = Array.prototype;
 
 export const Function: FunctionConstructor = globalThis.Function;
