@@ -15,6 +15,7 @@ import { sqrt } from "./sqrt.ts";
  * @category Trigonometry
  */
 export function asinh(x: number): number {
+  if (x === 0) return x;
   if (!isFinite(x)) return x;
   return log(x + sqrt(x * x + 1));
 }
