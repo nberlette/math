@@ -7,6 +7,14 @@
     "email": "nick@berlette.com",
     "url": "https://github.com/nberlette/math"
   },
+  "lock": true,
+  "nodeModulesDir": "auto",
+  "tasks": {
+    "build": "deno run -Aq scripts/build.ts",
+    "test": "deno test -A --no-check=remote --coverage=.coverage --clean --parallel --doc",
+    "ok": "deno fmt --check && deno lint src && deno run test",
+    "fix": "deno fmt && deno lint --fix src"
+  },
   "exports": {
     ".": "./src/index.ts",
     "./abs": "./src/abs.ts",
@@ -127,11 +135,8 @@
       "tags": ["recommended"]
     }
   },
-  "tasks": {
-    "bench": "./scripts/benchmark.ts",
-    "test": "deno test -A --no-check=remote --coverage=.coverage --clean --parallel --doc --permit-no-files",
-    "ok": "deno fmt --check && deno lint src && deno run test",
-    "fix": "deno fmt && deno lint --fix src"
+  "fmt": {
+    "exclude": ["docs", "**/*.min.*"]
   },
   "publish": {
     "include": [

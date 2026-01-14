@@ -1,6 +1,7 @@
+import assert from "node:assert";
+import { describe, it } from "node:test";
 import * as constants from "./constants/index.ts";
-import { describe, it } from "jsr:@std/testing@1/bdd";
-import { expect } from "jsr:@std/expect@1";
+import { assertSameValue } from "./internal/_test_utils.ts";
 
 const cases = {
   Math: [
@@ -33,7 +34,8 @@ for (const kind of Object.keys(cases) as (keyof typeof cases)[]) {
       const parent = globalThis[kind];
       const expected = parent[key as keyof typeof parent];
       it(`is equal to ${kind}.${key}`, () => {
-        expect(value).toBe(expected);
+        assert.strictEqual(typeof value, "number");
+        assertSameValue(value, expected as number);
       });
     });
   }

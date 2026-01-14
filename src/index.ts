@@ -20,7 +20,7 @@
  * // ...and even those from globalThis.Number
  * assert.strictEqual(math.EPSILON, Number.EPSILON);
  * assert.strictEqual(math.NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);
- * assert.notStrictEqual(math.NaN, Number.NaN); // NaN !== NaN (like, ever)
+ * assert.strictEqual(math.NaN, Number.NaN);
  * // ...
  * assert.strictEqual(math.MAX_SAFE_INTEGER, Number.MAX_SAFE_INTEGER);
  *

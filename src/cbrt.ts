@@ -15,7 +15,7 @@ import { log } from "./log.ts";
  * @category Arithmetic
  */
 export function cbrt(x: number): number {
-  if (x === 0) return 0;
+  if (x === 0) return x;
   const absX = abs(x);
   const result = exp(log(absX) / 3);
   return x < 0 ? -result : result;

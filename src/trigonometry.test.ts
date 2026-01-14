@@ -1,5 +1,6 @@
-import { describe, it } from "jsr:@std/testing@1/bdd";
-import { expect } from "jsr:@std/expect@1";
+import assert from "node:assert";
+import { describe, it } from "node:test";
+import { assertClose } from "./internal/_test_utils.ts";
 import {
   acos,
   acosh,
@@ -14,179 +15,88 @@ import {
   tanh,
 } from "./index.ts";
 
-describe("Math Trigonometric Functions", () => {
-  describe("acos", () => {
-    it("should return a value close to Math.acos for valid inputs", () => {
-      expect(acos(0)).toBeCloseTo(Math.acos(0), 10);
-      expect(acos(1)).toBeCloseTo(Math.acos(1), 10);
-      expect(acos(-1)).toBeCloseTo(Math.acos(-1), 10);
-    });
-    it("should return NaN for inputs outside the range [-1, 1]", () => {
-      expect(acos(2)).toBeNaN();
-      expect(acos(-2)).toBeNaN();
-    });
-    it("should handle NaN and Infinity inputs", () => {
-      expect(acos(NaN)).toBeNaN();
-      expect(acos(Infinity)).toBeNaN();
-      expect(acos(-Infinity)).toBeNaN();
-    });
+const unaryCases = [0, 0.5, -0.5, 1, -1, Math.PI / 2, Math.PI, NaN];
+
+describe("Math trigonometric functions", () => {
+  it("acos matches Math.acos", () => {
+    for (const value of unaryCases) {
+      assertClose(acos(value), Math.acos(value));
+    }
   });
 
-  describe("asin", () => {
-    it("should return a value close to Math.asin for valid inputs", () => {
-      expect(asin(0)).toBeCloseTo(Math.asin(0), 10);
-      expect(asin(1)).toBeCloseTo(Math.asin(1), 10);
-      expect(asin(-1)).toBeCloseTo(Math.asin(-1), 10);
-    });
-    it("should return NaN for inputs outside the range [-1, 1]", () => {
-      expect(asin(2)).toBeNaN();
-      expect(asin(-2)).toBeNaN();
-    });
-    it("should handle NaN and Infinity inputs", () => {
-      expect(asin(NaN)).toBeNaN();
-      expect(asin(Infinity)).toBeNaN();
-      expect(asin(-Infinity)).toBeNaN();
-    });
+  it("asin matches Math.asin", () => {
+    for (const value of unaryCases) {
+      assertClose(asin(value), Math.asin(value));
+    }
   });
 
-  describe("atan", () => {
-    it("should return a value close to Math.atan for valid inputs", () => {
-      expect(atan(0)).toBeCloseTo(Math.atan(0), 10);
-      expect(atan(1)).toBeCloseTo(Math.atan(1), 10);
-      expect(atan(-1)).toBeCloseTo(Math.atan(-1), 10);
-    });
-    it("should return ±π/2 for Infinity and -Infinity inputs", () => {
-      expect(atan(Infinity)).toBeCloseTo(Math.atan(Infinity), 10);
-      expect(atan(-Infinity)).toBeCloseTo(Math.atan(-Infinity), 10);
-    });
-    it("should handle NaN and -0", () => {
-      expect(atan(NaN)).toBeNaN();
-      expect(atan(-0)).toBe(-0);
-    });
+  it("atan matches Math.atan", () => {
+    for (const value of unaryCases) {
+      assertClose(atan(value), Math.atan(value));
+    }
   });
 
-  describe("atan2", () => {
-    it("should return a value close to Math.atan2 for valid inputs", () => {
-      expect(atan2(1, 1)).toBeCloseTo(Math.atan2(1, 1), 10);
-      expect(atan2(-1, -1)).toBeCloseTo(Math.atan2(-1, -1), 10);
-    });
-    it("should handle cases with 0 and -0 as inputs", () => {
-      expect(atan2(0, 1)).toBeCloseTo(Math.atan2(0, 1), 10);
-      expect(atan2(0, -1)).toBeCloseTo(Math.atan2(0, -1), 10);
-      expect(atan2(-0, -1)).toBeCloseTo(Math.atan2(-0, -1), 10);
-    });
-    it("should handle Infinity, -Infinity, and NaN inputs", () => {
-      expect(atan2(Infinity, Infinity)).toBeCloseTo(
-        Math.atan2(Infinity, Infinity),
-        10,
-      );
-      expect(atan2(-Infinity, -Infinity)).toBeCloseTo(
-        Math.atan2(-Infinity, -Infinity),
-        10,
-      );
-      expect(atan2(NaN, 1)).toBeNaN();
-      expect(atan2(1, NaN)).toBeNaN();
-    });
+  it("atan2 matches Math.atan2", () => {
+    const cases: Array<[number, number]> = [
+      [0, 1],
+      [1, 0],
+      [-1, -1],
+      [0, -1],
+      [-0, -1],
+      [1, -0],
+      [NaN, 1],
+    ];
+    for (const [y, x] of cases) {
+      assertClose(atan2(y, x), Math.atan2(y, x));
+    }
   });
 
-  describe("acosh", () => {
-    it("should return a value close to Math.acosh for valid inputs", () => {
-      expect(acosh(1)).toBeCloseTo(Math.acosh(1), 10);
-      expect(acosh(2)).toBeCloseTo(Math.acosh(2), 10);
-    });
-    it("should return Infinity for Infinity input", () => {
-      expect(acosh(Infinity)).toBe(Infinity);
-    });
-    it("should return NaN for inputs less than 1 and NaN", () => {
-      expect(acosh(0)).toBeNaN();
-      expect(acosh(-1)).toBeNaN();
-      expect(acosh(NaN)).toBeNaN();
-    });
+  it("acosh matches Math.acosh", () => {
+    const cases = [1, 2, 10, 0.5, -1, NaN, Infinity];
+    for (const value of cases) {
+      assertClose(acosh(value), Math.acosh(value));
+    }
   });
 
-  describe("asinh", () => {
-    it("should return a value close to Math.asinh for valid inputs", () => {
-      expect(asinh(0)).toBeCloseTo(Math.asinh(0), 10);
-      expect(asinh(1)).toBeCloseTo(Math.asinh(1), 10);
-      expect(asinh(-1)).toBeCloseTo(Math.asinh(-1), 10);
-    });
-    it("should return Infinity for Infinity input", () => {
-      expect(asinh(Infinity)).toBe(Infinity);
-      expect(asinh(-Infinity)).toBe(-Infinity);
-    });
-    it("should return NaN for NaN input", () => {
-      expect(asinh(NaN)).toBeNaN();
-    });
+  it("asinh matches Math.asinh", () => {
+    const cases = [-2, -1, 0, 1, 2, NaN, Infinity, -Infinity];
+    for (const value of cases) {
+      assertClose(asinh(value), Math.asinh(value));
+    }
   });
 
-  describe("atanh", () => {
-    it("should return a value close to Math.atanh for values in the range (-1, 1)", () => {
-      expect(atanh(0)).toBeCloseTo(Math.atanh(0), 10);
-      expect(atanh(0.5)).toBeCloseTo(Math.atanh(0.5), 10);
-      expect(atanh(-0.5)).toBeCloseTo(Math.atanh(-0.5), 10);
-    });
-    it("should return ±Infinity for inputs ±1", () => {
-      expect(atanh(1)).toBe(Infinity);
-      expect(atanh(-1)).toBe(-Infinity);
-    });
-    it("should return NaN for inputs outside (-1, 1) and for NaN", () => {
-      expect(atanh(2)).toBeNaN();
-      expect(atanh(-2)).toBeNaN();
-      expect(atanh(NaN)).toBeNaN();
-    });
+  it("atanh matches Math.atanh", () => {
+    const cases = [-0.9, -0.5, 0, 0.5, 0.9, 1, -1, 2, NaN];
+    for (const value of cases) {
+      assertClose(atanh(value), Math.atanh(value));
+    }
   });
 
-  describe("cos", () => {
-    it("should return a value close to Math.cos for valid inputs", () => {
-      expect(cos(0)).toBeCloseTo(Math.cos(0), 10);
-      expect(cos(Math.PI / 2)).toBeCloseTo(Math.cos(Math.PI / 2), 10);
-      expect(cos(Math.PI)).toBeCloseTo(Math.cos(Math.PI), 10);
-    });
-    it("should return NaN for Infinity, -Infinity, and NaN", () => {
-      expect(cos(Infinity)).toBeNaN();
-      expect(cos(-Infinity)).toBeNaN();
-      expect(cos(NaN)).toBeNaN();
-    });
+  it("cos matches Math.cos", () => {
+    const cases = [0, Math.PI / 2, Math.PI, -Math.PI, NaN, Infinity];
+    for (const value of cases) {
+      assertClose(cos(value), Math.cos(value));
+    }
   });
 
-  describe("sin", () => {
-    it("should return a value close to Math.sin for valid inputs", () => {
-      expect(sin(0)).toBeCloseTo(Math.sin(0), 10);
-      expect(sin(Math.PI / 2)).toBeCloseTo(Math.sin(Math.PI / 2), 10);
-      expect(sin(Math.PI)).toBeCloseTo(Math.sin(Math.PI), 10);
-    });
-    it("should return NaN for Infinity, -Infinity, and NaN", () => {
-      expect(sin(Infinity)).toBeNaN();
-      expect(sin(-Infinity)).toBeNaN();
-      expect(sin(NaN)).toBeNaN();
-    });
+  it("sin matches Math.sin", () => {
+    const cases = [0, Math.PI / 2, Math.PI, -Math.PI, NaN, Infinity];
+    for (const value of cases) {
+      assertClose(sin(value), Math.sin(value));
+    }
   });
 
-  describe("tan", () => {
-    it("should return a value close to Math.tan for valid inputs", () => {
-      expect(tan(0)).toBeCloseTo(Math.tan(0), 10);
-      expect(tan(Math.PI / 4)).toBeCloseTo(Math.tan(Math.PI / 4), 10);
-      expect(tan(-Math.PI / 4)).toBeCloseTo(Math.tan(-Math.PI / 4), 10);
-    });
-    it("should return NaN for Infinity, -Infinity, and NaN", () => {
-      expect(tan(Infinity)).toBeNaN();
-      expect(tan(-Infinity)).toBeNaN();
-      expect(tan(NaN)).toBeNaN();
-    });
+  it("tan matches Math.tan", () => {
+    const cases = [0, Math.PI / 4, -Math.PI / 4, 1, NaN, Infinity];
+    for (const value of cases) {
+      assertClose(tan(value), Math.tan(value));
+    }
   });
 
-  describe("tanh", () => {
-    it("should return a value close to Math.tanh for valid inputs", () => {
-      expect(tanh(0)).toBeCloseTo(Math.tanh(0), 10);
-      expect(tanh(1)).toBeCloseTo(Math.tanh(1), 10);
-      expect(tanh(-1)).toBeCloseTo(Math.tanh(-1), 10);
-    });
-    it("should return ±1 for ±Infinity inputs", () => {
-      expect(tanh(Infinity)).toBeCloseTo(Math.tanh(Infinity), 10);
-      expect(tanh(-Infinity)).toBeCloseTo(Math.tanh(-Infinity), 10);
-    });
-    it("should return NaN for NaN input", () => {
-      expect(tanh(NaN)).toBeNaN();
-    });
+  it("tanh matches Math.tanh", () => {
+    const cases = [-2, -1, 0, 1, 2, Infinity, -Infinity, NaN];
+    for (const value of cases) {
+      assertClose(tanh(value), Math.tanh(value));
+    }
   });
 });

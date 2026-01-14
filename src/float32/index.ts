@@ -4,7 +4,6 @@
  *
  * @module float32
  */
-export * from "./constants.ts";
 export * from "./decode.ts";
 export * from "./encode.ts";
 export * from "./guards.ts";

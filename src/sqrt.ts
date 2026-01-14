@@ -5,6 +5,7 @@
  */
 import { EPSILON } from "./constants/epsilon.ts";
 import { NAN } from "./constants/nan.ts";
+import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
 import { abs } from "./abs.ts";
 
 /**
@@ -27,6 +28,7 @@ import { abs } from "./abs.ts";
 export function sqrt(x: number): number {
   if (x < 0) return NAN; // negative numbers have no real square root
   if (x === 0 || x === 1) return x; // sqrt(0) = 0, sqrt(1) = 1
+  if (x === POSITIVE_INFINITY) return x;
 
   // use Newton's method to approximate the square root
   let z = x / 2, prev;

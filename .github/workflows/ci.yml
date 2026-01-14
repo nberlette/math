@@ -8,26 +8,119 @@ on:
   pull_request:
     branches:
       - main
-
+  workflow_dispatch:
+    inputs:
+      check:
+        type: boolean
+        description: "Run lint, fmt, and test?"
+        required: false
+        default: true
+      publish-jsr:
+        type: boolean
+        description: "Publish to JSR?"
+        required: false
+        default: false
+      publish-npm:
+        type: boolean
+        description: "Publish to NPM?"
+        required: false
+        default: false
+      publish-gpr:
+        type: boolean
+        description: "Publish to GPR?"
+        required: false
+        default: false
 jobs:
   check:
+    if: github.event.inputs.check == 'true' || github.event_name != 'workflow_dispatch'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      - run: deno test -A --permit-no-files --parallel --no-check=remote
-      - run: deno fmt --check
-      - run: deno lint
-
+      - id: ok
+        run: deno task ok
+      - id: coverage
+        uses: actions/upload-artifact@v6
+        with:
+          path: .coverage
+          name: nberlette-math-coverage_${{ github.ref_name }}-${{ github.sha }}
   publish:
+    if: |
+      (github.event_name == 'push' &&
+        startsWith(github.ref, 'refs/tags/') &&
+        needs.check.result == 'success') ||
+      (github.event_name == 'workflow_dispatch' && (
+        github.event.inputs.publish-jsr == 'true' ||
+        github.event.inputs.publish-npm == 'true' ||
+        github.event.inputs.publish-gpr == 'true'
+      ) && (needs.check.result == 'success' || github.event.inputs.check == 'false'))
     runs-on: ubuntu-latest
     needs: check
     permissions:
       contents: read
       id-token: write
-    if: ((github.event_name == 'push' && github.ref == 'refs/heads/main') || (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')))
+      packages: write
+    concurrency:
+      cancel-in-progress: true
+      group: publish-${{ github.ref_name }}
     steps:
-      - uses: actions/checkout@v4
-      - run: npx jsr publish
+      - uses: actions/checkout@v6
+      - name: "setup deno"
+        uses: denoland/setup-deno@v2
+        with:
+          deno-version: v2.x
+      - if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish-jsr == 'true')
+        name: "publish to jsr"
+        run: deno publish
+      - if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish-npm == 'true')
+        name: "setup node for npm"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://registry.npmjs.org"
+      - id: build
+        if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && (github.event.inputs.publish-npm == 'true' ||
+          github.event.inputs.publish-gpr == 'true'))
+        name: "build for npm"
+        run: deno task build
+        env:
+          NO_PUBLISH: 1
+      - id: artifact
+        if: steps.build.outcome == 'success'
+        uses: actions/upload-artifact@v5
+        with:
+          path: npm
+          name: nberlette-math-npm_${{ github.ref_name }}-${{ github.sha }}
+      - if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish-npm == 'true')
+        name: "publish to npm"
+        run: npm publish --access public
+        working-directory: npm
+      - if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish-gpr == 'true')
+        name: "setup node for gpr"
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          registry-url: "https://npm.pkg.github.com"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - if: |
+          (github.event_name == 'push' && startsWith(github.ref, 'refs/tags/')) ||
+          (github.event_name == 'workflow_dispatch' && github.event.inputs.publish-gpr == 'true')
+        name: "publish to gpr"
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        working-directory: npm
+        run: npm publish --access public --registry https://npm.pkg.github.com
