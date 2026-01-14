@@ -13,7 +13,20 @@
  * ```
  * @module random
  */
-import { DateNow } from "./internal/primordials.ts";
+import { ArrayFrom, DateNow } from "./internal/primordials.ts";
+
+/** Period parameters */
+const N = 624;
+/** The number of 32 bit words */
+const M = 397;
+/** Constant Vector A */
+const MATRIX_A = 0x9908b0df;
+/** Most significant W-R bits */
+const UPPER_MASK = 0x80000000;
+/** Least significant R bits */
+const LOWER_MASK = 0x7fffffff;
+/** UPPER_MASK + LOWER_MASK + 1 */
+const TOTAL_MASK = 0x100000000;
 
 /**
  * Mersenne Twister implementation in TypeScript.
@@ -80,31 +93,18 @@ export class MT19937 {
     return MT19937.#instance.randomInt();
   }
 
-  /** Period parameters */
-  readonly #N = 624;
-  /** The number of 32 bit words */
-  readonly #M = 397;
-  /** Constant Vector A */
-  readonly #MATRIX_A = 0x9908b0df;
-  /** Most significant W-R bits */
-  readonly #UPPER_MASK = 0x80000000;
-  /** Least significant R bits */
-  readonly #LOWER_MASK = 0x7fffffff;
-  /** UPPER_MASK + LOWER_MASK + 1 */
-  readonly #TOTAL_MASK = 0x100000000;
-
   /** the array for the state vector */
-  #mt = Array.from({ length: 624 }, () => 0);
+  #mt = ArrayFrom({ length: N }, () => 0);
 
   /** mti == N + 1 means mt[N] is not initialized */
-  #mti = 625;
+  #mti = N + 1;
 
   /**
    * Initializes a new instance of the MersenneTwister class.
    * @param seed - The seed value.
    */
   constructor(seed?: number) {
-    this.init(seed ?? DateNow() >>> 0);
+    this.init(seed);
   }
 
   /**
@@ -112,19 +112,17 @@ export class MT19937 {
    * @param seed - The seed value.
    */
   init(seed?: number): this {
-    seed ??= DateNow() >>> 0;
+    seed ??= DateNow();
     this.#mt[0] = seed >>> 0;
     const mt = this.#mt;
-    for (let i = 1; i < this.#N; i++) {
+    const x = 1812433253, y = 0xffff0000, z = 0x0000ffff;
+    for (let i = 1; i < N; i++) {
       const s = mt[i - 1] ^ (mt[i - 1] >>> 30);
-      let l = (s & 0xffff0000) >>> 16;
-      l *= 1812433253;
-      l <<= 16;
-      let r = s & 0x0000ffff;
-      r *= 1812433253;
+      const l = (((s & y) >>> 16) * x) << 16;
+      const r = (s & z) * x;
       mt[this.#mti = i] = (l + r + i) >>> 0;
     }
-    this.#mti = this.#N;
+    this.#mti = N;
     return this;
   }
 
@@ -136,29 +134,29 @@ export class MT19937 {
     let i = 1, j = 0;
     const len = seeds.length;
     this.init(19650218);
-    let k = this.#N > len ? this.#N : len;
+    let k = N > len ? N : len;
+    const w = 1566083941;
+    const x = 1664525, y = 0xffff0000, z = 0x0000ffff;
     for (; k > 0; k--) {
       const s = this.#mt[i - 1] ^ (this.#mt[i - 1] >>> 30);
-      const x = 1664525, y = 0xffff0000, z = 0x0000ffff;
       const u = (s & z) * x;
       let t = ((s & y) >>> 16) * x << 16;
       this.#mt[i] = (t = this.#mt[i] ^ t + u, t += seeds[j] + j, t >>> 0);
       i++, j++;
-      if (i >= this.#N) {
-        this.#mt[0] = this.#mt[this.#N - 1];
+      if (i >= N) {
+        this.#mt[0] = this.#mt[N - 1];
         i = 1;
       }
       if (j >= len) j = 0;
     }
-    for (k = this.#N - 1; k > 0; k--) {
+    for (k = N - 1; k > 0; k--) {
       const s = this.#mt[i - 1] ^ (this.#mt[i - 1] >>> 30);
-      this.#mt[i] = ((this.#mt[i] ^
-        (((s & 0xffff0000) >>> 16) * 1566083941 << 16) +
-          (s & 0x0000ffff) * 1566083941) -
-        i) >>> 0;
+      let t = this.#mt[i];
+      t ^= (((s & y) >>> 16) * w << 16) + (s & z) * w;
+      this.#mt[i] = (t - i) >>> 0;
       i++;
-      if (i >= this.#N) {
-        this.#mt[0] = this.#mt[this.#N - 1];
+      if (i >= N) {
+        this.#mt[0] = this.#mt[N - 1];
         i = 1;
       }
     }
@@ -173,33 +171,26 @@ export class MT19937 {
    */
   randomInt(): number {
     let y: number;
-    const mag01 = [0x0, this.#MATRIX_A];
+    const mag01 = [0x0, MATRIX_A];
 
-    if (this.#mti >= this.#N) {
+    if (this.#mti >= N) {
       let kk: number;
 
       /* a default initial seed is used */
-      if (this.#mti === this.#N + 1) this.init(5489);
+      if (this.#mti === N + 1) this.init(5489);
 
-      for (kk = 0; kk < this.#N - this.#M; kk++) {
-        y = (this.#mt[kk] & this.#UPPER_MASK) |
-          (this.#mt[kk + 1] & this.#LOWER_MASK);
-        this.#mt[kk] = this.#mt[kk + this.#M] ^ (y >>> 1) ^ mag01[y & 0x1];
+      for (kk = 0; kk < N - M; kk++) {
+        y = (this.#mt[kk] & UPPER_MASK) | (this.#mt[kk + 1] & LOWER_MASK);
+        this.#mt[kk] = this.#mt[kk + M] ^ (y >>> 1) ^ mag01[y & 0x1];
       }
 
-      for (; kk < this.#N - 1; kk++) {
-        y = (this.#mt[kk] & this.#UPPER_MASK) |
-          (this.#mt[kk + 1] & this.#LOWER_MASK);
-        this.#mt[kk] = this.#mt[kk + (this.#M - this.#N)] ^ (y >>> 1) ^
-          mag01[y & 0x1];
+      for (; kk < N - 1; kk++) {
+        y = (this.#mt[kk] & UPPER_MASK) | (this.#mt[kk + 1] & LOWER_MASK);
+        this.#mt[kk] = this.#mt[kk + (M - N)] ^ (y >>> 1) ^ mag01[y & 0x1];
       }
 
-      y = (this.#mt[this.#N - 1] & this.#UPPER_MASK) |
-        (this.#mt[0] & this.#LOWER_MASK);
-      this.#mt[this.#N - 1] = this.#mt[this.#M - 1] ^
-        (y >>> 1) ^
-        mag01[y & 0x1];
-
+      y = (this.#mt[N - 1] & UPPER_MASK) | (this.#mt[0] & LOWER_MASK);
+      this.#mt[N - 1] = this.#mt[M - 1] ^ (y >>> 1) ^ mag01[y & 0x1];
       this.#mti = 0;
     }
 
@@ -219,7 +210,7 @@ export class MT19937 {
    * @returns A floating-point number between 0 and 1.
    */
   random(): number {
-    return this.randomInt() / this.#TOTAL_MASK;
+    return this.randomInt() / TOTAL_MASK;
   }
 }
 
