@@ -85,7 +85,7 @@ function inner_encode(value: number, fmt: Format): number | bigint {
   // subnormal threshold = 2^(1-bias)
   const cutoff = pow(2, normal);
 
-  const sign = value < 0 ? 1n : 0n;
+  const sign = BigInt(value < 0 ? 1 : 0);
   const shift = BigInt(fmt.exponent + fmt.mantissa);
   const absolute = abs(value);
   if (absolute < cutoff) {
@@ -97,10 +97,28 @@ function inner_encode(value: number, fmt: Format): number | bigint {
 
   // normal
   let expo = floor(log2(absolute)), mant = absolute / pow(2, expo);
-  if (mant < 1) mant *= 2, expo--;
+  if (mant < 1) {
+    mant *= 2;
+    expo--;
+  } else if (mant >= 2) {
+    mant /= 2;
+    expo++;
+  }
 
-  const e = BigInt(expo + fmt.bias);
-  const m = BigInt(round((mant - 1) * pow(2, fmt.mantissa)));
+  const mant_scale = pow(2, fmt.mantissa);
+  let mant_bits = round((mant - 1) * mant_scale);
+  if (mant_bits === mant_scale) {
+    mant_bits = 0;
+    expo++;
+  }
+
+  const biased = expo + fmt.bias;
+  if (biased >= (1 << fmt.exponent) - 1) {
+    return value < 0 ? fmt.negative_infinity : fmt.positive_infinity;
+  }
+
+  const e = BigInt(biased);
+  const m = BigInt(mant_bits);
   return (sign << shift) | (e << BigInt(fmt.mantissa)) | m;
 }
 
