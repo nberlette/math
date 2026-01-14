@@ -14,5 +14,6 @@ import { exp } from "./exp.ts";
  * @category Trigonometry
  */
 export function sinh(x: number): number {
+  if (x === 0) return x;
   return (exp(x) - exp(-x)) / 2;
 }
