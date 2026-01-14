@@ -52,12 +52,13 @@ npx jsr add @nick/math
 
 ```ts
 import * as math from "@nick/math";
+import assert from "node:assert";
 
-console.assert(math.abs(-1) === 1);
-console.assert(math.acos(0.5) === 1.0471975511965979);
-console.assert(math.acosh(1) === 0);
-console.assert(math.log(9) === 2.1972245773362196);
-console.assert(math.PI === 3.141592653589793);
+assert.ok(Math.abs(math.abs(-1) - 1) < 1e-9);
+assert.ok(Math.abs(math.acos(0.5) - 1.0471975511965979) < 1e-9);
+assert.ok(Math.abs(math.acosh(1) - 0) < 1e-9);
+assert.ok(Math.abs(math.log(9) - 2.1972245773362196) < 1e-9);
+assert.ok(Math.abs(math.PI - 3.141592653589793) < 1e-9);
 ```
 
 ```ts
@@ -147,8 +148,9 @@ import { log } from "@nick/math/log";
 
 ```ts
 import { E } from "@nick/math/constants/e";
+import assert from "node:assert";
 
-console.assert(E === 2.718281828459045);
+assert.ok(E === 2.718281828459045);
 ```
 
 ##### Type-Level Usage
@@ -165,8 +167,9 @@ function assertEulersNumber(e: number): asserts e is E {
 
 ```ts
 import { LN10 } from "@nick/math/constants/ln10";
+import assert from "node:assert";
 
-console.assert(LN10 === 2.302585092994046);
+assert.ok(LN10 === 2.302585092994046);
 ```
 
 ##### Type-Level Usage
@@ -183,8 +186,9 @@ function assertNaturalLogarithmOf10(ln10: number): asserts ln10 is LN10 {
 
 ```ts
 import { LN2 } from "@nick/math/constants/ln2";
+import assert from "node:assert";
 
-console.assert(LN2 === 0.6931471805599453);
+assert.ok(LN2 === 0.6931471805599453);
 ```
 
 ##### Type-Level Usage
@@ -201,8 +205,9 @@ function assertNaturalLogarithmOf2(ln2: number): asserts ln2 is LN2 {
 
 ```ts
 import { LOG2E } from "@nick/math/constants/log2e";
+import assert from "node:assert";
 
-console.assert(LOG2E === 1.4426950408889634);
+assert.ok(LOG2E === 1.4426950408889634);
 ```
 
 ##### Type-Level Usage
@@ -219,8 +224,9 @@ function assertBase2LogarithmOfE(log2e: number): asserts log2e is LOG2E {
 
 ```ts
 import { LOG10E } from "@nick/math/constants/log10e";
+import assert from "node:assert";
 
-console.assert(LOG10E === 0.4342944819032518);
+assert.ok(LOG10E === 0.4342944819032518);
 ```
 
 ##### Type-Level Usage
@@ -239,8 +245,9 @@ function assertBase10LogarithmOfE(log10e: number): asserts log10e is LOG10E {
 
 ```ts
 import { PI } from "@nick/math/constants/pi";
+import assert from "node:assert";
 
-console.assert(PI === 3.141592653589793);
+assert.ok(PI === 3.141592653589793);
 ```
 
 ##### Type-Level Usage
@@ -257,8 +264,9 @@ function assertPi(pi: number): asserts pi is PI {
 
 ```ts
 import { SQRT1_2 } from "@nick/math/constants/sqrt1_2";
+import assert from "node:assert";
 
-console.assert(SQRT1_2 === 0.7071067811865476);
+assert.ok(SQRT1_2 === 0.7071067811865476);
 ```
 
 ##### Type-Level Usage
@@ -279,8 +287,9 @@ function assertSquareRootOfOneHalf(
 
 ```ts
 import { SQRT2 } from "@nick/math/constants/sqrt2";
+import assert from "node:assert";
 
-console.assert(SQRT2 === 1.4142135623730951);
+assert.ok(SQRT2 === 1.4142135623730951);
 ```
 
 ##### Type-Level Usage
@@ -300,8 +309,9 @@ different from `1`.
 
 ```ts
 import { EPSILON } from "@nick/math/constants/epsilon";
+import assert from "node:assert";
 
-console.assert(EPSILON === 2.220446049250313e-16);
+assert.ok(EPSILON === 2.220446049250313e-16);
 ```
 
 ##### Type-Level Usage
@@ -322,8 +332,9 @@ The maximum safe integer in JavaScript, `2^53 - 1`.
 
 ```ts
 import { MAX_SAFE_INTEGER } from "@nick/math/constants/max-safe-integer";
+import assert from "node:assert";
 
-console.assert(MAX_SAFE_INTEGER === 9007199254740991);
+assert.ok(MAX_SAFE_INTEGER === 9007199254740991);
 ```
 
 ##### Type-Level Usage
@@ -346,8 +357,9 @@ The minimum safe integer in JavaScript, `-2^53 + 1`.
 
 ```ts
 import { MIN_SAFE_INTEGER } from "@nick/math/constants/min-safe-integer";
+import assert from "node:assert";
 
-console.assert(MIN_SAFE_INTEGER === -9007199254740991);
+assert.ok(MIN_SAFE_INTEGER === -9007199254740991);
 ```
 
 ##### Type-Level Usage
@@ -370,8 +382,9 @@ The maximum representable value in JavaScript.
 
 ```ts
 import { MAX_VALUE } from "@nick/math/constants/max-value";
+import assert from "node:assert";
 
-console.assert(MAX_VALUE === 1.7976931348623157e308);
+assert.ok(MAX_VALUE === 1.7976931348623157e308);
 ```
 
 ##### Type-Level Usage
@@ -392,8 +405,9 @@ The minimum representable value in JavaScript.
 
 ```ts
 import { MIN_VALUE } from "@nick/math/constants/min-value";
+import assert from "node:assert";
 
-console.assert(MIN_VALUE === 5e-324);
+assert.ok(MIN_VALUE === 5e-324);
 ```
 
 ##### Type-Level Usage
@@ -414,8 +428,9 @@ The negative infinity value in JavaScript.
 
 ```ts
 import { NEGATIVE_INFINITY } from "@nick/math/constants/negative-infinity";
+import assert from "node:assert";
 
-console.assert(NEGATIVE_INFINITY === -Infinity);
+assert.ok(NEGATIVE_INFINITY === -Infinity);
 ```
 
 ##### Type-Level Usage
@@ -440,8 +455,9 @@ The positive infinity value in JavaScript.
 
 ```ts
 import { POSITIVE_INFINITY } from "@nick/math/constants/positive-infinity";
+import assert from "node:assert";
 
-console.assert(POSITIVE_INFINITY === Infinity);
+assert.ok(POSITIVE_INFINITY === Infinity);
 ```
 
 ##### Type-Level Usage
@@ -481,7 +497,7 @@ console.log(NaN); // NaN
 import { NaN } from "@nick/math/constants/nan";
 
 function assertNaN(nan: number): asserts nan is NaN {
-  if (nan !== nan) throw new TypeError(`Expected ${NaN}, got ${nan}`);
+  if (!Number.isNaN(nan)) throw new TypeError(`Expected ${NaN}, got ${nan}`);
 }
 ```
 
@@ -495,8 +511,9 @@ Returns the absolute value of a number.
 
 ```ts
 import { abs } from "@nick/math/abs";
+import assert from "node:assert";
 
-console.assert(abs(-1) === 1);
+assert.ok(abs(-1) === 1);
 ```
 
 #### `acos`
@@ -505,8 +522,9 @@ Returns the arccosine of a number.
 
 ```ts
 import { acos } from "@nick/math/acos";
+import assert from "node:assert";
 
-console.assert(acos(0.5) === 1.0471975511965979);
+assert.ok(Math.abs(acos(0.5) - 1.0471975511965979) < 1e-9);
 ```
 
 #### `acosh`
@@ -515,8 +533,9 @@ Returns the inverse hyperbolic cosine of a number.
 
 ```ts
 import { acosh } from "@nick/math/acosh";
+import assert from "node:assert";
 
-console.assert(acosh(1) === 0);
+assert.ok(acosh(1) === 0);
 ```
 
 #### `asin`
@@ -525,8 +544,9 @@ Returns the arcsine of a number.
 
 ```ts
 import { asin } from "@nick/math/asin";
+import assert from "node:assert";
 
-console.assert(asin(0.5) === 0.5235987755982989);
+assert.ok(Math.abs(asin(0.5) - 0.5235987755982989) < 1e-9);
 ```
 
 #### `asinh`
@@ -535,8 +555,9 @@ Returns the inverse hyperbolic sine of a number.
 
 ```ts
 import { asinh } from "@nick/math/asinh";
+import assert from "node:assert";
 
-console.assert(asinh(0.5) === 0.48121182505960347);
+assert.ok(Math.abs(asinh(0.5) - 0.48121182505960347) < 1e-9);
 ```
 
 #### `atan`
@@ -545,8 +566,9 @@ Returns the arctangent of a number.
 
 ```ts
 import { atan } from "@nick/math/atan";
+import assert from "node:assert";
 
-console.assert(atan(0.5) === 0.4636476090008061);
+assert.ok(Math.abs(atan(0.5) - 0.4636476090008061) < 1e-9);
 ```
 
 #### `atan2`
@@ -555,8 +577,9 @@ Returns the arctangent of the quotient of its arguments.
 
 ```ts
 import { atan2 } from "@nick/math/atan2";
+import assert from "node:assert";
 
-console.assert(atan2(1, 1) === 0.7853981633974483);
+assert.ok(atan2(1, 1) === 0.7853981633974483);
 ```
 
 #### `atanh`
@@ -565,8 +588,9 @@ Returns the inverse hyperbolic tangent of a number.
 
 ```ts
 import { atanh } from "@nick/math/atanh";
+import assert from "node:assert";
 
-console.assert(atanh(0.5) === 0.5493061443340549);
+assert.ok(atanh(0.5) === 0.5493061443340549);
 ```
 
 #### `cbrt`
@@ -575,8 +599,9 @@ Returns the cube root of a number.
 
 ```ts
 import { cbrt } from "@nick/math/cbrt";
+import assert from "node:assert";
 
-console.assert(cbrt(27) === 3);
+assert.ok(cbrt(27) === 3);
 ```
 
 #### `ceil`
@@ -585,8 +610,9 @@ Returns the smallest integer greater than or equal to a number.
 
 ```ts
 import { ceil } from "@nick/math/ceil";
+import assert from "node:assert";
 
-console.assert(ceil(1.5) === 2);
+assert.ok(ceil(1.5) === 2);
 ```
 
 #### `clz32`
@@ -596,8 +622,9 @@ number.
 
 ```ts
 import { clz32 } from "@nick/math/clz32";
+import assert from "node:assert";
 
-console.assert(clz32(1) === 31);
+assert.ok(clz32(1) === 31);
 ```
 
 #### `cos`
@@ -606,8 +633,9 @@ Returns the cosine of a number.
 
 ```ts
 import { cos } from "@nick/math/cos";
+import assert from "node:assert";
 
-console.assert(cos(0.5) === 0.8775825618903728);
+assert.ok(Math.abs(cos(0.5) - 0.8775825618903728) < 1e-9);
 ```
 
 #### `cosh`
@@ -616,8 +644,9 @@ Returns the hyperbolic cosine of a number.
 
 ```ts
 import { cosh } from "@nick/math/cosh";
+import assert from "node:assert";
 
-console.assert(cosh(0.5) === 1.1276259652063807);
+assert.ok(Math.abs(cosh(0.5) - 1.1276259652063807) < 1e-9);
 ```
 
 #### `exp`
@@ -626,8 +655,9 @@ Returns `E` raised to the power of a number.
 
 ```ts
 import { exp } from "@nick/math/exp";
+import assert from "node:assert";
 
-console.assert(exp(1) === 2.718281828459045);
+assert.ok(Math.abs(exp(1) - 2.718281828459045) < 1e-9);
 ```
 
 #### `expm1`
@@ -636,8 +666,9 @@ Returns `E` raised to the power of a number, minus `1`.
 
 ```ts
 import { expm1 } from "@nick/math/expm1";
+import assert from "node:assert";
 
-console.assert(expm1(1) === 1.718281828459045);
+assert.ok(Math.abs(expm1(1) - 1.718281828459045) < 1e-9);
 ```
 
 #### `floor`
@@ -646,8 +677,9 @@ Returns the largest integer less than or equal to a number.
 
 ```ts
 import { floor } from "@nick/math/floor";
+import assert from "node:assert";
 
-console.assert(floor(1.5) === 1);
+assert.ok(floor(1.5) === 1);
 ```
 
 #### `fround`
@@ -672,8 +704,9 @@ standard. Introduced by the [TC39 Proposal for Float16Array].
 ```ts
 import { f16round } from "@nick/math/f16round";
 import { PI } from "@nick/math/constants/pi";
+import assert from "node:assert";
 
-console.assert(f16round(PI) === 3.140625);
+assert.ok(f16round(PI) === 3.140625);
 ```
 
 #### `hypot`
@@ -682,8 +715,9 @@ Returns the square root of the sum of the squares of its arguments.
 
 ```ts
 import { hypot } from "@nick/math/hypot";
+import assert from "node:assert";
 
-console.assert(hypot(3, 4) === 5);
+assert.ok(hypot(3, 4) === 5);
 ```
 
 #### `imul`
@@ -692,8 +726,9 @@ Returns the result of a 32-bit integer multiplication.
 
 ```ts
 import { imul } from "@nick/math/imul";
+import assert from "node:assert";
 
-console.assert(imul(2, 3) === 6);
+assert.ok(imul(2, 3) === 6);
 ```
 
 #### `log`
@@ -702,8 +737,9 @@ Returns the natural logarithm of a number.
 
 ```ts
 import { log } from "@nick/math/log";
+import assert from "node:assert";
 
-console.assert(log(9) === 2.1972245773362196);
+assert.ok(Math.abs(log(9) - 2.1972245773362196) < 1e-9);
 ```
 
 #### `log1p`
@@ -712,8 +748,9 @@ Returns the natural logarithm of `1` plus a number.
 
 ```ts
 import { log1p } from "@nick/math/log1p";
+import assert from "node:assert";
 
-console.assert(log1p(9) === 2.302585092994046);
+assert.ok(Math.abs(log1p(9) - 2.302585092994046) < 1e-9);
 ```
 
 #### `log10`
@@ -722,8 +759,9 @@ Returns the base 10 logarithm of a number.
 
 ```ts
 import { log10 } from "@nick/math/log10";
+import assert from "node:assert";
 
-console.assert(log10(100) === 2);
+assert.ok(Math.abs(log10(100) - 2) < 1e-9);
 ```
 
 #### `log2`
@@ -732,8 +770,9 @@ Returns the base 2 logarithm of a number.
 
 ```ts
 import { log2 } from "@nick/math/log2";
+import assert from "node:assert";
 
-console.assert(log2(8) === 3);
+assert.ok(Math.abs(log2(8) - 3) < 1e-9);
 ```
 
 #### `max`
@@ -742,8 +781,9 @@ Returns the largest of zero or more numbers.
 
 ```ts
 import { max } from "@nick/math/max";
+import assert from "node:assert";
 
-console.assert(max(1, 2, 3) === 3);
+assert.ok(max(1, 2, 3) === 3);
 ```
 
 #### `min`
@@ -752,8 +792,9 @@ Returns the smallest of zero or more numbers.
 
 ```ts
 import { min } from "@nick/math/min";
+import assert from "node:assert";
 
-console.assert(min(1, 2, 3) === 1);
+assert.ok(min(1, 2, 3) === 1);
 ```
 
 #### `pow`
@@ -762,8 +803,9 @@ Returns the base to the exponent power.
 
 ```ts
 import { pow } from "@nick/math/pow";
+import assert from "node:assert";
 
-console.assert(pow(2, 3) === 8);
+assert.ok(pow(2, 3) === 8);
 ```
 
 #### `random`
@@ -772,8 +814,11 @@ Returns a pseudo-random number between `0` and `1`.
 
 ```ts
 import { random } from "@nick/math/random";
+import assert from "node:assert";
 
-console.assert(random() >= 0 && random() < 1);
+const value = random();
+
+assert.ok(value >= 0 && value < 1);
 ```
 
 #### `round`
@@ -782,8 +827,9 @@ Returns the value of a number rounded to the nearest integer.
 
 ```ts
 import { round } from "@nick/math/round";
+import assert from "node:assert";
 
-console.assert(round(1.5) === 2);
+assert.ok(round(1.5) === 2);
 ```
 
 #### `sign`
@@ -793,8 +839,9 @@ zero.
 
 ```ts
 import { sign } from "@nick/math/sign";
+import assert from "node:assert";
 
-console.assert(sign(-1) === -1);
+assert.ok(sign(-1) === -1);
 ```
 
 #### `sin`
@@ -803,8 +850,9 @@ Returns the sine of a number.
 
 ```ts
 import { sin } from "@nick/math/sin";
+import assert from "node:assert";
 
-console.assert(sin(0.5) === 0.479425538604203);
+assert.ok(Math.abs(sin(0.5) - 0.479425538604203) < 1e-9);
 ```
 
 #### `sinh`
@@ -813,8 +861,9 @@ Returns the hyperbolic sine of a number.
 
 ```ts
 import { sinh } from "@nick/math/sinh";
+import assert from "node:assert";
 
-console.assert(sinh(0.5) === 0.5210953054937474);
+assert.ok(Math.abs(sinh(0.5) - 0.5210953054937474) < 1e-9);
 ```
 
 #### `sqrt`
@@ -823,8 +872,9 @@ Returns the square root of a number.
 
 ```ts
 import { sqrt } from "@nick/math/sqrt";
+import assert from "node:assert";
 
-console.assert(sqrt(9) === 3);
+assert.ok(sqrt(9) === 3);
 ```
 
 #### `tan`
@@ -833,8 +883,9 @@ Returns the tangent of a number.
 
 ```ts
 import { tan } from "@nick/math/tan";
+import assert from "node:assert";
 
-console.assert(tan(0.5) === 0.5463024898437905);
+assert.ok(Math.abs(tan(0.5) - 0.5463024898437905) < 1e-9);
 ```
 
 #### `tanh`
@@ -843,8 +894,9 @@ Returns the hyperbolic tangent of a number.
 
 ```ts
 import { tanh } from "@nick/math/tanh";
+import assert from "node:assert";
 
-console.assert(tanh(0.5) === 0.46211715726000974);
+assert.ok(Math.abs(tanh(0.5) - 0.46211715726000974) < 1e-9);
 ```
 
 #### `trunc`
@@ -853,8 +905,9 @@ Returns the integer part of a number by removing any fractional digits.
 
 ```ts
 import { trunc } from "@nick/math/trunc";
+import assert from "node:assert";
 
-console.assert(trunc(1.5) === 1);
+assert.ok(trunc(1.5) === 1);
 ```
 
 ---
@@ -867,8 +920,9 @@ Determines whether a number is finite.
 
 ```ts
 import { isFinite } from "@nick/math/is/finite";
+import assert from "node:assert";
 
-console.assert(isFinite(1));
+assert.ok(isFinite(1));
 ```
 
 #### `isInteger`
@@ -877,8 +931,9 @@ Determines whether a number is an integer.
 
 ```ts
 import { isInteger } from "@nick/math/is/integer";
+import assert from "node:assert";
 
-console.assert(isInteger(1));
+assert.ok(isInteger(1));
 ```
 
 #### `isNaN`
@@ -887,8 +942,9 @@ Determines whether a value is `NaN`.
 
 ```ts
 import { isNaN } from "@nick/math/is/nan";
+import assert from "node:assert";
 
-console.assert(isNaN(NaN));
+assert.ok(isNaN(NaN));
 ```
 
 #### `isSafeInteger`
@@ -897,8 +953,9 @@ Determines whether a number is a safe integer.
 
 ```ts
 import { isSafeInteger } from "@nick/math/is/safe-integer";
+import assert from "node:assert";
 
-console.assert(isSafeInteger(1));
+assert.ok(isSafeInteger(1));
 ```
 
 #### `isNegativeZero`
@@ -907,9 +964,10 @@ Determines whether a number is `-0`.
 
 ```ts
 import { isNegativeZero } from "@nick/math/is/negative-zero";
+import assert from "node:assert";
 
-console.assert(isNegativeZero(-0));
-console.assert(!isNegativeZero(0));
+assert.ok(isNegativeZero(-0));
+assert.ok(!isNegativeZero(0));
 ```
 
 #### `isPositiveInfinity`
@@ -918,8 +976,9 @@ Determines whether a number is positive infinity.
 
 ```ts
 import { isPositiveInfinity } from "@nick/math/is/positive-infinity";
+import assert from "node:assert";
 
-console.assert(isPositiveInfinity(Infinity));
+assert.ok(isPositiveInfinity(Infinity));
 ```
 
 #### `isNegativeInfinity`
@@ -928,8 +987,9 @@ Determines whether a number is negative infinity.
 
 ```ts
 import { isNegativeInfinity } from "@nick/math/is/negative-infinity";
+import assert from "node:assert";
 
-console.assert(isNegativeInfinity(-Infinity));
+assert.ok(isNegativeInfinity(-Infinity));
 ```
 
 ---
