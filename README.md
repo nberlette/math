@@ -1,20 +1,26 @@
-<div align="center">
-
 # `@nick/math`
 
 #### Dependency-free implementation of the `Math.*` namespace
-
-</div>
 
 ---
 
 ## Overview
 
-Standalone implementations of the **entire** native [`Math`] namespace, written
-in pure TypeScript with absolutely zero dependencies. Organized in a modular
-structure to encourage tree-shaking (dead code elimination) in bundlers, this
-package can be imported eithr on an individual module basis, or as a namespace
-suitable for use as a drop-in replacement for the standard `Math` object[^1].
+This package provides zero-dependency standalone implementations for all of the
+[functions] and [constants] found in the native [`Math`] namespace, _most_ of
+those found on the global `Number` constructor function, with some additional
+non-standard helpers, constants, and guards for various other purposes.
+
+## Usage
+
+Written in pure TypeScript with absolutely zero dependencies. Organized in a
+modular structure to facilitate bundler tree-shaking (dead code elimination),
+you can either import the entire package as a namespace (useful for rapid
+prototyping during development), or on a modular basis where only the features
+required are imported (recommended for production).
+
+When imported as a namespace (or via the default export), this package is suitable
+to use as a drop-in replacement for any standard `Math.*` feature's usage[^1].
 
 [^1]: All modules in this package are implemented using 100% manual logic and
     arithmetic, and do not rely on any native code or objects. As such, the
@@ -24,7 +30,10 @@ suitable for use as a drop-in replacement for the standard `Math` object[^1].
     expected behavior, please open an issue so I can address it and attempt to
     improve it. Thank you!
 
-## Install
+### Install
+
+This package is published to [JSR] as `@nick/math`, and to [NPM] and [GPR] as
+`@nberlette/math`, for maximum availability on all major package managers:
 
 ```sh
 deno add jsr:@nick/math
@@ -39,6 +48,10 @@ yarn add jsr:@nick/math
 ```
 
 ```sh
+vlt add jsr:@nick/math
+```
+
+```sh
 bunx jsr add @nick/math
 ```
 
@@ -46,27 +59,59 @@ bunx jsr add @nick/math
 npx jsr add @nick/math
 ```
 
----
+#### NPM and GPR
 
-## Usage
+```sh
+deno add npm:@nberlette/math
+```
+
+```sh
+pnpm add @nberlette/math
+```
+
+```sh
+yarn add @nberlette/math
+```
+
+```sh
+vlt add @nberlette/math
+```
+
+```sh
+bun add @nberlette/math
+```
+
+```sh
+npm i @nberlette/math
+```
+
+### Example Usage
+
+#### Namespace
 
 ```ts
 import * as math from "@nick/math";
 import assert from "node:assert";
 
-assert.ok(Math.abs(math.abs(-1) - 1) < 1e-9);
-assert.ok(Math.abs(math.acos(0.5) - 1.0471975511965979) < 1e-9);
-assert.ok(Math.abs(math.acosh(1) - 0) < 1e-9);
-assert.ok(Math.abs(math.log(9) - 2.1972245773362196) < 1e-9);
-assert.ok(Math.abs(math.PI - 3.141592653589793) < 1e-9);
+
+assert.ok((math.acos(0.5) - Math.acos(0.5)) < 1e-9);
+assert.strictEqual(math.NEGATIVE_ZERO, -0);
+assert.strictEqual(math.PI, 3.141592653589793 /* Math.PI */);
 ```
 
+#### Modular
+
 ```ts
-import { abs } from "@nick/math/abs";
+import { PI } from "@nick/math/pi";
+import { f16round } from "@nick/math/f16round";
+import { sign } from "@nick/math/sign";
+import { NEGATIVE_INFINITY } from "@nick/math/constants/negative-infinity";
+import assert from "node:assert";
 
-import { fround } from "@nick/math/fround";
-
-import { log } from "@nick/math/log";
+assert.strictEqual(f16round(PI), 3.140625);
+assert.strictEqual(sign(-0), -0);
+assert.strictEqual(sign(PI), 1);
+assert.strictEqual(sign(NEGATIVE_INFINITY), -1);
 ```
 
 ---
@@ -150,17 +195,7 @@ import { log } from "@nick/math/log";
 import { E } from "@nick/math/constants/e";
 import assert from "node:assert";
 
-assert.ok(E === 2.718281828459045);
-```
-
-##### Type-Level Usage
-
-```ts
-import { E } from "@nick/math/constants/e";
-
-function assertEulersNumber(e: number): asserts e is E {
-  if (e !== E) throw new TypeError(`Expected ${E}, got ${e}`);
-}
+assert.strictEqual(E, 2.718281828459045);
 ```
 
 #### `LN10` (Natural logarithm of 10)
@@ -169,17 +204,7 @@ function assertEulersNumber(e: number): asserts e is E {
 import { LN10 } from "@nick/math/constants/ln10";
 import assert from "node:assert";
 
-assert.ok(LN10 === 2.302585092994046);
-```
-
-##### Type-Level Usage
-
-```ts
-import { LN10 } from "@nick/math/constants/ln10";
-
-function assertNaturalLogarithmOf10(ln10: number): asserts ln10 is LN10 {
-  if (ln10 !== LN10) throw new TypeError(`Expected ${LN10}, got ${ln10}`);
-}
+assert.strictEqual(LN10, 2.302585092994046);
 ```
 
 #### `LN2` (Natural logarithm of 2)
@@ -188,17 +213,7 @@ function assertNaturalLogarithmOf10(ln10: number): asserts ln10 is LN10 {
 import { LN2 } from "@nick/math/constants/ln2";
 import assert from "node:assert";
 
-assert.ok(LN2 === 0.6931471805599453);
-```
-
-##### Type-Level Usage
-
-```ts
-import { LN2 } from "@nick/math/constants/ln2";
-
-function assertNaturalLogarithmOf2(ln2: number): asserts ln2 is LN2 {
-  if (ln2 !== LN2) throw new TypeError(`Expected ${LN2}, got ${ln2}`);
-}
+assert.strictEqual(LN2, 0.6931471805599453);
 ```
 
 #### `LOG2E` (Base 2 logarithm of E)
@@ -207,17 +222,7 @@ function assertNaturalLogarithmOf2(ln2: number): asserts ln2 is LN2 {
 import { LOG2E } from "@nick/math/constants/log2e";
 import assert from "node:assert";
 
-assert.ok(LOG2E === 1.4426950408889634);
-```
-
-##### Type-Level Usage
-
-```ts
-import { LOG2E } from "@nick/math/constants/log2e";
-
-function assertBase2LogarithmOfE(log2e: number): asserts log2e is LOG2E {
-  if (log2e !== LOG2E) throw new TypeError(`Expected ${LOG2E}, got ${log2e}`);
-}
+assert.strictEqual(LOG2E, 1.4426950408889634);
 ```
 
 #### `LOG10E` (Base 10 logarithm of E)
@@ -226,19 +231,7 @@ function assertBase2LogarithmOfE(log2e: number): asserts log2e is LOG2E {
 import { LOG10E } from "@nick/math/constants/log10e";
 import assert from "node:assert";
 
-assert.ok(LOG10E === 0.4342944819032518);
-```
-
-##### Type-Level Usage
-
-```ts
-import { LOG10E } from "@nick/math/constants/log10e";
-
-function assertBase10LogarithmOfE(log10e: number): asserts log10e is LOG10E {
-  if (log10e !== LOG10E) {
-    throw new TypeError(`Expected ${LOG10E}, got ${log10e}`);
-  }
-}
+assert.strictEqual(LOG10E, 0.4342944819032518);
 ```
 
 #### `PI` (π)
@@ -247,17 +240,7 @@ function assertBase10LogarithmOfE(log10e: number): asserts log10e is LOG10E {
 import { PI } from "@nick/math/constants/pi";
 import assert from "node:assert";
 
-assert.ok(PI === 3.141592653589793);
-```
-
-##### Type-Level Usage
-
-```ts
-import { PI } from "@nick/math/constants/pi";
-
-function assertPi(pi: number): asserts pi is PI {
-  if (pi !== PI) throw new TypeError(`Expected ${PI}, got ${pi}`);
-}
+assert.strictEqual(PI, 3.141592653589793);
 ```
 
 #### `SQRT1_2` (Square root of 1/2)
@@ -266,21 +249,7 @@ function assertPi(pi: number): asserts pi is PI {
 import { SQRT1_2 } from "@nick/math/constants/sqrt1_2";
 import assert from "node:assert";
 
-assert.ok(SQRT1_2 === 0.7071067811865476);
-```
-
-##### Type-Level Usage
-
-```ts
-import { SQRT1_2 } from "@nick/math/constants/sqrt1_2";
-
-function assertSquareRootOfOneHalf(
-  sqrt1_2: number,
-): asserts sqrt1_2 is SQRT1_2 {
-  if (sqrt1_2 !== SQRT1_2) {
-    throw new TypeError(`Expected ${SQRT1_2}, got ${sqrt1_2}`);
-  }
-}
+assert.strictEqual(SQRT1_2, 0.7071067811865476);
 ```
 
 #### `SQRT2` (Square root of 2)
@@ -289,17 +258,7 @@ function assertSquareRootOfOneHalf(
 import { SQRT2 } from "@nick/math/constants/sqrt2";
 import assert from "node:assert";
 
-assert.ok(SQRT2 === 1.4142135623730951);
-```
-
-##### Type-Level Usage
-
-```ts
-import { SQRT2 } from "@nick/math/constants/sqrt2";
-
-function assertSquareRootOfTwo(sqrt2: number): asserts sqrt2 is SQRT2 {
-  if (sqrt2 !== SQRT2) throw new TypeError(`Expected ${SQRT2}, got ${sqrt2}`);
-}
+assert.strictEqual(SQRT2, 1.4142135623730951);
 ```
 
 #### `EPSILON`
@@ -311,19 +270,7 @@ different from `1`.
 import { EPSILON } from "@nick/math/constants/epsilon";
 import assert from "node:assert";
 
-assert.ok(EPSILON === 2.220446049250313e-16);
-```
-
-##### Type-Level Usage
-
-```ts
-import { EPSILON } from "@nick/math/constants/epsilon";
-
-function assertEpsilon(epsilon: number): asserts epsilon is EPSILON {
-  if (epsilon !== EPSILON) {
-    throw new TypeError(`Expected ${EPSILON}, got ${epsilon}`);
-  }
-}
+assert.strictEqual(EPSILON, 2.220446049250313e-16);
 ```
 
 #### `MAX_SAFE_INTEGER`
@@ -334,21 +281,7 @@ The maximum safe integer in JavaScript, `2^53 - 1`.
 import { MAX_SAFE_INTEGER } from "@nick/math/constants/max-safe-integer";
 import assert from "node:assert";
 
-assert.ok(MAX_SAFE_INTEGER === 9007199254740991);
-```
-
-##### Type-Level Usage
-
-```ts
-import { MAX_SAFE_INTEGER } from "@nick/math/constants/max-safe-integer";
-
-function assertMaxSafeInteger(
-  maxSafeInteger: number,
-): asserts maxSafeInteger is MAX_SAFE_INTEGER {
-  if (maxSafeInteger !== MAX_SAFE_INTEGER) {
-    throw new TypeError(`Expected ${MAX_SAFE_INTEGER}, got ${maxSafeInteger}`);
-  }
-}
+assert.strictEqual(MAX_SAFE_INTEGER, 9007199254740991);
 ```
 
 #### `MIN_SAFE_INTEGER`
@@ -359,21 +292,7 @@ The minimum safe integer in JavaScript, `-2^53 + 1`.
 import { MIN_SAFE_INTEGER } from "@nick/math/constants/min-safe-integer";
 import assert from "node:assert";
 
-assert.ok(MIN_SAFE_INTEGER === -9007199254740991);
-```
-
-##### Type-Level Usage
-
-```ts
-import { MIN_SAFE_INTEGER } from "@nick/math/constants/min-safe-integer";
-
-function assertMinSafeInteger(
-  minSafeInteger: number,
-): asserts minSafeInteger is MIN_SAFE_INTEGER {
-  if (minSafeInteger !== MIN_SAFE_INTEGER) {
-    throw new TypeError(`Expected ${MIN_SAFE_INTEGER}, got ${minSafeInteger}`);
-  }
-}
+assert.strictEqual(MIN_SAFE_INTEGER, -9007199254740991);
 ```
 
 #### `MAX_VALUE`
@@ -384,19 +303,7 @@ The maximum representable value in JavaScript.
 import { MAX_VALUE } from "@nick/math/constants/max-value";
 import assert from "node:assert";
 
-assert.ok(MAX_VALUE === 1.7976931348623157e308);
-```
-
-##### Type-Level Usage
-
-```ts
-import { MAX_VALUE } from "@nick/math/constants/max-value";
-
-function assertMaxValue(maxValue: number): asserts maxValue is MAX_VALUE {
-  if (maxValue !== MAX_VALUE) {
-    throw new TypeError(`Expected ${MAX_VALUE}, got ${maxValue}`);
-  }
-}
+assert.strictEqual(MAX_VALUE, 1.7976931348623157e308);
 ```
 
 #### `MIN_VALUE`
@@ -407,19 +314,7 @@ The minimum representable value in JavaScript.
 import { MIN_VALUE } from "@nick/math/constants/min-value";
 import assert from "node:assert";
 
-assert.ok(MIN_VALUE === 5e-324);
-```
-
-##### Type-Level Usage
-
-```ts
-import { MIN_VALUE } from "@nick/math/constants/min-value";
-
-function assertMinValue(minValue: number): asserts minValue is MIN_VALUE {
-  if (minValue !== MIN_VALUE) {
-    throw new TypeError(`Expected ${MIN_VALUE}, got ${minValue}`);
-  }
-}
+assert.strictEqual(MIN_VALUE, 5e-324);
 ```
 
 #### `NEGATIVE_INFINITY`
@@ -430,23 +325,7 @@ The negative infinity value in JavaScript.
 import { NEGATIVE_INFINITY } from "@nick/math/constants/negative-infinity";
 import assert from "node:assert";
 
-assert.ok(NEGATIVE_INFINITY === -Infinity);
-```
-
-##### Type-Level Usage
-
-```ts
-import { NEGATIVE_INFINITY } from "@nick/math/constants/negative-infinity";
-
-function assertNegativeInfinity(
-  negativeInfinity: number,
-): asserts negativeInfinity is NEGATIVE_INFINITY {
-  if (negativeInfinity !== NEGATIVE_INFINITY) {
-    throw new TypeError(
-      `Expected ${NEGATIVE_INFINITY}, got ${negativeInfinity}`,
-    );
-  }
-}
+assert.strictEqual(NEGATIVE_INFINITY, -Infinity);
 ```
 
 #### `POSITIVE_INFINITY`
@@ -457,23 +336,7 @@ The positive infinity value in JavaScript.
 import { POSITIVE_INFINITY } from "@nick/math/constants/positive-infinity";
 import assert from "node:assert";
 
-assert.ok(POSITIVE_INFINITY === Infinity);
-```
-
-##### Type-Level Usage
-
-```ts
-import { POSITIVE_INFINITY } from "@nick/math/constants/positive-infinity";
-
-function assertPositiveInfinity(
-  positiveInfinity: number,
-): asserts positiveInfinity is POSITIVE_INFINITY {
-  if (positiveInfinity !== POSITIVE_INFINITY) {
-    throw new TypeError(
-      `Expected ${POSITIVE_INFINITY}, got ${positiveInfinity}`,
-    );
-  }
-}
+assert.strictEqual(POSITIVE_INFINITY, Infinity);
 ```
 
 #### `NAN`
@@ -482,23 +345,18 @@ The `NaN` value in JavaScript, representing "Not a Number".
 
 ```ts
 import { NAN } from "@nick/math/constants/nan";
+import assert from "node:assert";
 
-console.log(NAN); // NaN
-
-// or, to use the same name as the global constant:
-import { NaN } from "@nick/math/constants/nan";
-
-console.log(NaN); // NaN
+assert.ok(NAN !== NAN);
 ```
 
-##### Type-Level Usage
+###### Alias: `NaN`
 
 ```ts
 import { NaN } from "@nick/math/constants/nan";
+import assert from "node:assert";
 
-function assertNaN(nan: number): asserts nan is NaN {
-  if (!Number.isNaN(nan)) throw new TypeError(`Expected ${NaN}, got ${nan}`);
-}
+assert.ok(NaN !== NaN);
 ```
 
 ---
@@ -513,7 +371,7 @@ Returns the absolute value of a number.
 import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(abs(-1) === 1);
+assert.strictEqual(abs(-1), 1);
 ```
 
 #### `acos`
@@ -535,7 +393,7 @@ Returns the inverse hyperbolic cosine of a number.
 import { acosh } from "@nick/math/acosh";
 import assert from "node:assert";
 
-assert.ok(acosh(1) === 0);
+assert.strictEqual(acosh(1), 0);
 ```
 
 #### `asin`
@@ -579,7 +437,7 @@ Returns the arctangent of the quotient of its arguments.
 import { atan2 } from "@nick/math/atan2";
 import assert from "node:assert";
 
-assert.ok(atan2(1, 1) === 0.7853981633974483);
+assert.strictEqual(atan2(1, 1), 0.7853981633974483);
 ```
 
 #### `atanh`
@@ -590,7 +448,7 @@ Returns the inverse hyperbolic tangent of a number.
 import { atanh } from "@nick/math/atanh";
 import assert from "node:assert";
 
-assert.ok(atanh(0.5) === 0.5493061443340549);
+assert.strictEqual(atanh(0.5), 0.5493061443340549);
 ```
 
 #### `cbrt`
@@ -601,7 +459,7 @@ Returns the cube root of a number.
 import { cbrt } from "@nick/math/cbrt";
 import assert from "node:assert";
 
-assert.ok(cbrt(27) === 3);
+assert.strictEqual(cbrt(27), 3);
 ```
 
 #### `ceil`
@@ -612,7 +470,7 @@ Returns the smallest integer greater than or equal to a number.
 import { ceil } from "@nick/math/ceil";
 import assert from "node:assert";
 
-assert.ok(ceil(1.5) === 2);
+assert.strictEqual(ceil(1.5), 2);
 ```
 
 #### `clz32`
@@ -624,7 +482,7 @@ number.
 import { clz32 } from "@nick/math/clz32";
 import assert from "node:assert";
 
-assert.ok(clz32(1) === 31);
+assert.strictEqual(clz32(1), 31);
 ```
 
 #### `cos`
@@ -679,7 +537,7 @@ Returns the largest integer less than or equal to a number.
 import { floor } from "@nick/math/floor";
 import assert from "node:assert";
 
-assert.ok(floor(1.5) === 1);
+assert.strictEqual(floor(1.5), 1);
 ```
 
 #### `fround`
@@ -706,7 +564,7 @@ import { f16round } from "@nick/math/f16round";
 import { PI } from "@nick/math/constants/pi";
 import assert from "node:assert";
 
-assert.ok(f16round(PI) === 3.140625);
+assert.strictEqual(f16round(PI), 3.140625);
 ```
 
 #### `hypot`
@@ -717,7 +575,7 @@ Returns the square root of the sum of the squares of its arguments.
 import { hypot } from "@nick/math/hypot";
 import assert from "node:assert";
 
-assert.ok(hypot(3, 4) === 5);
+assert.strictEqual(hypot(3, 4), 5);
 ```
 
 #### `imul`
@@ -728,7 +586,7 @@ Returns the result of a 32-bit integer multiplication.
 import { imul } from "@nick/math/imul";
 import assert from "node:assert";
 
-assert.ok(imul(2, 3) === 6);
+assert.strictEqual(imul(2, 3), 6);
 ```
 
 #### `log`
@@ -783,7 +641,7 @@ Returns the largest of zero or more numbers.
 import { max } from "@nick/math/max";
 import assert from "node:assert";
 
-assert.ok(max(1, 2, 3) === 3);
+assert.strictEqual(max(1, 2, 3), 3);
 ```
 
 #### `min`
@@ -794,7 +652,7 @@ Returns the smallest of zero or more numbers.
 import { min } from "@nick/math/min";
 import assert from "node:assert";
 
-assert.ok(min(1, 2, 3) === 1);
+assert.strictEqual(min(1, 2, 3), 1);
 ```
 
 #### `pow`
@@ -805,7 +663,7 @@ Returns the base to the exponent power.
 import { pow } from "@nick/math/pow";
 import assert from "node:assert";
 
-assert.ok(pow(2, 3) === 8);
+assert.strictEqual(pow(2, 3), 8);
 ```
 
 #### `random`
@@ -829,7 +687,7 @@ Returns the value of a number rounded to the nearest integer.
 import { round } from "@nick/math/round";
 import assert from "node:assert";
 
-assert.ok(round(1.5) === 2);
+assert.strictEqual(round(1.5), 2);
 ```
 
 #### `sign`
@@ -841,7 +699,7 @@ zero.
 import { sign } from "@nick/math/sign";
 import assert from "node:assert";
 
-assert.ok(sign(-1) === -1);
+assert.strictEqual(sign(-1), -1);
 ```
 
 #### `sin`
@@ -874,7 +732,7 @@ Returns the square root of a number.
 import { sqrt } from "@nick/math/sqrt";
 import assert from "node:assert";
 
-assert.ok(sqrt(9) === 3);
+assert.strictEqual(sqrt(9), 3);
 ```
 
 #### `tan`
@@ -907,7 +765,7 @@ Returns the integer part of a number by removing any fractional digits.
 import { trunc } from "@nick/math/trunc";
 import assert from "node:assert";
 
-assert.ok(trunc(1.5) === 1);
+assert.strictEqual(trunc(1.5), 1);
 ```
 
 ---

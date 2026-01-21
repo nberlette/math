@@ -29,7 +29,7 @@ describe("decodeFloat16", () => {
     }
     for (const bits of cases) {
       view.setUint16(0, bits);
-      const expected = getFloat16.call(view, 0);
+      const expected: number= getFloat16.call(view, 0);
       const actual = decodeFloat16(bits);
       if (Number.isNaN(expected)) {
         assert.ok(Number.isNaN(actual));

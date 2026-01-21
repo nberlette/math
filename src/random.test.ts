@@ -53,6 +53,13 @@ describe("MT19937", () => {
     assert.ok(mt19937.init != null && typeof mt19937.init === "function");
   });
 
+  it("has a method named initFromArray", () => {
+    assert.ok(
+      mt19937.initFromArray != null &&
+        typeof mt19937.initFromArray === "function",
+    );
+  });
+
   it("has a method named randomInt", () => {
     assert.ok(
       mt19937.randomInt != null && typeof mt19937.randomInt === "function",
@@ -78,5 +85,24 @@ describe("MT19937", () => {
       () => mt19937.random(),
     );
     assert.deepStrictEqual(actual, expected);
+  });
+
+  it("produces the same sequence for the same seed array", () => {
+    const seeds = [0x123, 0x234, 0x345, 0x456];
+    const left = new MT19937().initFromArray(...seeds);
+    const right = new MT19937().initFromArray(...seeds);
+    const count = 8;
+    const leftSeq = Array.from({ length: count }, () => left.randomInt());
+    const rightSeq = Array.from({ length: count }, () => right.randomInt());
+    assert.deepStrictEqual(leftSeq, rightSeq);
+  });
+
+  it("produces different sequences for different seed arrays", () => {
+    const left = new MT19937().initFromArray(1, 2, 3, 4);
+    const right = new MT19937().initFromArray(4, 3, 2, 1);
+    const count = 8;
+    const leftSeq = Array.from({ length: count }, () => left.randomInt());
+    const rightSeq = Array.from({ length: count }, () => right.randomInt());
+    assert.notDeepStrictEqual(leftSeq, rightSeq);
   });
 });

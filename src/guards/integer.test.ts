@@ -2,7 +2,7 @@ import assert from "node:assert";
 import { describe, it } from "node:test";
 import { isInteger, isNumberInteger } from "./integer.ts";
 
-const cases: unknown[] = [0, 1, -1, 1.2, -2.5, NaN, Infinity, -Infinity, "3"];
+const cases = [0, 1, -1, 1.2, -2.5, NaN, Infinity, -Infinity, "3"];
 
 describe("isInteger", () => {
   it("is a function", () => {
