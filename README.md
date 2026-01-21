@@ -19,8 +19,9 @@ you can either import the entire package as a namespace (useful for rapid
 prototyping during development), or on a modular basis where only the features
 required are imported (recommended for production).
 
-When imported as a namespace (or via the default export), this package is suitable
-to use as a drop-in replacement for any standard `Math.*` feature's usage[^1].
+When imported as a namespace (or via the default export), this package is
+suitable to use as a drop-in replacement for any standard `Math.*` feature's
+usage[^1].
 
 [^1]: All modules in this package are implemented using 100% manual logic and
     arithmetic, and do not rely on any native code or objects. As such, the
@@ -92,7 +93,6 @@ npm i @nberlette/math
 ```ts
 import * as math from "@nick/math";
 import assert from "node:assert";
-
 
 assert.ok((math.acos(0.5) - Math.acos(0.5)) < 1e-9);
 assert.strictEqual(math.NEGATIVE_ZERO, -0);
