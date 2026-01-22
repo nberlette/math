@@ -133,10 +133,14 @@
     "rules": {
       "exclude": ["no-import-prefix", "no-explicit-any"],
       "tags": ["recommended"]
-    }
+    },
+    "exclude": ["npm", "docs"]
   },
   "fmt": {
-    "exclude": ["docs", "**/*.min.*"]
+    "exclude": ["**/*.min.*"]
+  },
+  "test": {
+    "exclude": ["npm", "docs"]
   },
   "publish": {
     "include": [
