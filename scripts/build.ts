@@ -127,7 +127,7 @@ function isTTY(): boolean {
   return process.stdout.isTTY || env.CI == null;
 }
 
-let registry = env.NPM_REGISTRY_URL || env.NPM_REGISTRY ||
+const registry = env.NPM_REGISTRY_URL || env.NPM_REGISTRY ||
   env.NPM_CONFIG_REGISTRY || "https://registry.npmjs.org";
 
 let tag = env.DIST_TAG || env.NPM_DIST_TAG || "latest";
