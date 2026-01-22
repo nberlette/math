@@ -9,6 +9,7 @@ import * as dax from "jsr:@david/dax@0.44.1";
 import { colors } from "jsr:@cliffy/ansi@1.0.0-rc.8/colors";
 
 import denoJson from "../deno.json" with { type: "json" };
+import process, { env } from "node:process";
 
 const JSR_SCOPE = "nick", NPM_SCOPE = "nberlette", OUT_DIR = "./npm";
 
@@ -58,107 +59,196 @@ type NpmMetadata = {
   [x: string]: unknown;
 };
 
+async function getJsrMetadata(
+  name: string,
+): Promise<JsrMetadata | undefined> {
+  try {
+    return await $.request(`https://jsr.io/${name}/meta.json`)
+      .timeout("5s")
+      .showProgress(true).noThrow().json();
+  } catch {
+    return undefined;
+  }
+}
+
+async function getNpmMetadata(
+  name: string,
+): Promise<NpmMetadata | undefined> {
+  try {
+    $.logLight(`🔍 fetching ${red.bold("npm")} package metadata for ${name}`);
+    return await $.request(`https://registry.npmjs.org/${name}`)
+      .timeout("5s")
+      .showProgress(true).noThrow().json();
+  } catch {
+    return undefined;
+  }
+}
+
+async function getLatestVersion(
+  name: string,
+  npm = false,
+): Promise<semver.SemVer | undefined> {
+  const meta = await getVersions(name, npm);
+  return meta.latest;
+}
+
+function getMetadata(
+  name: string,
+  npm?: false,
+): Promise<JsrMetadata | undefined>;
+function getMetadata(name: string, npm: true): Promise<NpmMetadata | undefined>;
+function getMetadata(
+  name: string,
+  npm?: boolean,
+): Promise<JsrMetadata | NpmMetadata | undefined>;
+function getMetadata(name: string, npm?: boolean) {
+  return npm ? getNpmMetadata(name) : getJsrMetadata(name);
+}
+
+async function getVersions(name: string, npm?: boolean): Promise<{
+  latest: semver.SemVer | undefined;
+  versions: semver.SemVer[];
+}> {
+  const meta = await getMetadata(name, npm);
+
+  if (meta?.versions) {
+    const tags = "dist-tags" in meta ? meta["dist-tags"] : meta;
+    const versions = Object.keys(meta.versions)
+      .map(semver.tryParse).filter((v) => v != null).sort(semver.compare);
+    const latest = semver.tryParse(tags.latest ?? "") ?? versions.at(-1);
+
+    return { latest, versions };
+  }
+
+  return { latest: undefined, versions: [] as semver.SemVer[] };
+}
+
+function isTTY(): boolean {
+  return process.stdout.isTTY || env.CI == null;
+}
+
+let registry = env.NPM_REGISTRY_URL || env.NPM_REGISTRY ||
+  env.NPM_CONFIG_REGISTRY || "https://registry.npmjs.org";
+
+let tag = env.DIST_TAG || env.NPM_DIST_TAG || "latest";
+
+const base = new dax.Path(
+  path.fromFileUrl(import.meta.resolve("../deno.json")),
+).parentOrThrow();
+
+// tmp dir used for building
+const tmp = new dax.Path(await Deno.makeTempDir({ prefix: "math-" }));
+
+const deno = dax.build$({
+  commandBuilder: new dax.CommandBuilder().cwd(base).command([
+    "deno",
+    "run",
+    "-A",
+  ]).env({
+    DENO_FUTURE: "1",
+  }),
+  extras: {
+    ansi: colors,
+    async run(...args: string[]): Promise<Uint8Array | undefined> {
+      const res = await deno`deno run -A ${args}`;
+      return res.stdoutBytes;
+    },
+    async fmt(...args: string[]): Promise<void> {
+      await deno`deno fmt ${args}`;
+    },
+  },
+});
+
+const $ = dax.build$({
+  commandBuilder: new dax.CommandBuilder().cwd(base),
+  extras: {
+    ansi: colors,
+    glob: fs.expandGlob,
+    globSync: fs.expandGlobSync,
+    walk: fs.walk,
+    walkSync: fs.walkSync,
+    deno: deno,
+    async getNextVersion(
+      version: string,
+      latest?: semver.SemVer,
+      current?: semver.SemVer,
+    ): Promise<string> {
+      if (!latest && !current) return version;
+      latest ||= current;
+      current ||= latest;
+
+      if (!isTTY()) return version;
+
+      const prerelease = current?.prerelease ?? [];
+      const options = [
+        "none",
+        "prepatch",
+        "preminor",
+        "premajor",
+        "prerelease",
+        "pre",
+        "patch",
+        "minor",
+        "major",
+      ] as const;
+
+      const candidates = options.map((t) =>
+        [
+          t,
+          semver.format(
+            t === "none" ? current! : semver.increment(current!, t),
+          ),
+        ] as const
+      );
+
+      const index = await $.select({
+        message: `🔍 Select a SemVer release type for new version ${
+          $.ansi.dim(`(current: ${underline.bold.brightYellow(version)})`)
+        }`,
+        options: [...candidates].map(([t, v], i) =>
+          `${t} -> ${bold.brightGreen(v)}${
+            i === 0 ? $.ansi.dim(" (default, no change)") : ""
+          }`
+        ).concat([`custom ${$.ansi.dim("(input manually)")}`]),
+        noClear: true,
+      });
+
+      if (index != null) {
+        let v2 = candidates[index][1] as string | undefined;
+        if (index > candidates.length || v2 == null) {
+          v2 = await $.maybePrompt(
+            `Enter a new version for ${bold.brightCyan(name)} ${
+              $.ansi.dim(`(current: ${underline.bold.brightYellow(version)})`)
+            }:`,
+            {
+              default: semver.format(
+                semver.increment(
+                  current!,
+                  prerelease.length ? "prerelease" : "patch",
+                ),
+              ),
+            },
+          );
+        }
+        return v2 ?? version;
+      }
+      return version;
+    },
+    getVersions,
+    getLatestVersion,
+    isTTY,
+    getJsrMetadata,
+    getNpmMetadata,
+    getMetadata,
+  },
+});
+
+const { bold, underline, red, yellow } = colors();
+
 async function main() {
   let { name, version, license, author } = denoJson;
   const description =
     "Standalone implementation of the entire native Math interface, along with other useful type guards, constants, and utilities. Zero dependencies.";
-  const base = new dax.Path(
-    path.fromFileUrl(import.meta.resolve("../deno.json")),
-  ).parentOrThrow();
-  // tmp dir used for building
-  const tmp = new dax.Path(await Deno.makeTempDir({ prefix: "math-" }));
-
-  const deno = dax.build$({
-    commandBuilder: new dax.CommandBuilder().cwd(base).command([
-      "deno",
-      "run",
-      "-A",
-    ]).env({
-      DENO_FUTURE: "1",
-    }),
-    extras: {
-      ansi: colors,
-      async run(...args: string[]): Promise<Uint8Array | undefined> {
-        const res = await deno`deno run -A ${args}`;
-        return res.stdoutBytes;
-      },
-      async fmt(...args: string[]): Promise<void> {
-        await deno`deno fmt ${args}`;
-      },
-    },
-  });
-
-  const $ = dax.build$({
-    commandBuilder: new dax.CommandBuilder().cwd(base),
-    extras: {
-      ansi: colors,
-      glob: fs.expandGlob,
-      globSync: fs.expandGlobSync,
-      walk: fs.walk,
-      walkSync: fs.walkSync,
-      deno: deno,
-      async getNextVersion(
-        version: string,
-        latest?: semver.SemVer,
-        current?: semver.SemVer,
-      ) {
-        if (!latest && !current) return version;
-        latest ||= current;
-        current ||= latest;
-
-        if (!isTTY()) return version;
-
-        const prerelease = current?.prerelease ?? [];
-        const options = [
-          ...prerelease?.length ? ["prerelease"] as const : [] as const,
-          "prepatch",
-          "preminor",
-          "premajor",
-          "prerelease",
-          "patch",
-          "minor",
-          "major",
-        ] as const;
-
-        const candidates = options.map((t) =>
-          [t, semver.format(semver.increment(current!, t))] as const
-        );
-
-        const index = await $.select({
-          message: `🔍 Please select a version for this build ${
-            $.ansi.dim(`(current: ${underline.bold(version)})`)
-          }`,
-          options: [...candidates].map(([t, v], i) =>
-            `${v} (${t}${i === 0 ? ", default" : ""})`
-          ).concat([`custom ${$.ansi.dim("(input manually)")}`]),
-          noClear: true,
-        });
-
-        if (index != null) {
-          let v2 = candidates[index][1] as string | undefined;
-          if (index > candidates.length || v2 == null) {
-            v2 = await $.maybePrompt(
-              `Enter a new version for ${bold(name)} ${
-                $.ansi.dim(`(current: ${underline.bold(version)})`)
-              }:`,
-              {
-                default: semver.format(
-                  semver.increment(
-                    current!,
-                    prerelease.length ? "prerelease" : "patch",
-                  ),
-                ),
-              },
-            );
-          }
-          return v2 ?? version;
-        }
-        return version;
-      },
-    },
-  });
-
-  const { bold, underline, red, yellow } = colors();
 
   const finalOutDir = base.join(OUT_DIR).resolve();
   const outDir = await tmp.join(OUT_DIR).resolve().ensureDir();
@@ -192,76 +282,27 @@ async function main() {
 
   await build();
 
-  if (Deno.env.get("NO_PUBLISH") !== "1") {
+  if (env.NO_PUBLISH !== "1") {
     const publish = !isTTY() || await $.confirm(
       `🚀 publish ${npmName} to ${red.bold("npm")}?`,
       {
         default: true,
       },
     );
-    if (publish) await $`cd npm && npm publish --access public`;
-  }
-
-  async function getJsrMetadata(
-    name: string,
-  ): Promise<JsrMetadata | undefined> {
-    try {
-      return await $.request(`https://jsr.io/${name}/meta.json`)
-        .timeout("5s")
-        .showProgress(true).noThrow().json();
-    } catch {
-      return undefined;
+    if (publish) {
+      if (isTTY()) {
+        const distTag = await $.maybePrompt(
+          `NPM dist tag to associate with this version`,
+          {
+            default: tag,
+            noClear: true,
+          },
+        );
+        if (distTag) tag = distTag;
+      }
+      await $`npm publish --access public --registry ${registry} --tag ${tag}`
+        .cwd("npm");
     }
-  }
-
-  async function getNpmMetadata(
-    name: string,
-  ): Promise<NpmMetadata | undefined> {
-    try {
-      $.logLight(`🔍 fetching ${red.bold("npm")} package metadata for ${name}`);
-      return await $.request(`https://registry.npmjs.org/${name}`)
-        .timeout("5s")
-        .showProgress(true).noThrow().json();
-    } catch {
-      return undefined;
-    }
-  }
-
-  async function getLatestVersion(
-    name: string,
-    npm = false,
-  ): Promise<semver.SemVer | undefined> {
-    const meta = await getVersions(name, npm);
-    return meta.latest;
-  }
-
-  async function getVersions(name: string, npm?: boolean): Promise<{
-    latest: semver.SemVer | undefined;
-    versions: semver.SemVer[];
-  }> {
-    let meta: NpmMetadata | JsrMetadata | undefined;
-    if (npm) {
-      meta = await getNpmMetadata(npmName);
-    } else {
-      meta = await getJsrMetadata(name);
-    }
-
-    if (meta?.versions) {
-      const tags = (
-        npm ? (meta as NpmMetadata)["dist-tags"] : meta as JsrMetadata
-      ) ?? {};
-      const versions = Object.keys(meta.versions)
-        .map(semver.tryParse).filter((v) => v != null).sort(semver.compare);
-      const latest = semver.tryParse(tags.latest ?? "") ?? versions.at(-1);
-
-      return { latest, versions };
-    }
-
-    return { latest: undefined, versions: [] as semver.SemVer[] };
-  }
-
-  function isTTY(): boolean {
-    return Deno.stdout.isTerminal() || Deno.env.get("CI") == null;
   }
 
   async function preBuild() {
@@ -280,10 +321,12 @@ async function main() {
     // necessary so dnt doesn't create a nested src dir in the npm
     // package (which, while technically functional, is not idiomatic).
     const indexTs = tmp.join("index.ts");
+
     let src = await indexTs.readText();
     src = src.replace(/\.\/src\//g, "./");
     await indexTs.writeText(src);
     const denoJson = tmp.join("deno.json");
+
     let json = await denoJson.readText();
     json = json.replace(/(?<=")\.\/src\//g, "./");
     await denoJson.writeText(json);
@@ -303,6 +346,10 @@ async function main() {
             types: `./esm/${v}.d.ts`,
             default: `./esm/${v}.js`,
           },
+          "module-sync": {
+            types: `./esm/${v}.d.ts`,
+            default: `./esm/${v}.js`,
+          },
           require: {
             types: `./cjs/${v}.d.ts`,
             default: `./cjs/${v}.js`,
@@ -315,6 +362,7 @@ async function main() {
         [E in keyof typeof denoJson.exports]: {
           types: string;
           import: { types: string; default: string };
+          "module-sync"?: { types: string; default: string };
           require: { types: string; default: string };
           default: string;
         };
@@ -322,7 +370,6 @@ async function main() {
     );
 
     const packageJson = {
-      type: "module",
       name: npmName,
       version,
       license,
@@ -330,7 +377,10 @@ async function main() {
       private: false,
       publishConfig: {
         access: "public",
+        registry,
+        tag,
       },
+      type: "module",
       description,
       keywords: [
         "math",
@@ -350,9 +400,9 @@ async function main() {
       homepage: "https://jsr.io/@nick/math/doc",
       readme: "https://github.com/nberlette/math#readme",
       bugs: "https://github.com/nberlette/math/issues",
+      types: exports["."].import.types ?? exports["."].types,
       main: exports["."].require.default,
       module: exports["."].import.default,
-      types: exports["."].import.types ?? exports["."].types,
       exports,
     };
 
@@ -382,11 +432,19 @@ async function main() {
       async postBuild() {
         $.logStep("📦 BUILT", `${name}@${version} successfully`);
 
-        await outDir.join("script").rename(outDir.join("cjs"));
-        $.logStep("🚚 MOVED", "./script -> ./cjs");
+        const cjsDir = outDir.join("cjs");
+        await outDir.join("script").rename(cjsDir);
+        $.logStep("MOVED", "./script -> ./cjs");
+
+        const cjsPkgJson = cjsDir.join("package.json");
+        await cjsPkgJson.ensureFile();
+        $.logStep("CREATE", cjsPkgJson.toString());
+
+        await cjsPkgJson.writeJsonPretty({ type: "commonjs" });
+        $.logStep("UPDATE", ".type='commonjs' in " + cjsPkgJson);
 
         await outDir.copy(finalOutDir.resolve(), { overwrite: true });
-        $.logStep("🚚 MOVED", `[tmp dir] -> ${finalOutDir}`);
+        $.logStep("MOVED", `${outDir} [tmp] -> ${finalOutDir}`);
       },
     });
   }
