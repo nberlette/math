@@ -6,7 +6,7 @@
  */
 import { isNaN, NAN } from "./guards/nan.ts";
 import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";
-import { log } from "./log.ts";
+import { log1p } from "./log1p.ts";
 
 /**
  * Calculates the inverse hyperbolic tangent of a number, returning a value in
@@ -21,5 +21,6 @@ export function atanh(x: number): number {
   if (isNaN(x) || x < -1 || x > 1) return NAN;
   if (x === -1 || x === 1) return x * POSITIVE_INFINITY;
   if (x === 0) return x;
-  return 0.5 * log((1 + x) / (1 - x));
+  // Use log1p for better precision near 0 and to match native behavior.
+  return 0.5 * log1p((2 * x) / (1 - x));
 }
