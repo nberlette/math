@@ -380,9 +380,10 @@ Returns the arccosine of a number.
 
 ```ts
 import { acos } from "@nick/math/acos";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(acos(0.5) - 1.0471975511965979) < 1e-9);
+assert.ok(abs(acos(0.5) - Math.acos(0.5)) < 1e-9);
 ```
 
 #### `acosh`
@@ -402,9 +403,10 @@ Returns the arcsine of a number.
 
 ```ts
 import { asin } from "@nick/math/asin";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(asin(0.5) - 0.5235987755982989) < 1e-9);
+assert.ok(abs(asin(0.5) - Math.asin(0.5)) < 1e-9);
 ```
 
 #### `asinh`
@@ -413,9 +415,10 @@ Returns the inverse hyperbolic sine of a number.
 
 ```ts
 import { asinh } from "@nick/math/asinh";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(asinh(0.5) - 0.48121182505960347) < 1e-9);
+assert.ok(abs(asinh(0.5) - Math.asinh(0.5)) < 1e-9);
 ```
 
 #### `atan`
@@ -424,9 +427,10 @@ Returns the arctangent of a number.
 
 ```ts
 import { atan } from "@nick/math/atan";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(atan(0.5) - 0.4636476090008061) < 1e-9);
+assert.ok(abs(atan(0.5) - Math.atan(0.5)) < 1e-9);
 ```
 
 #### `atan2`
@@ -437,7 +441,7 @@ Returns the arctangent of the quotient of its arguments.
 import { atan2 } from "@nick/math/atan2";
 import assert from "node:assert";
 
-assert.strictEqual(atan2(1, 1), 0.7853981633974483);
+assert.strictEqual(atan2(1, 1), Math.atan2(1, 1));
 ```
 
 #### `atanh`
@@ -448,7 +452,7 @@ Returns the inverse hyperbolic tangent of a number.
 import { atanh } from "@nick/math/atanh";
 import assert from "node:assert";
 
-assert.strictEqual(atanh(0.5), 0.5493061443340549);
+assert.strictEqual(atanh(0.5), Math.atanh(0.5));
 ```
 
 #### `cbrt`
@@ -491,9 +495,10 @@ Returns the cosine of a number.
 
 ```ts
 import { cos } from "@nick/math/cos";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(cos(0.5) - 0.8775825618903728) < 1e-9);
+assert.ok(abs(cos(0.5) - Math.cos(0.5)) < 1e-9);
 ```
 
 #### `cosh`
@@ -502,9 +507,10 @@ Returns the hyperbolic cosine of a number.
 
 ```ts
 import { cosh } from "@nick/math/cosh";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(cosh(0.5) - 1.1276259652063807) < 1e-9);
+assert.ok(abs(cosh(0.5) - Math.cosh(0.5)) < 1e-9);
 ```
 
 #### `exp`
@@ -513,9 +519,10 @@ Returns `E` raised to the power of a number.
 
 ```ts
 import { exp } from "@nick/math/exp";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(exp(1) - 2.718281828459045) < 1e-9);
+assert.ok(abs(exp(1) - Math.exp(1)) < 1e-9);
 ```
 
 #### `expm1`
@@ -524,9 +531,10 @@ Returns `E` raised to the power of a number, minus `1`.
 
 ```ts
 import { expm1 } from "@nick/math/expm1";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(expm1(1) - 1.718281828459045) < 1e-9);
+assert.ok(abs(expm1(1) - Math.expm1(1)) < 1e-9);
 ```
 
 #### `floor`
@@ -595,9 +603,10 @@ Returns the natural logarithm of a number.
 
 ```ts
 import { log } from "@nick/math/log";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(log(9) - 2.1972245773362196) < 1e-9);
+assert.ok(abs(log(9) - Math.log(9)) < 1e-9);
 ```
 
 #### `log1p`
@@ -606,9 +615,10 @@ Returns the natural logarithm of `1` plus a number.
 
 ```ts
 import { log1p } from "@nick/math/log1p";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(log1p(9) - 2.302585092994046) < 1e-9);
+assert.ok(abs(log1p(9) - Math.log1p(9)) < 1e-9);
 ```
 
 #### `log10`
@@ -617,9 +627,10 @@ Returns the base 10 logarithm of a number.
 
 ```ts
 import { log10 } from "@nick/math/log10";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(log10(100) - 2) < 1e-9);
+assert.ok(abs(log10(100) - Math.log10(100)) < 1e-9);
 ```
 
 #### `log2`
@@ -628,9 +639,10 @@ Returns the base 2 logarithm of a number.
 
 ```ts
 import { log2 } from "@nick/math/log2";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(log2(8) - 3) < 1e-9);
+assert.ok(abs(log2(8) - Math.log2(8)) < 1e-9);
 ```
 
 #### `max`
@@ -708,9 +720,10 @@ Returns the sine of a number.
 
 ```ts
 import { sin } from "@nick/math/sin";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(sin(0.5) - 0.479425538604203) < 1e-9);
+assert.ok(abs(sin(0.5) - Math.sin(0.5)) < 1e-9);
 ```
 
 #### `sinh`
@@ -719,9 +732,10 @@ Returns the hyperbolic sine of a number.
 
 ```ts
 import { sinh } from "@nick/math/sinh";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(sinh(0.5) - 0.5210953054937474) < 1e-9);
+assert.ok(abs(sinh(0.5) - Math.sinh(0.5)) < 1e-9);
 ```
 
 #### `sqrt`
@@ -741,9 +755,10 @@ Returns the tangent of a number.
 
 ```ts
 import { tan } from "@nick/math/tan";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(tan(0.5) - 0.5463024898437905) < 1e-9);
+assert.ok(abs(tan(0.5) - Math.tan(0.5)) < 1e-9);
 ```
 
 #### `tanh`
@@ -752,9 +767,10 @@ Returns the hyperbolic tangent of a number.
 
 ```ts
 import { tanh } from "@nick/math/tanh";
+import { abs } from "@nick/math/abs";
 import assert from "node:assert";
 
-assert.ok(Math.abs(tanh(0.5) - 0.46211715726000974) < 1e-9);
+assert.ok(abs(tanh(0.5) - Math.tanh(0.5)) < 1e-9);
 ```
 
 #### `trunc`
