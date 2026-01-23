@@ -12,7 +12,7 @@
   "tasks": {
     "build": "deno run -Aq scripts/build.ts",
     "test": "deno test -A --no-check=remote --coverage=.coverage --clean --parallel --doc",
-    "ok": "deno fmt --check && deno lint src && deno run test",
+    "ok": "deno fmt --check && deno lint src && deno task test",
     "fix": "deno fmt && deno lint --fix src"
   },
   "exports": {
