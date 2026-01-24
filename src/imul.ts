@@ -2,6 +2,13 @@
  * Performs a 32-bit integer multiplication of two numbers (interpreted as
  * 32-bit integers), returning a 32-bit result.
  *
+ * @example
+ * ```ts
+ * import { imul } from "@nick/math/imul";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(imul(2, 3), 6);
+ * ```
  * @module imul
  */
 
