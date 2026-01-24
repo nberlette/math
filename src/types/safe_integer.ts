@@ -1,3 +1,22 @@
+/**
+ * Provides the `SafeInteger` branded type for numbers that fall within
+ * the safe integer range.
+ *
+ * @example
+ * ```ts
+ * import { isSafeInteger } from "@nick/math/is/safe-integer";
+ * import type { SafeInteger } from "@nick/math/types/safe-integer";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ *
+ * let user_input: number = 42;
+ * if (isSafeInteger(user_input)) {
+ *   expectType<SafeInteger>(user_input);
+ * }
+ * ```
+ * @category Types
+ * @module types/safe-integer
+ */
+
 // deno-lint-ignore no-unused-vars
 const Safe_Integer: unique symbol = Symbol("SafeInteger");
 
