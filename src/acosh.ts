@@ -3,6 +3,13 @@
  * the range `[0, +Infinity]`.
  *
  * @category Trigonometry
+ * @example
+ * ```ts
+ * import { acosh } from "@nick/math/acosh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(acosh(1), 0);
+ * ```
  * @module acosh
  */
 import { NAN } from "./constants/nan.ts";
