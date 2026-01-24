@@ -1,6 +1,13 @@
 /**
  * Rounds a number to the nearest whole number.
  *
+ * @example
+ * ```ts
+ * import { round } from "@nick/math/round";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(round(1.2), 1);
+ * ```
  * @module round
  */
 import { floor } from "./floor.ts";
