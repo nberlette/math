@@ -2,6 +2,13 @@
  * Calculates the arccosine (inverse cosine) of a number, returning a value in
  * the range `[0, π]`.
  *
+ * @example
+ * ```ts
+ * import { acos } from "@nick/math/acos";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(acos(1), 0);
+ * ```
  * @module acos
  */
 
