@@ -2,6 +2,13 @@
  * This module provides a constant value for the mathematical constant `e` on
  * the runtime value-level, and also the compile-time type-only level.
  *
+ * @example
+ * ```ts
+ * import { E } from "@nick/math/constants/e";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(E, Math.E);
+ * ```
  * @module e
  */
 
