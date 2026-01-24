@@ -3,6 +3,13 @@
  * range `[-π/2, π/2]`.
  *
  * @category Trigonometry
+ * @example
+ * ```ts
+ * import { asin } from "@nick/math/asin";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(asin(0), 0);
+ * ```
  * @module asin
  */
 import { NAN } from "./constants/nan.ts";
