@@ -2,6 +2,14 @@
  * Checks if the provided number is exactly positive zero (`+0`). This is a
  * stricter than `x === 0`, as it will return `false` for `-0`.
  *
+ * @example
+ * ```ts
+ * import { isPositiveZero } from "@nick/math/guards/positive-zero";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isPositiveZero(0));
+ * assert.ok(!isPositiveZero(-0));
+ * ```
  * @module positive-zero
  */
 export * from "../constants/positive_zero.ts";

@@ -13,6 +13,13 @@
  * DataView via `setUint16`, or used in other applications that require the
  * `Float16` format.
  *
+ * @example
+ * ```ts
+ * import { encodeFloat16 } from "@nick/math/float16/encode";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(encodeFloat16(1), 0x3C00);
+ * ```
  * @module float16/encode
  */
 

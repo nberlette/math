@@ -1,6 +1,13 @@
 /**
  * Performant local implementation of the `Math.abs` function.
  *
+ * @example
+ * ```ts
+ * import { abs } from "@nick/math/abs";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(abs(-3.5), 3.5);
+ * ```
  * @module abs
  */
 

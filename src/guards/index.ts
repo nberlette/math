@@ -38,6 +38,16 @@
  * [native-number-isnan]: https://mdn.io/Number.isNaN
  * [native-object-is]: https://mdn.io/Object.is
  *
+ * @example
+ * ```ts
+ * import { isFinite, isPositiveZero } from "@nick/math/guards";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isFinite(123));
+ * assert.ok(isPositiveZero(0));
+ * assert.ok(!isPositiveZero(-0));
+ * ```
+ * @category Guards
  * @module guards
  */
 export * from "./finite.ts";

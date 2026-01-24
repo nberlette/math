@@ -2,6 +2,13 @@
  * Returns the smallest of its arguments, or `NaN` if any argument is `NaN`.
  * If no arguments are provided, the result is `Infinity`.
  *
+ * @example
+ * ```ts
+ * import { min } from "@nick/math/min";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(min(1, 5, 2), 1);
+ * ```
  * @module min
  */
 import { POSITIVE_INFINITY } from "./constants/positive_infinity.ts";

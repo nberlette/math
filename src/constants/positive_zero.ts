@@ -4,6 +4,13 @@
  * native JavaScript language, provided for stronger type-safety when working
  * with positive zero values.
  *
+ * @example
+ * ```ts
+ * import { POSITIVE_ZERO } from "@nick/math/constants/positive-zero";
+ * import assert from "node:assert";
+ *
+ * assert.ok(Object.is(POSITIVE_ZERO, 0));
+ * ```
  * @module positive-zero
  */
 

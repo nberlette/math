@@ -2,6 +2,13 @@
  * Calculates the inverse hyperbolic tangent of a number, returning a value in
  * the range `[-∞, +∞]`.
  *
+ * @example
+ * ```ts
+ * import { atanh } from "@nick/math/atanh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(atanh(0), 0);
+ * ```
  * @module atanh
  */
 import { isNaN, NAN } from "./guards/nan.ts";

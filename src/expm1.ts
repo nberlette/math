@@ -2,6 +2,13 @@
  * Calculates the exponential of `x` minus 1 (`exp(x) - 1`) with a high degree
  * of accuracy, even for very small values of `x`.
  *
+ * @example
+ * ```ts
+ * import { expm1 } from "@nick/math/expm1";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(expm1(0), 0);
+ * ```
  * @module expm1
  */
 import { EPSILON } from "./constants/epsilon.ts";

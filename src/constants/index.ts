@@ -1,6 +1,15 @@
 /**
  * This module re-exports all of the `@nick/math/constants/*` submodules.
  *
+ * @example
+ * ```ts
+ * import { E, PI } from "@nick/math/constants";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(E, Math.E);
+ * assert.strictEqual(PI, Math.PI);
+ * ```
+ * @category Constants
  * @module constants
  */
 export * from "./e.ts";

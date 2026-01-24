@@ -1,4 +1,19 @@
 /**
+ * This module provides runtime and type-level implementations of the
+ * `POSITIVE_INFINITY` constant, matching `Number.POSITIVE_INFINITY`.
+ *
+ * @example
+ * ```ts
+ * import { POSITIVE_INFINITY } from "@nick/math/constants/positive-infinity";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(POSITIVE_INFINITY, Number.POSITIVE_INFINITY);
+ * ```
+ * @category Constants
+ * @module positive-infinity
+ */
+
+/**
  * Positive Infinity is a special value representing positive infinity, which
  * is greater than any other number. It is approximately equal to
  * `1.7976931348623159e+308`.

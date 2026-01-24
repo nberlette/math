@@ -3,6 +3,13 @@
  * range `[-1, 1]`.
  *
  * @category Trigonometry
+ * @example
+ * ```ts
+ * import { tanh } from "@nick/math/tanh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(tanh(0), 0);
+ * ```
  * @module tanh
  */
 

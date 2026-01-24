@@ -2,6 +2,14 @@
  * This module provides branded nominal types for signed and unsigned integers
  * of various precisions, as well as bigints for 64-bit integers.
  *
+ * @example
+ * ```ts
+ * import type { Int32 } from "@nick/math/types/integer";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ *
+ * const value = 42 as Int32;
+ * expectType<Int32>(value);
+ * ```
  * @module types/integer
  */
 import type { P32, Precision } from "./precision.ts";

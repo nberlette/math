@@ -1,6 +1,13 @@
 /**
  * Calculates the natural logarithm of a number (logₑ).
  *
+ * @example
+ * ```ts
+ * import { log } from "@nick/math/log";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(log(1), 0);
+ * ```
  * @module log
  */
 import { EPSILON } from "./constants/epsilon.ts";

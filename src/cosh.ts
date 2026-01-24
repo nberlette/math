@@ -1,6 +1,13 @@
 /**
  * Calculates the hyperbolic cosine of a number.
  *
+ * @example
+ * ```ts
+ * import { cosh } from "@nick/math/cosh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(cosh(0), 1);
+ * ```
  * @module cosh
  */
 import { exp } from "./exp.ts";

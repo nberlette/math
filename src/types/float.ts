@@ -7,6 +7,14 @@
  * specific to floating-point numbers, and are designed to be used as generic
  * type arguments to other functions and classes that work with floats.
  *
+ * @example
+ * ```ts
+ * import type { Float32 } from "@nick/math/types/float";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ *
+ * const value = 1 as Float32;
+ * expectType<Float32>(value);
+ * ```
  * @module types/float
  */
 import type { FloatPrecision, P32 } from "./precision.ts";

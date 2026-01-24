@@ -2,6 +2,13 @@
  * Checks if the provided number is `-Infinity` (negative infinity), in a way
  * that is immune to any global variable shadowing or reassignment.
  *
+ * @example
+ * ```ts
+ * import { isNegativeInfinity } from "@nick/math/guards/negative-infinity";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isNegativeInfinity(-1 / 0));
+ * ```
  * @module negative-infinity
  */
 import { NEGATIVE_INFINITY } from "../constants/negative_infinity.ts";

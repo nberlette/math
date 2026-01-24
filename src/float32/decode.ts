@@ -18,6 +18,13 @@
  * with 32-bits of precision), use the {@linkcode decodeFloat32} function of
  * this module, passing it the encoded value.
  *
+ * @example
+ * ```ts
+ * import { decodeFloat32 } from "@nick/math/float32/decode";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(decodeFloat32(0x3F800000), 1);
+ * ```
  * @module float32/decode
  */
 import float32 from "./constants.ts";

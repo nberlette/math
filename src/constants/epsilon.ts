@@ -8,6 +8,13 @@
  * This is approximately equal to `2.220446049250313e-16`, and is provided as a
  * local implementation of the native `Number.EPSILON` constant.
  *
+ * @example
+ * ```ts
+ * import { EPSILON } from "@nick/math/constants/epsilon";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(EPSILON, Number.EPSILON);
+ * ```
  * @module epsilon
  */
 

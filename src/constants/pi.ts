@@ -1,4 +1,19 @@
 /**
+ * This module provides runtime and type-level implementations of the
+ * `PI` constant, matching `Math.PI`.
+ *
+ * @example
+ * ```ts
+ * import { PI } from "@nick/math/constants/pi";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(PI, Math.PI);
+ * ```
+ * @category Constants
+ * @module pi
+ */
+
+/**
  * Represents the mathematical constant `π` (pi), the ratio of a circle's
  * circumference to its diameter, approximately equal to `3.141592653589793`.
  *

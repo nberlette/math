@@ -5,6 +5,14 @@
  * @param it The number to check for being an integer.
  * @returns `true` if the provided number is an integer, otherwise `false`.
  * @category Arithmetic
+ * @example
+ * ```ts
+ * import { isInteger } from "@nick/math/guards/integer";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isInteger(10));
+ * assert.ok(!isInteger(10.5));
+ * ```
  * @module isInteger
  */
 import type { Integer } from "../types/integer.ts";

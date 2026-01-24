@@ -1,6 +1,13 @@
 /**
  * Performant local implementation of the `Math.ceil` function.
  *
+ * @example
+ * ```ts
+ * import { ceil } from "@nick/math/ceil";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(ceil(1.2), 2);
+ * ```
  * @module ceil
  */
 

@@ -9,6 +9,7 @@
     "jsr:@david/which@~0.4.1": "0.4.1",
     "jsr:@deno/cache-dir@~0.10.3": "0.10.3",
     "jsr:@deno/dnt@0.41.3": "0.41.3",
+    "jsr:@nick/is@0.2.0-rc.6": "0.2.0-rc.6",
     "jsr:@std/assert@0.223": "0.223.0",
     "jsr:@std/assert@0.226": "0.226.0",
     "jsr:@std/bytes@0.223": "0.223.0",
@@ -88,6 +89,9 @@
         "jsr:@std/path@1",
         "jsr:@ts-morph/bootstrap"
       ]
+    },
+    "@nick/is@0.2.0-rc.6": {
+      "integrity": "0d98b716ce5f6e1627e72b4508486468c170716cbb6a81dca400fe1ffb6d62b7"
     },
     "@std/assert@0.223.0": {
       "integrity": "eb8d6d879d76e1cc431205bd346ed4d88dc051c6366365b1af47034b0670be24"

@@ -2,6 +2,15 @@
  * This submodule provides type guards specific to the float32 module of the
  * `@nick/math` library, namely the {@linkcode isFloat32} predicate function.
  *
+ * @example
+ * ```ts
+ * import { isFiniteFloat32, isFloat32 } from "@nick/math/float32/guards";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isFloat32(Math.fround(1.5)));
+ * assert.ok(isFiniteFloat32(Math.fround(1.5)));
+ * assert.ok(!isFloat32(1.1));
+ * ```
  * @module float32/guards
  */
 import { isNaN } from "../guards/nan.ts";

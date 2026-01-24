@@ -1,6 +1,13 @@
 /**
  * Calculates the base number raised to the power of the exponent.
  *
+ * @example
+ * ```ts
+ * import { pow } from "@nick/math/pow";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(pow(2, 3), 8);
+ * ```
  * @module pow
  */
 

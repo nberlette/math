@@ -1,4 +1,14 @@
 /**
+ * Provides the `exp` function, a local implementation of `Math.exp` for
+ * computing exponentials (`e^x`) without relying on the global `Math` object.
+ *
+ * @example
+ * ```ts
+ * import { exp } from "@nick/math/exp";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(exp(0), 1);
+ * ```
  * @category Exponential
  * @module exp
  */

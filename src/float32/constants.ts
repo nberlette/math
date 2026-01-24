@@ -8,10 +8,15 @@
  * of completeness and transparency, as well as for potential userland usage in
  * cases where the constants are needed for custom encoding/decoding logic.
  *
+ * @example
+ * ```ts
+ * import { FLOAT32_EXPONENT_BITS } from "@nick/math/float32/constants";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(FLOAT32_EXPONENT_BITS, 8);
+ * ```
  * @module float32/constants
  */
-
-import type { FloatFormat } from "../internal/ieee754.ts";
 
 /**
  * The number of bits used for the exponent in the IEEE-754 single-precision
@@ -102,4 +107,4 @@ export default {
   negative_infinity: FLOAT32_NEGATIVE_INFINITY,
   negative_zero: FLOAT32_NEGATIVE_ZERO,
   positive_zero: FLOAT32_POSITIVE_ZERO,
-} as const satisfies FloatFormat;
+} as const;

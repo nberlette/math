@@ -1,6 +1,13 @@
 /**
  * Calculates the square root of a number.
  *
+ * @example
+ * ```ts
+ * import { sqrt } from "@nick/math/sqrt";
+ * import assert from "node:assert";
+ *
+ * assert.ok(Math.abs(sqrt(9) - 3) < 1e-12);
+ * ```
  * @module sqrt
  */
 import { EPSILON } from "./constants/epsilon.ts";
@@ -13,6 +20,7 @@ import { abs } from "./abs.ts";
  *
  * @param x The number to calculate the square root of
  * @returns The square root of the provided number.
+ * @category Arithmetic
  * @example
  * ```ts
  * import * as math from "@nick/math";

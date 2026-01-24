@@ -37,6 +37,7 @@
  * // ...
  * assert.ok(math.isFinite(420));
  * ```
+ * @category Core
  * @module math
  */
 export * from "./abs.ts";

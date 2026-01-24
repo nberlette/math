@@ -2,6 +2,13 @@
  * Calculates the arctangent (inverse tangent) of a number, returning a value
  * in the range `[-π/2, π/2]`.
  *
+ * @example
+ * ```ts
+ * import { atan } from "@nick/math/atan";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(atan(0), 0);
+ * ```
  * @module atan
  */
 import { abs } from "./abs.ts";

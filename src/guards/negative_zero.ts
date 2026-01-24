@@ -1,6 +1,13 @@
 /**
  * Checks if the provided number is a negative zero.
  *
+ * @example
+ * ```ts
+ * import { isNegativeZero } from "@nick/math/guards/negative-zero";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isNegativeZero(-0));
+ * ```
  * @module negative-zero
  */
 import { isNegativeInfinity } from "./negative_infinity.ts";

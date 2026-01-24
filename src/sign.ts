@@ -2,6 +2,13 @@
  * Returns the sign of a number, indicating whether the number is positive,
  * negative, or zero.
  *
+ * @example
+ * ```ts
+ * import { sign } from "@nick/math/sign";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(sign(-5), -1);
+ * ```
  * @module sign
  */
 

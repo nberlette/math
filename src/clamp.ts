@@ -6,6 +6,13 @@
  *
  * **Note**: this is a non-standard utility function.
  *
+ * @example
+ * ```ts
+ * import { clamp } from "@nick/math/clamp";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(clamp(10, 0, 5), 5);
+ * ```
  * @module clamp
  */
 import { max } from "./max.ts";

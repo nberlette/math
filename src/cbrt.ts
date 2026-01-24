@@ -1,6 +1,13 @@
 /**
  * Calculates the cube root of a number, handling negative values as well.
  *
+ * @example
+ * ```ts
+ * import { cbrt } from "@nick/math/cbrt";
+ * import assert from "node:assert";
+ *
+ * assert.ok(Math.abs(cbrt(27) - 3) < 1e-12);
+ * ```
  * @module cbrt
  */
 import { abs } from "./abs.ts";

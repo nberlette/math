@@ -10,6 +10,13 @@
  *
  * [Float16Array]: https://github.com/tc39/proposal-float16array
  *
+ * @example
+ * ```ts
+ * import { roundFloat16 } from "@nick/math/float16/round";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(roundFloat16(1.337), Math.f16round(1.337));
+ * ```
  * @module float16/round
  */
 import { encodeFloat16 } from "./encode.ts";
