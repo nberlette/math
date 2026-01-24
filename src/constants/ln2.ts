@@ -1,4 +1,19 @@
 /**
+ * This module provides runtime and type-level implementations of the
+ * `LN2` constant, the natural logarithm of 2.
+ *
+ * @example
+ * ```ts
+ * import { LN2 } from "@nick/math/constants/ln2";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(LN2, Math.LN2);
+ * ```
+ * @category Constants
+ * @module ln2
+ */
+
+/**
  * Represents the natural logarithm of `2`, approximately equal to
  * `0.6931471805599453`.
  *
