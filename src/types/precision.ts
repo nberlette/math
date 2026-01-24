@@ -5,7 +5,7 @@
  * @example
  * ```ts
  * import type { P32, Precision } from "@nick/math/types/precision";
- * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
  *
  * expectType<P32>(32);
  * expectType<Precision>(32);

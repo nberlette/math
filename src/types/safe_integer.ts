@@ -6,7 +6,7 @@
  * ```ts
  * import { isSafeInteger } from "@nick/math/is/safe-integer";
  * import type { SafeInteger } from "@nick/math/types/safe-integer";
- * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
  *
  * let user_input: number = 42;
  * if (isSafeInteger(user_input)) {
