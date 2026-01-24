@@ -7,9 +7,10 @@
  * @example
  * ```ts
  * import { random } from "@nick/math/random";
+ * import assert from "node:assert";
  *
- * console.log(random());
- * // => 0.5390711768976619
+ * const value = random();
+ * assert.ok(value >= 0 && value < 1);
  * ```
  * @module random
  */
@@ -229,13 +230,26 @@ export function random(): number {
   return MT19937.random();
 }
 
-/**
- * Initializes the random number generator with a seed or sequence of seeds.
- *
- * This is useful for testing, allowing you to generate a deterministic
- * sequence of pseudo-random numbers based on the provided seed value.
- *
- * @param seed - The seed value or sequence of seed values.
- * @returns The singleton instance of the random number generator.
- */
+export declare namespace random {
+  /**
+   * Initializes the random number generator with a seed or sequence of seeds.
+   *
+   * This is useful for testing, allowing you to generate a deterministic
+   * sequence of pseudo-random numbers based on the provided seed value.
+   *
+   * @param seed - The seed value or sequence of seed values.
+   * @returns a singleton instance of the {@linkcode MT19937} pseudorandom
+   * number generator (PRNG) class, initialized with the provided seed(s).
+   */
+  export function init(...seed: number[]): MT19937;
+
+  /**
+   * Generates a pseudorandom signed integer using the {@linkcode MT19937} API.
+   *
+   * @returns a 32-bit signed integer in the range `[-0x1FFFFFF, +0x1FFFFFF]`.
+   */
+  export function integer(): number;
+}
+
 random.init = MT19937.init;
+random.integer = MT19937.randomInt;
