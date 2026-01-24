@@ -8,10 +8,15 @@
  * of completeness and transparency, as well as for potential userland usage in
  * cases where the constants are needed for custom encoding/decoding logic.
  *
+ * @example
+ * ```ts
+ * import { FLOAT16_EXPONENT_BITS } from "@nick/math/float16/constants";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(FLOAT16_EXPONENT_BITS, 5);
+ * ```
  * @module float16/constants
  */
-
-import type { FloatFormat } from "../internal/ieee754.ts";
 
 /**
  * Well-known bit pattern representing `NaN` in the IEEE-754 half-precision (or
@@ -103,4 +108,4 @@ export default {
   negative_infinity: FLOAT16_NEGATIVE_INFINITY,
   negative_zero: FLOAT16_NEGATIVE_ZERO,
   positive_zero: FLOAT16_POSITIVE_ZERO,
-} as const satisfies FloatFormat;
+} as const;
