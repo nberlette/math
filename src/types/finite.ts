@@ -1,3 +1,19 @@
+/**
+ * Provides the `Finite` branded type for numbers that are neither
+ * infinite nor `NaN`.
+ *
+ * @example
+ * ```ts
+ * import type { Finite } from "@nick/math/types/finite";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ *
+ * const value = 42 as Finite;
+ * expectType<Finite>(value);
+ * ```
+ * @category Types
+ * @module types/finite
+ */
+
 import type {
   NEGATIVE_INFINITY,
   POSITIVE_INFINITY,
