@@ -1,6 +1,13 @@
 /**
  * Calculates the cosine of a number, returning a value in the range `[-1, 1]`.
  *
+ * @example
+ * ```ts
+ * import { cos } from "@nick/math/cos";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(cos(0), 1);
+ * ```
  * @module cos
  */
 import { abs } from "./abs.ts";
