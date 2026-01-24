@@ -23,4 +23,18 @@
  * @category Constants
  */
 export const MIN_SAFE_INTEGER: MIN_SAFE_INTEGER = -9007199254740991;
+/**
+ * Type-level alias of the `MIN_SAFE_INTEGER` constant exported by this module. This allows
+ * `MIN_SAFE_INTEGER` to be imported using a standard named import (i.e. the _value_ level)
+ * or via type-only import for a compile-time only reference to the same value.
+ *
+ * @example
+ * ```ts
+ * import type { MIN_SAFE_INTEGER } from "@nick/math/constants/min-safe-integer";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
+ *
+ * expectType<MIN_SAFE_INTEGER>(-9007199254740991);
+ * ```
+ * @category Constants
+ */
 export type MIN_SAFE_INTEGER = -9007199254740991;

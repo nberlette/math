@@ -29,4 +29,18 @@
  */
 export const EPSILON: EPSILON = 2.220446049250313e-16;
 
+/**
+ * Type-level alias of the `EPSILON` constant exported by this module. This allows
+ * `EPSILON` to be imported using a standard named import (i.e. the _value_ level)
+ * or via type-only import for a compile-time only reference to the same value.
+ *
+ * @example
+ * ```ts
+ * import type { EPSILON } from "@nick/math/constants/epsilon";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
+ *
+ * expectType<EPSILON>(2.220446049250313e-16);
+ * ```
+ * @category Constants
+ */
 export type EPSILON = 2.220446049250313e-16;
