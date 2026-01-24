@@ -1,6 +1,9 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isNegativeInfinity, isPositiveInfinity } from "../../src/guards/infinity.ts";
+import {
+  isNegativeInfinity,
+  isPositiveInfinity,
+} from "../../src/guards/infinity.ts";
 
 describe("guards/infinity", () => {
   it("re-exports positive/negative infinity checks", () => {
