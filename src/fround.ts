@@ -2,6 +2,13 @@
  * Rounds a number to the nearest 32-bit floating point value (single
  * precision).
  *
+ * @example
+ * ```ts
+ * import { fround } from "@nick/math/fround";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(fround(1.337), Math.fround(1.337));
+ * ```
  * @module fround
  */
 import { roundFloat32 } from "./float32/round.ts";
