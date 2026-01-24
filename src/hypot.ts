@@ -5,6 +5,13 @@
  *
  * **Note**: This equation is also known as the Euclidean distance or L² norm.
  *
+ * @example
+ * ```ts
+ * import { hypot } from "@nick/math/hypot";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(hypot(3, 4), 5);
+ * ```
  * @module hypot
  */
 import { abs } from "./abs.ts";
