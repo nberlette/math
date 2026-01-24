@@ -188,6 +188,8 @@ jobs:
 
       - if: inputs.release != 'false' && (env.IS_TAG || github.ref_type == 'tag')
         id: release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           # shellcheck disable=SC2086,SC2206
           ASSETS=(${INPUT_RELEASE_ASSETS:-})
