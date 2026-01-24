@@ -8,6 +8,13 @@
  * mathematical operations, such as dividing zero by zero, or parsing a string
  * that does not represent a valid number with `parseInt` or `parseFloat`.
  *
+ * @example
+ * ```ts
+ * import { NAN } from "@nick/math/constants/nan";
+ * import assert from "node:assert";
+ *
+ * assert.ok(Number.isNaN(NAN));
+ * ```
  * @module nan
  */
 
