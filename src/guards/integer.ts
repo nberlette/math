@@ -45,10 +45,10 @@ export function isInteger<const N extends number>(
  */
 export function isInteger(number: unknown): number is Integer<number>;
 
-/** @internal */
-// deno-lint-ignore no-explicit-any
-export function isInteger(number: any): number is Integer<number> {
-  return (number = +number) % 1 === 0;
+/** @inheritDoc */
+export function isInteger(number: unknown): number is Integer<number> {
+  const value = +(number as number);
+  return value % 1 === 0;
 }
 
 /**

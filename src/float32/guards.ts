@@ -37,7 +37,9 @@ import { roundFloat32 } from "./round.ts";
  * @tags float32
  */
 export function isFloat32<N extends number>(it: N): it is Float32<N>;
+/** @inheritDoc */
 export function isFloat32(it: unknown): it is Float32<number>;
+/** @inheritDoc */
 export function isFloat32(it: unknown): it is Float32 {
   return typeof it === "number" && !isNaN(it) && it === roundFloat32(it);
 }
@@ -57,7 +59,9 @@ export function isFloat32(it: unknown): it is Float32 {
 export function isFiniteFloat32<N extends number>(
   it: N,
 ): it is Finite<N> & Float32<N>;
+/** @inheritDoc */
 export function isFiniteFloat32(it: unknown): it is Float32<number>;
+/** @inheritDoc */
 export function isFiniteFloat32(it: unknown): it is Float32 {
   return isFloat32(it) && isFinite(it);
 }

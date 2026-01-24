@@ -35,7 +35,9 @@ import { roundFloat16 } from "./round.ts";
  * @tags float16
  */
 export function isFloat16<N extends number>(it: N): it is Float16<N>;
+/** @inheritDoc */
 export function isFloat16(it: unknown): it is Float16<number>;
+/** @inheritDoc */
 export function isFloat16(it: unknown): it is Float16 {
   return typeof it === "number" && !isNaN(it) && it === roundFloat16(it);
 }
