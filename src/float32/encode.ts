@@ -13,6 +13,13 @@
  * {@linkcode decodeFloat32} function of the `./decode` module, passing it the
  * encoded value returned by {@linkcode encodeFloat32}.
  *
+ * @example
+ * ```ts
+ * import { encodeFloat32 } from "@nick/math/float32/encode";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(encodeFloat32(1), 0x3F800000);
+ * ```
  * @module float32/encode
  */
 import float32 from "./constants.ts";
