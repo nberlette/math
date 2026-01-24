@@ -2,6 +2,13 @@
  * Calculates the tangent of `x`, returning a value in the range `[-∞, +∞]`.
  *
  * @category Trigonometry
+ * @example
+ * ```ts
+ * import { tan } from "@nick/math/tan";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(tan(0), 0);
+ * ```
  * @module tan
  */
 import { NAN } from "./constants/nan.ts";
