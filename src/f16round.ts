@@ -8,6 +8,13 @@
  *
  * [Float16Array]: https://github.com/tc39/proposal-float16array
  *
+ * @example
+ * ```ts
+ * import { f16round } from "@nick/math/f16round";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(f16round(1.337), Math.f16round(1.337));
+ * ```
  * @module f16round
  */
 import { roundFloat16 } from "./float16/round.ts";
