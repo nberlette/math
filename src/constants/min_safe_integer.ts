@@ -1,4 +1,19 @@
 /**
+ * This module provides runtime and type-level implementations of the
+ * `MIN_SAFE_INTEGER` constant, matching `Number.MIN_SAFE_INTEGER`.
+ *
+ * @example
+ * ```ts
+ * import { MIN_SAFE_INTEGER } from "@nick/math/constants/min-safe-integer";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(MIN_SAFE_INTEGER, Number.MIN_SAFE_INTEGER);
+ * ```
+ * @category Constants
+ * @module min-safe-integer
+ */
+
+/**
  * Represents the smallest integer that can be represented in JavaScript
  * without losing precision, which is approximately equal to
  * `-9007199254740991`.
