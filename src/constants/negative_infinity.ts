@@ -1,4 +1,19 @@
 /**
+ * This module provides runtime and type-level implementations of the
+ * `NEGATIVE_INFINITY` constant, matching `Number.NEGATIVE_INFINITY`.
+ *
+ * @example
+ * ```ts
+ * import { NEGATIVE_INFINITY } from "@nick/math/constants/negative-infinity";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(NEGATIVE_INFINITY, Number.NEGATIVE_INFINITY);
+ * ```
+ * @category Constants
+ * @module negative-infinity
+ */
+
+/**
  * Negative Infinity is a special value representing negative infinity, which
  * is less than any other number. It is approximately equal to
  * `-1.7976931348623159e+308`.
