@@ -244,12 +244,15 @@ export declare namespace random {
   export function init(...seed: number[]): MT19937;
 
   /**
-   * Generates a pseudorandom signed integer using the {@linkcode MT19937} API.
+   * Generates a pseudorandom unsigned integer using the {@linkcode MT19937} API.
    *
-   * @returns a 32-bit signed integer in the range `[-0x1FFFFFF, +0x1FFFFFF]`.
+   * @returns a 32-bit unsigned integer in the range `[0, 0x7FFFFFF)`.
    */
   export function integer(): number;
 }
 
-random.init = MT19937.init;
-random.integer = MT19937.randomInt;
+// deno-lint-ignore no-namespace
+export namespace random {
+  random.init = MT19937.init;
+  random.integer = MT19937.randomInt;
+}
