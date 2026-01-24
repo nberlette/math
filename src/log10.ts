@@ -1,6 +1,13 @@
 /**
  * Calculates the base-10 logarithm of a number.
  *
+ * @example
+ * ```ts
+ * import { log10 } from "@nick/math/log10";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(log10(1), 0);
+ * ```
  * @module log10
  */
 import { LOG10E } from "./constants/log10e.ts";
