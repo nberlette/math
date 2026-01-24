@@ -9,6 +9,15 @@
  * **Note**: The `float16` and `float32` modules are used under the hood by the
  * `f16round` and `fround` functions, respectively.
  *
+ * @example
+ * ```ts
+ * import { decodeFloat16, encodeFloat16 } from "@nick/math/ieee754";
+ * import assert from "node:assert";
+ *
+ * const encoded = encodeFloat16(1);
+ * assert.strictEqual(decodeFloat16(encoded), 1);
+ * ```
+ * @category IEEE-754
  * @module ieee754
  */
 export * from "./float16/index.ts";
