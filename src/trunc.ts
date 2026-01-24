@@ -3,13 +3,11 @@
  *
  * @example
  * ```ts
- * import * as math from "@nick/math";
+ * import { trunc } from "@nick/math/trunc";
+ * import assert from "node:assert";
  *
- * math.trunc(13.37); // 13
- * math.trunc(42.195); // 42
- * math.trunc(-7.8); // -7
- * math.trunc(-0.123); // 0
- * math.trunc(0); // 0
+ * assert.strictEqual(trunc(13.37), 13);
+ * assert.strictEqual(trunc(-7.8), -7);
  * ```
  * @module trunc
  */
