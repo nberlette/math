@@ -13,6 +13,13 @@
  * value into a standard JavaScript number, which can be used in arithmetic
  * operations or passed to other functions.
  *
+ * @example
+ * ```ts
+ * import { decodeFloat16 } from "@nick/math/float16/decode";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(decodeFloat16(0x3C00), 1);
+ * ```
  * @module float16/decode
  */
 import float16 from "./constants.ts";
