@@ -1,6 +1,13 @@
 /**
  * Calculates the inverse hyperbolic sine of a number.
  *
+ * @example
+ * ```ts
+ * import { asinh } from "@nick/math/asinh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(asinh(0), 0);
+ * ```
  * @module asinh
  */
 import { isFinite } from "./guards/finite.ts";
