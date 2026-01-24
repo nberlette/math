@@ -8,6 +8,14 @@
  * Note: This guard **does not coerce its input to a number** beforehand. The
  * value passed for `number` must already satisfy `typeof number === "number"`.
  *
+ * @example
+ * ```ts
+ * import { isSafeInteger } from "@nick/math/guards/safe-integer";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isSafeInteger(9007199254740991));
+ * assert.ok(!isSafeInteger(9007199254740992));
+ * ```
  * @module safe-integer
  */
 import { isFinite } from "./finite.ts";
