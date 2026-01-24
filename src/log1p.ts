@@ -2,6 +2,13 @@
  * Calculates the natural logarithm of 1 + x (`log(1 + x)`), accurately even
  * for very small values of x.
  *
+ * @example
+ * ```ts
+ * import { log1p } from "@nick/math/log1p";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(log1p(0), 0);
+ * ```
  * @module log1p
  */
 import { EPSILON } from "./constants/epsilon.ts";
