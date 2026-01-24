@@ -3,6 +3,13 @@
  * `Math.clz32` function, which counts the number of leading zero bits in the
  * 32-bit binary representation of a number.
  *
+ * @example
+ * ```ts
+ * import { clz32 } from "@nick/math/clz32";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(clz32(1), 31);
+ * ```
  * @module clz32
  */
 
