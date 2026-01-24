@@ -5,6 +5,14 @@
  * function. It is not dependent on the global `Number` object and will not be
  * affected by global variable shadowing, reassignment, or malicious tampering.
  *
+ * @example
+ * ```ts
+ * import { isFinite } from "@nick/math/guards/finite";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isFinite(42));
+ * assert.ok(!isFinite(Infinity));
+ * ```
  * @module guards/finite
  */
 import { isNaN } from "./nan.ts";
