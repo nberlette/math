@@ -1,6 +1,13 @@
 /**
  * Calculates the hyperbolic sine of a number.
  *
+ * @example
+ * ```ts
+ * import { sinh } from "@nick/math/sinh";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(sinh(0), 0);
+ * ```
  * @module sinh
  */
 
