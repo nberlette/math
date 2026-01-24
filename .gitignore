@@ -12,3 +12,4 @@ coverage
 .cov
 npm
 !deno.lock
+!coverage

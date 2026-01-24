@@ -21,4 +21,18 @@
  * @category Constants
  */
 export const LOG2E: LOG2E = 1.4426950408889634;
+/**
+ * Type-level alias of the `LOG2E` constant exported by this module. This allows
+ * `LOG2E` to be imported using a standard named import (i.e. the _value_ level)
+ * or via type-only import for a compile-time only reference to the same value.
+ *
+ * @example
+ * ```ts
+ * import type { LOG2E } from "@nick/math/constants/log2e";
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
+ *
+ * expectType<LOG2E>(1.4426950408889634);
+ * ```
+ * @category Constants
+ */
 export type LOG2E = 1.4426950408889634;

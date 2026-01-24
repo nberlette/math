@@ -10,7 +10,7 @@
  * @example
  * ```ts
  * import type { Float32 } from "@nick/math/types/float";
- * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";;
+ * import { expectType } from "jsr:@nick/is@0.2.0-rc.6/type/expect";
  *
  * const value = 1 as Float32;
  * expectType<Float32>(value);
