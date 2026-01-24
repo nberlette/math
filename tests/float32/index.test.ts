@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import * as float32 from "./index.ts";
+import * as float32 from "../../src/float32/index.ts";
 
 describe("float32/index", () => {
   it("exports float32 utilities", () => {

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { NAN, NaN as NaNValue } from "./nan.ts";
+import { NAN, NaN as NaNValue } from "../../src/constants/nan.ts";
 
 describe("NAN", () => {
   it("is a number", () => {

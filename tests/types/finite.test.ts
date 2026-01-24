@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import type { Finite } from "./finite.ts";
+import type { Finite } from "../../src/types/finite.ts";
 
 const finiteValue = 1 as Finite;
 

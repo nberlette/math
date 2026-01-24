@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { roundFloat32 } from "./round.ts";
+import { roundFloat32 } from "../../src/float32/round.ts";
 
 const cases = [0, -0, 1, -1, 3.14, 42, Infinity, -Infinity, NaN];
 

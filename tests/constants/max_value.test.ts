@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { MAX_VALUE } from "./max_value.ts";
+import { MAX_VALUE } from "../../src/constants/max_value.ts";
 
 describe("MAX_VALUE", () => {
   it("is a number", () => {

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import * as guards from "./index.ts";
+import * as guards from "../../src/guards/index.ts";
 
 describe("guards/index", () => {
   it("exposes guard functions", () => {

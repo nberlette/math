@@ -9,7 +9,7 @@ import float32, {
   FLOAT32_NEGATIVE_ZERO,
   FLOAT32_POSITIVE_INFINITY,
   FLOAT32_POSITIVE_ZERO,
-} from "./constants.ts";
+} from "../../src/float32/constants.ts";
 
 describe("float32/constants", () => {
   it("exposes expected numeric constants", () => {

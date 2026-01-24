@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertSameValue } from "./internal/_test_utils.ts";
-import { ceil } from "./ceil.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
+import { ceil } from "../src/ceil.ts";
 
 const cases: number[] = [
   -2.5,

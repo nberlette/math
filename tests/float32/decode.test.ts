@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { decodeFloat32 } from "./decode.ts";
+import { decodeFloat32 } from "../../src/float32/decode.ts";
 
 const cases = [
   0x00000000,

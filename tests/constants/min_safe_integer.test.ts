@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { MIN_SAFE_INTEGER } from "./min_safe_integer.ts";
+import { MIN_SAFE_INTEGER } from "../../src/constants/min_safe_integer.ts";
 
 describe("MIN_SAFE_INTEGER", () => {
   it("is a number", () => {

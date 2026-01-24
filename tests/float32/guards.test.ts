@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isFiniteFloat32, isFloat32 } from "./guards.ts";
-import { roundFloat32 } from "./round.ts";
+import { isFiniteFloat32, isFloat32 } from "../../src/float32/guards.ts";
+import { roundFloat32 } from "../../src/float32/round.ts";
 
 const cases = [0, -0, 1, -1, 0.1, 0.5, 3.14, 42, Infinity, -Infinity, NaN];
 

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { clamp } from "./clamp.ts";
+import { clamp } from "../src/clamp.ts";
 
 const cases: Array<[number, number, number]> = [
   [-1, 0, 1],

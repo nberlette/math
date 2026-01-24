@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isSafeInteger } from "./safe_integer.ts";
+import { isSafeInteger } from "../../src/guards/safe_integer.ts";
 
 const cases = [
   0,

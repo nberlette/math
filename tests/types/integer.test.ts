@@ -13,7 +13,7 @@ import type {
   Uint64,
   Uint8,
   Unsigned,
-} from "./integer.ts";
+} from "../../src/types/integer.ts";
 
 const intValue = 1 as Integer;
 const uintValue = 1 as Unsigned;

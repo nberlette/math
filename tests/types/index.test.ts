@@ -6,7 +6,7 @@ import type {
   Integer,
   Precision,
   SafeInteger,
-} from "./index.ts";
+} from "../../src/types/index.ts";
 
 const finiteValue = 1 as Finite;
 const floatValue = 1 as Float;

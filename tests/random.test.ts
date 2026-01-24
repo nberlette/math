@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { MT19937, random } from "./random.ts";
+import { MT19937, random } from "../src/random.ts";
 
 const seed = 42;
 

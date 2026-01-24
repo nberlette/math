@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertSameValue } from "./internal/_test_utils.ts";
-import { f16round } from "./f16round.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
+import { f16round } from "../src/f16round.ts";
 
 const cases: number[] = [
   -2.5,

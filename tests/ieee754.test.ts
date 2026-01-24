@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import * as ieee754 from "./ieee754.ts";
+import * as ieee754 from "../src/ieee754.ts";
 
 describe("ieee754", () => {
   it("re-exports float16 utilities", () => {

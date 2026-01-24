@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { NEGATIVE_INFINITY } from "./negative_infinity.ts";
+import { NEGATIVE_INFINITY } from "../../src/constants/negative_infinity.ts";
 
 describe("NEGATIVE_INFINITY", () => {
   it("is a number", () => {

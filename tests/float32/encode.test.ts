@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { encodeFloat32 } from "./encode.ts";
+import { encodeFloat32 } from "../../src/float32/encode.ts";
 
 const cases = [0, -0, 1, -1, 3.14, 42, Infinity, -Infinity];
 

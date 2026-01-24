@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertClose } from "./internal/_test_utils.ts";
-import { pow } from "./pow.ts";
+import { assertClose } from "../src/internal/_test_utils.ts";
+import { pow } from "../src/pow.ts";
 
 const cases: Array<[number, number]> = [
   [2, 3],

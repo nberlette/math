@@ -7,7 +7,7 @@ import type {
   P64,
   P8,
   Precision,
-} from "./precision.ts";
+} from "../../src/types/precision.ts";
 
 const p8Value = 8 as P8;
 const p16Value = 16 as P16;

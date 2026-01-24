@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isFinite } from "./finite.ts";
+import { isFinite } from "../../src/guards/finite.ts";
 
 const cases: unknown[] = [
   0,

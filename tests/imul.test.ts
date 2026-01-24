@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertSameValue } from "./internal/_test_utils.ts";
-import { imul } from "./imul.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
+import { imul } from "../src/imul.ts";
 
 const cases: Array<[number, number]> = [[2, 3], [-1, 8], [4294967295, 5], [
   0,

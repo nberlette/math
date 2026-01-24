@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isInteger, isNumberInteger } from "./integer.ts";
+import { isInteger, isNumberInteger } from "../../src/guards/integer.ts";
 
 const cases = [0, 1, -1, 1.2, -2.5, NaN, Infinity, -Infinity, "3"];
 

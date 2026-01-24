@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { POSITIVE_ZERO } from "./positive_zero.ts";
+import { POSITIVE_ZERO } from "../../src/constants/positive_zero.ts";
 
 describe("POSITIVE_ZERO", () => {
   it("is +0", () => {

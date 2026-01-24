@@ -1,5 +1,5 @@
 import { describe, it } from "node:test";
-import { assertClose } from "./internal/_test_utils.ts";
+import { assertClose } from "../src/internal/_test_utils.ts";
 import {
   acos,
   acosh,
@@ -12,7 +12,7 @@ import {
   sin,
   tan,
   tanh,
-} from "./index.ts";
+} from "../src/index.ts";
 
 const unaryCases = [0, 0.5, -0.5, 1, -1, Math.PI / 2, Math.PI, NaN];
 

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import type { Double, Float, Float16, Float32, Float64 } from "./float.ts";
+import type { Double, Float, Float16, Float32, Float64 } from "../../src/types/float.ts";
 
 const floatValue = 1 as Float;
 const float16Value = 1 as Float16;

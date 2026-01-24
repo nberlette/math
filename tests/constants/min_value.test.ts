@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { MIN_VALUE } from "./min_value.ts";
+import { MIN_VALUE } from "../../src/constants/min_value.ts";
 
 describe("MIN_VALUE", () => {
   it("is a number", () => {

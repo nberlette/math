@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertSameValue } from "./internal/_test_utils.ts";
-import { min } from "./min.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
+import { min } from "../src/min.ts";
 
 const cases: Array<number[]> = [
   [1, 2, 3],

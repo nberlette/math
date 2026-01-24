@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertClose } from "./internal/_test_utils.ts";
-import { tan } from "./tan.ts";
+import { assertClose } from "../src/internal/_test_utils.ts";
+import { tan } from "../src/tan.ts";
 
 const cases: number[] = [
   -2.5,

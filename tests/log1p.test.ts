@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertClose } from "./internal/_test_utils.ts";
-import { log1p } from "./log1p.ts";
+import { assertClose } from "../src/internal/_test_utils.ts";
+import { log1p } from "../src/log1p.ts";
 
 const cases: number[] = [
   -2.5,

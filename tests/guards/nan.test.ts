@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isNaN, NAN, NaN as NaNValue } from "./nan.ts";
+import { isNaN, NAN, NaN as NaNValue } from "../../src/guards/nan.ts";
 
 const cases: unknown[] = [0, 1, NaN, "foo", "42", null, undefined];
 

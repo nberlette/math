@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertClose } from "./internal/_test_utils.ts";
-import { hypot } from "./hypot.ts";
+import { assertClose } from "../src/internal/_test_utils.ts";
+import { hypot } from "../src/hypot.ts";
 
 const cases: Array<number[]> = [[3, 4], [0, 0], [1, 2, 3], [Infinity, 1], [
   NaN,

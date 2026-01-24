@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertSameValue } from "./internal/_test_utils.ts";
-import { max } from "./max.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
+import { max } from "../src/max.ts";
 
 const cases: Array<number[]> = [
   [1, 2, 3],

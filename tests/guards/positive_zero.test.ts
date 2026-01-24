@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isPositiveZero } from "./positive_zero.ts";
+import { isPositiveZero } from "../../src/guards/positive_zero.ts";
 
 const cases = [0, -0, 1, -1, NaN, Infinity, -Infinity];
 

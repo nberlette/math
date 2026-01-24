@@ -1,9 +1,9 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { assertClose, assertSameValue } from "./internal/_test_utils.ts";
-import { atan2 } from "./atan2.ts";
-import { PI } from "./constants/pi.ts";
-import { isNegativeZero } from "./guards/negative_zero.ts";
+import { assertClose, assertSameValue } from "../src/internal/_test_utils.ts";
+import { atan2 } from "../src/atan2.ts";
+import { PI } from "../src/constants/pi.ts";
+import { isNegativeZero } from "../src/guards/negative_zero.ts";
 
 const PI_OVER_2 = PI / 2, PI_OVER_4 = PI / 4;
 

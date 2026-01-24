@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { LOG2E } from "./log2e.ts";
+import { LOG2E } from "../../src/constants/log2e.ts";
 
 describe("LOG2E", () => {
   it("is a number", () => {

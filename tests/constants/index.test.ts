@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import * as constants from "./index.ts";
+import * as constants from "../../src/constants/index.ts";
 
 const mathKeys = [
   "E",

@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { LN10 } from "./ln10.ts";
+import { LN10 } from "../../src/constants/ln10.ts";
 
 describe("LN10", () => {
   it("is a number", () => {

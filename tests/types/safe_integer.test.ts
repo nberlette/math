@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import type { SafeInteger } from "./safe_integer.ts";
+import type { SafeInteger } from "../../src/types/safe_integer.ts";
 
 const safeValue = 1 as SafeInteger;
 

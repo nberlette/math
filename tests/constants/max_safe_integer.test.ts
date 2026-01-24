@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { MAX_SAFE_INTEGER } from "./max_safe_integer.ts";
+import { MAX_SAFE_INTEGER } from "../../src/constants/max_safe_integer.ts";
 
 describe("MAX_SAFE_INTEGER", () => {
   it("is a number", () => {

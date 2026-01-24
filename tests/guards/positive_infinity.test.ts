@@ -1,6 +1,6 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import { isPositiveInfinity } from "./positive_infinity.ts";
+import { isPositiveInfinity } from "../../src/guards/positive_infinity.ts";
 
 const cases = [0, 1, -1, Infinity, -Infinity, NaN];
 

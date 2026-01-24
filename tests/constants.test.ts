@@ -1,7 +1,7 @@
 import assert from "node:assert";
 import { describe, it } from "node:test";
-import * as constants from "./constants/index.ts";
-import { assertSameValue } from "./internal/_test_utils.ts";
+import * as constants from "../src/constants/index.ts";
+import { assertSameValue } from "../src/internal/_test_utils.ts";
 
 const cases = {
   Math: [
