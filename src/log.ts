@@ -33,6 +33,7 @@ export function log(x: number): number {
   const seriesEpsilon = EPSILON * 16;
   let n = 0;
   while (x > 2) x /= 2, n++;
+  while (x < 0.5) x *= 2, n--;
 
   const z = (x - 1) / (x + 1), z2 = z * z;
   let sum = 0, term = z, i = 1;
