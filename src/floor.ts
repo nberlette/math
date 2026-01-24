@@ -2,6 +2,13 @@
  * Performant local implementation of the `Math.floor` function.
  *
  * @category Arithmetic
+ * @example
+ * ```ts
+ * import { floor } from "@nick/math/floor";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(floor(1.8), 1);
+ * ```
  * @module floor
  */
 import { NEGATIVE_INFINITY } from "./constants/negative_infinity.ts";
