@@ -10,3 +10,5 @@ Thumbs.db
 .coverage
 coverage
 .cov
+npm
+!deno.lock

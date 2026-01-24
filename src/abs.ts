@@ -12,5 +12,7 @@
  * @category Arithmetic
  */
 export function abs(x: number): number {
-  return (x = +x) < 0 ? -x : x;
+  x = +x;
+  if (x === 0) return 0;
+  return x < 0 ? -x : x;
 }

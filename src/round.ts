@@ -3,6 +3,7 @@
  *
  * @module round
  */
+import { floor } from "./floor.ts";
 
 /**
  * Rounds a number to the nearest whole number.
@@ -12,7 +13,8 @@
  * @category Rounding
  */
 export function round(x: number): number {
-  return (x = +x) < 0 ? -round(-x) : (
-    x % 1 >= 0.5 ? x + 1 - x % 1 : x - x % 1
-  );
+  x = +x;
+  if (x !== x || x === 0) return x;
+  const rounded = floor(x + 0.5);
+  return rounded === 0 && x < 0 ? -0 : rounded;
 }

@@ -15,6 +15,7 @@ export * from "./max_value.ts";
 export * from "./min_safe_integer.ts";
 export * from "./min_value.ts";
 export * from "./nan.ts";
+export * from "./negative_zero.ts";
 export * from "./pi.ts";
 export * from "./positive_zero.ts";
 export * from "./sqrt1_2.ts";

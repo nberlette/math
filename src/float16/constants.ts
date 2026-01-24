@@ -11,7 +11,7 @@
  * @module float16/constants
  */
 
-import { FloatFormat } from "../internal/ieee754.ts";
+import type { FloatFormat } from "../internal/ieee754.ts";
 
 /**
  * Well-known bit pattern representing `NaN` in the IEEE-754 half-precision (or

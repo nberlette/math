@@ -41,12 +41,12 @@ export function atan(x: number): number {
     // floating-point numbers
     const MAX_ITERATIONS = 1000;
     while (abs(term) > EPSILON && n < MAX_ITERATIONS) {
-      term *= a2;
+      term *= -a2;
       sum += term / (2 * n + 1);
       n++;
     }
 
-    return PI_OVER_4 + 2 * sum;
+    return PI_OVER_4 + sum;
   }
 
   // for x <= 0.5, use the standard Taylor series expansion

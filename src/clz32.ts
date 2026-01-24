@@ -5,8 +5,6 @@
  *
  * @module clz32
  */
-import { LOG2E } from "./constants/log2e.ts";
-import { log } from "./log.ts";
 
 /**
  * Performant local implementation of the `Math.clz32` function, which counts
@@ -20,6 +18,28 @@ import { log } from "./log.ts";
  * @tags clz32
  */
 export function clz32(x: number): number {
-  x = (x | 0) >>> 0;
-  return x ? 31 - (log(x) * LOG2E | 0) : 32;
+  x >>>= 0;
+  if (x === 0) return 32;
+
+  let count = 0;
+  if ((x & 0xFFFF0000) === 0) {
+    count += 16;
+    x <<= 16;
+  }
+  if ((x & 0xFF000000) === 0) {
+    count += 8;
+    x <<= 8;
+  }
+  if ((x & 0xF0000000) === 0) {
+    count += 4;
+    x <<= 4;
+  }
+  if ((x & 0xC0000000) === 0) {
+    count += 2;
+    x <<= 2;
+  }
+  if ((x & 0x80000000) === 0) {
+    count += 1;
+  }
+  return count;
 }

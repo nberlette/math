@@ -23,6 +23,7 @@ export function log(x: number): number {
   if (x === 1) return 0; // 0 for x = 1
   if (x === POSITIVE_INFINITY) return x; // Infinity for x = Infinity
 
+  const seriesEpsilon = EPSILON * 16;
   let n = 0;
   while (x > 2) x /= 2, n++;
 
@@ -30,7 +31,7 @@ export function log(x: number): number {
   let sum = 0, term = z, i = 1;
 
   // series expansion for ln(1+z) converges faster when z is [-1, 1]
-  while (abs(term) >= EPSILON) {
+  while (abs(term) >= seriesEpsilon) {
     sum += term / i;
     term *= z2;
     i += 2;

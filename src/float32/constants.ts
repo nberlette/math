@@ -11,7 +11,7 @@
  * @module float32/constants
  */
 
-import { FloatFormat } from "../internal/ieee754.ts";
+import type { FloatFormat } from "../internal/ieee754.ts";
 
 /**
  * The number of bits used for the exponent in the IEEE-754 single-precision
