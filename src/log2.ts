@@ -1,6 +1,13 @@
 /**
  * Calculates the base-2 logarithm of a number (log₂).
  *
+ * @example
+ * ```ts
+ * import { log2 } from "@nick/math/log2";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(log2(1), 0);
+ * ```
  * @module log2
  */
 import { LOG2E } from "./constants/log2e.ts";
