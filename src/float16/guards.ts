@@ -2,6 +2,14 @@
  * This submodule provides type guards specific to the float16 module of the
  * `@nick/math` library, namely the {@linkcode isFloat16} predicate function.
  *
+ * @example
+ * ```ts
+ * import { isFloat16 } from "@nick/math/float16/guards";
+ * import assert from "node:assert";
+ *
+ * assert.ok(isFloat16(0.5));
+ * assert.ok(!isFloat16(0.1));
+ * ```
  * @module float16/guards
  */
 import { isNaN } from "../guards/nan.ts";
