@@ -2,6 +2,13 @@
  * Calculates the arctangent of the quotient of its arguments, `y / x`,
  * returning a value in the range `(-π, π]`.
  *
+ * @example
+ * ```ts
+ * import { atan2 } from "@nick/math/atan2";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(atan2(0, 1), 0);
+ * ```
  * @module atan2
  */
 import { NAN } from "./constants/nan.ts";
