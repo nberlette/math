@@ -4,12 +4,11 @@
  *
  * @example
  * ```ts
- * import { max } from "@nick/math";
+ * import { max } from "@nick/math/max";
+ * import assert from "node:assert";
  *
- * const atLeastZero = (x: number) => max(x, 0);
- *
- * atLeastZero(+1); // 1
- * atLeastZero(-1); // 0
+ * assert.strictEqual(max(1, 3, 2), 3);
+ * assert.strictEqual(max(-1, -5), -1);
  * ```
  * @module max
  */
