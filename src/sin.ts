@@ -1,6 +1,13 @@
 /**
  * Calculates the sine of a number, returning a value in the range `[-1, 1]`.
  *
+ * @example
+ * ```ts
+ * import { sin } from "@nick/math/sin";
+ * import assert from "node:assert";
+ *
+ * assert.strictEqual(sin(0), 0);
+ * ```
  * @module sin
  */
 
